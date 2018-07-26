@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Landing from "./Landing";
 import LoginForm from "./loginForm";
 import Register from "./register";
+import Dashboard from "./Dashboard";
+
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () =>
@@ -19,7 +21,22 @@ export default class ApplicationViews extends Component {
           exact
           path="/"
           render={props => {
-            return <Landing />;
+            if (this.isAuthenticated()) {
+              return <Landing />;
+            } else {
+              return <LoginForm />;
+            }
+          }}
+        />
+        <Route
+          exact
+          path="/"
+          render={props => {
+            if (this.isAuthenticated()) {
+              return <Dashboard />;
+            } else {
+              return <Landing />;
+            }
           }}
         />
       </React.Fragment>

@@ -8,6 +8,7 @@ export default class Register extends Component {
         password: ""
     }
 
+
     handleFieldChange = (e) => {
         const stateToChange = {}
         stateToChange[e.target.id] = e.target.value
@@ -16,15 +17,16 @@ export default class Register extends Component {
 
     handleRegister = e => {
         e.preventDefault();
+        
 
         let registerData = {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password
         }
-
         APIHandler.addData("users", registerData)
-            .then(() => {
+        .then(() => {
+                alert("Registration Successful")
                 this.props.history.push("/loginForm");
             })
     }
@@ -32,7 +34,7 @@ export default class Register extends Component {
     render() {
         return (
             <form onSubmit={this.handleRegister}>
-                <h1>Please Register Your Info!</h1>
+                <h4>Please Register Your Info!</h4>
 
                 {/* Field to register username */}
                 <label htmlFor="registerUsername">Username:</label>

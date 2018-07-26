@@ -1,5 +1,5 @@
 class apiCalls {
-  static getField = section => {
+  static getData = section => {
     return fetch(`http://localhost:5002/${section}`).then(e => e.json());
   };
 
