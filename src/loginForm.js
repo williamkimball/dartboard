@@ -15,7 +15,7 @@ export default class loginForm extends Component {
 
   handleLogin = event => {
     //Stops default action of form reloading
-    // event.preventDefault()
+    event.preventDefault()
 
     APIHandler.getData(`users?email=${this.state.email}`)
       .then(user => {
@@ -39,6 +39,7 @@ export default class loginForm extends Component {
                 password: this.state.password,
                 userId: this.state.userId
               })
+              
             );
           }
         } else {
@@ -53,7 +54,8 @@ export default class loginForm extends Component {
             );
           }
         }
-      });
+      }).then(() => {this.props.history.push("/Dashboard");});
+      
   };
   render() {
     return (

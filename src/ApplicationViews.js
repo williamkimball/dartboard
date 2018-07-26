@@ -30,7 +30,7 @@ export default class ApplicationViews extends Component {
         />
         <Route
           exact
-          path="/"
+          path="/Dashboard"
           render={props => {
             if (this.isAuthenticated()) {
               return <Dashboard />;
