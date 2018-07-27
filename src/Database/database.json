@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "William",
+      "email": "wkkimball043@gmail.com",
+      "password": "p",
+      "id": 1
+    }
+  ],
+  "trips": [],
+  "itinerary": [],
+  "budget": [],
+  "flight": [],
+  "list": [],
+  "listItem": []
+}
