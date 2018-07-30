@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
 import TripForm from "./TripForm";
-import Trip from "./Trip"
-// import moment from "moment";
-import "./Dashboard.css";
+import Trip from "./Trip";
 
+import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
+
+// import TripDash from "./TripDash"
+// import moment from "moment";
+// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+// import history from './history';
+// import { Link } from "react-router-dom";
+
 
 export default class Dashboard extends Component {
   state = {
@@ -95,6 +101,21 @@ export default class Dashboard extends Component {
     .then(trip => this.setState({ trips: trip }))
   }
 
+    //  goToTrip = (event) => {
+    // // const tripId = event.target.parentNode.id;
+    // history.push("/TripDash")
+    // this.forceUpdate()
+    // // this.props.history.push("/TripDash")
+    
+    // }
+
+
+
+//  goToTrip = () => {
+//    console.log("yo")
+//     this.setState({goingSomewhere: <Link to={`/TripDash`}>Let's Go!</Link>})
+// }
+
   render() {
     return (
       <React.Fragment>
@@ -112,7 +133,7 @@ export default class Dashboard extends Component {
         <div className="dashboard-tripCards">
           {this.state.tripForm}
           {this.state.trips.map(trip => (
-            <Trip key={trip.id} trip={trip} user={this.state.user} />
+            <Trip key={trip.id} trip={trip} goingSomewhere={this.state.goingSomewhere} props={this.props} goToTrip={this.goToTrip} user={this.state.user} />
           ))}
         </div>
       </React.Fragment>

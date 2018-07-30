@@ -4,7 +4,8 @@ import Landing from "./Landing";
 import LoginForm from "./loginForm";
 import Register from "./register";
 import Dashboard from "./Dashboard";
-
+import TripDash from "./TripDash"
+// import history from './history';
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () =>
@@ -13,15 +14,16 @@ export default class ApplicationViews extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <Route path="/Register" component={Register} />
-        <Route path="/loginForm" component={LoginForm} />
+      <React.Fragment >
+        <Route exact path="/Register" component={Register} />
+        <Route exact path="/loginForm" component={LoginForm} />
 
         <Route
           exact
           path="/"
           render={props => {
             if (this.isAuthenticated()) {
+              
               return <Landing />;
             } else {
               return <LoginForm />;
@@ -34,6 +36,17 @@ export default class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
               return <Dashboard />;
+            } else {
+              return <Landing />;
+            }
+          }}
+        />
+        <Route
+          
+          path="/TripDash"
+          render={props => {
+            if (this.isAuthenticated()) {
+              return <TripDash props={props}/>;
             } else {
               return <Landing />;
             }
