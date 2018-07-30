@@ -16,13 +16,31 @@ export default class TripDash extends Component {
 
   render() {
     return (
-      <div className="card">
-        {
-          <div className="card-body">
-            <h5 className="card-title" />
-            <h6 className="card-subtitle mb-2 text-muted" />
-          </div>
-        }
+      <div className="flightDash">
+        <div className="card flightDash-card">
+          {
+            <div className="card-body ">
+              <h5 className="card-title">Flights</h5>
+              <h6 className="card-subtitle mb-2 text-muted" />
+            </div>
+          }
+        </div>
+        <div className="card flightDash-card">
+          {
+            <div className="card-body ">
+              <h5 className="card-title">Itinerary</h5>
+              <h6 className="card-subtitle mb-2 text-muted" />
+            </div>
+          }
+        </div>
+        <div className="card flightDash-card">
+          {
+            <div className="card-body ">
+              <h5 className="card-title">Budget</h5>
+              <h6 className="card-subtitle mb-2 text-muted" />
+            </div>
+          }
+        </div>
       </div>
     );
   }

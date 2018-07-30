@@ -1,6 +1,6 @@
 class apiCalls {
-  static getData = section => {
-    return fetch(`http://localhost:5002/${section}`).then(e => e.json());
+  static getData = (section, id) => {
+    return fetch(`http://localhost:5002/${section}/${id}`).then(e => e.json());
   };
 
   static addData = (section, body) => {

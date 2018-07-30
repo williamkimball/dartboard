@@ -6,7 +6,7 @@ import Trip from "./Trip";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-import TripDash from "./TripDash"
+import TripDash from "./TripDash";
 // import moment from "moment";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import history from './history';
@@ -15,12 +15,21 @@ import TripDash from "./TripDash"
 export default class Dashboard extends Component {
   state = {
     userName: "",
+    dashHead: "",
     tripForm: "",
     startDate: "",
     endDate: "",
     trips: [],
     trip: "",
-    tripDash: ""
+    tripDash: "",
+    newTripButton: (
+      <button
+        className="dashboard-welcome-button pleaseCenter"
+        onClick={this.changePressed}
+      >
+        Add New Trip
+      </button>
+    )
   };
 
   changePressed = () => {
@@ -99,47 +108,41 @@ export default class Dashboard extends Component {
     });
     fetch("http://localhost:5002/trips?_expand=user")
       .then(e => e.json())
-      .then(trip => this.setState({ trips: trip }));
+      .then(trip =>
+        this.setState({
+          trips: trip,
+          dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+        })
+      );
   }
 
-  //  goToTrip = (event) => {
-  // // const tripId = event.target.parentNode.id;
-  // history.push("/TripDash")
-  // this.forceUpdate()
-  // // this.props.history.push("/TripDash")
+  goToTrip = event => {
+    console.log(event.target.parentNode.id);
 
-  // }
-
-  goToTrip = (event) => {
-    console.log(event.target.parentNode.id)
-    this.setState({
-      trips: [],
-      tripDash:  <TripDash
-      //  key={trip.id}
-      trip={event.target.parentNode.id}
-      // //  goingSomewhere={this.state.goingSomewhere}
-      props={this.state.trips}
-      // // goToTrip={this.goToTrip}
-      // user={this.state.user}
-    />
+    APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
+      this.setState({
+        newTripButton: "",
+        thisTrip: trip,
+        dashHead: `${trip.title}`,
+        dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
+        trips: [],
+        tripDash: (
+          <TripDash
+            // trip={trip}
+            props={trip}
+          />
+        )
+      });
     });
-    
-     
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="dashboard-head">
-          <button
-            className="dashboard-welcome-button pleaseCenter"
-            onClick={this.changePressed}
-          >
-            Add New Trip
-          </button>
-          <h2 className="dashboard-welcome">
-            Welcome to Dartboard, {this.state.userName}!
-          </h2>
+        <div className="dashboard-nav">
+          {this.state.newTripButton}
+          <h2 className="dashboard-head">{this.state.dashHead}</h2>
+          <h4 className="dashboard-dates">{this.state.dashHeadDates}</h4>
         </div>
         <div className="dashboard-tripCards">
           {this.state.tripForm}
