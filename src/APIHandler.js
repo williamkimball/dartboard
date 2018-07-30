@@ -4,6 +4,7 @@ class apiCalls {
   };
 
   static addData = (section, body) => {
+    
     return fetch(`http://localhost:5002/${section}`, {
       method: "POST",
       headers: {
@@ -11,6 +12,12 @@ class apiCalls {
       },
       body: JSON.stringify(body)
     });
+  };
+  static getUserName = id => {
+    
+    return fetch(`http://localhost:5002/users?_expand=${id}`).then(e =>
+      e.json()
+    ).then(user => {return user[0].name} )
   };
 }
 

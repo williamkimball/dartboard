@@ -7,7 +7,22 @@
       "id": 1
     }
   ],
-  "trips": [],
+  "trips": [
+    {
+      "title": "Cape canaveral",
+      "startDate": "2018-08-03",
+      "endDate": "2018-08-04",
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "title": "New Zealand",
+      "startDate": "2018-08-30",
+      "endDate": "2018-09-06",
+      "userId": 1,
+      "id": 6
+    }
+  ],
   "itinerary": [],
   "budget": [],
   "flight": [],
