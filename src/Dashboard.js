@@ -6,20 +6,30 @@ import Trip from "./Trip";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-// import TripDash from "./TripDash"
+import TripDash from "./TripDash";
 // import moment from "moment";
 // import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 // import history from './history';
 // import { Link } from "react-router-dom";
 
-
 export default class Dashboard extends Component {
   state = {
     userName: "",
+    dashHead: "",
     tripForm: "",
     startDate: "",
     endDate: "",
-    trips:[]
+    trips: [],
+    trip: "",
+    tripDash: "",
+    newTripButton: (
+      <button
+        className="dashboard-welcome-button pleaseCenter"
+        onClick={this.changePressed}
+      >
+        Add New Trip
+      </button>
+    )
   };
 
   changePressed = () => {
@@ -61,7 +71,7 @@ export default class Dashboard extends Component {
     })
       // When POST is finished, retrieve the new list of trips
       .then(() => {
-        // Remember you HAVE TO return this fetch to the subsequenet `then()`
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
         this.setState({
           tripForm: ""
         });
@@ -97,44 +107,56 @@ export default class Dashboard extends Component {
       this.setState({ userName: username });
     });
     fetch("http://localhost:5002/trips?_expand=user")
-    .then(e => e.json())
-    .then(trip => this.setState({ trips: trip }))
+      .then(e => e.json())
+      .then(trip =>
+        this.setState({
+          trips: trip,
+          dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+        })
+      );
   }
 
-    //  goToTrip = (event) => {
-    // // const tripId = event.target.parentNode.id;
-    // history.push("/TripDash")
-    // this.forceUpdate()
-    // // this.props.history.push("/TripDash")
-    
-    // }
+  goToTrip = event => {
+    console.log(event.target.parentNode.id);
 
-
-
-//  goToTrip = () => {
-//    console.log("yo")
-//     this.setState({goingSomewhere: <Link to={`/TripDash`}>Let's Go!</Link>})
-// }
+    APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
+      this.setState({
+        newTripButton: "",
+        thisTrip: trip,
+        dashHead: `${trip.title}`,
+        dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
+        trips: [],
+        tripDash: (
+          <TripDash
+            // trip={trip}
+            props={trip}
+          />
+        )
+      });
+    });
+  };
 
   render() {
     return (
       <React.Fragment>
-        <div className="dashboard-head">
-          <button
-            className="dashboard-welcome-button pleaseCenter"
-            onClick={this.changePressed}
-          >
-            Add New Trip
-          </button>
-          <h2 className="dashboard-welcome">
-            Welcome to Dartboard, {this.state.userName}!
-          </h2>
+        <div className="dashboard-nav">
+          {this.state.newTripButton}
+          <h2 className="dashboard-head">{this.state.dashHead}</h2>
+          <h4 className="dashboard-dates">{this.state.dashHeadDates}</h4>
         </div>
         <div className="dashboard-tripCards">
           {this.state.tripForm}
           {this.state.trips.map(trip => (
-            <Trip key={trip.id} trip={trip} goingSomewhere={this.state.goingSomewhere} props={this.props} goToTrip={this.goToTrip} user={this.state.user} />
+            <Trip
+              key={trip.id}
+              trip={trip}
+              goingSomewhere={this.state.goingSomewhere}
+              props={this.props}
+              goToTrip={this.goToTrip}
+              user={this.state.user}
+            />
           ))}
+          {this.state.tripDash}
         </div>
       </React.Fragment>
     );
