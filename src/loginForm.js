@@ -19,8 +19,9 @@ export default class loginForm extends Component {
 
     APIHandler.getData(`users?email=${this.state.email}`)
       .then(user => {
+        console.log(user)
         if (user.length > 0 && this.state.password === user[0].password) {
-          this.setState({ userId: user[0].id });
+          this.setState({ userId: user[0].id })
         } else {
           alert(
             "We're Sorry, it looks like you may have mistyped your email address or password."

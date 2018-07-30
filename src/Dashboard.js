@@ -3,6 +3,7 @@ import APIHandler from "./APIHandler";
 import TripForm from "./TripForm";
 import Trip from "./Trip";
 
+
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -17,19 +18,13 @@ export default class Dashboard extends Component {
     userName: "",
     dashHead: "",
     tripForm: "",
+    editTrip: "",
     startDate: "",
     endDate: "",
     trips: [],
     trip: "",
     tripDash: "",
-    newTripButton: (
-      <button
-        className="dashboard-welcome-button pleaseCenter"
-        onClick={this.changePressed}
-      >
-        Add New Trip
-      </button>
-    )
+    EditForm: ""
   };
 
   changePressed = () => {
@@ -116,31 +111,49 @@ export default class Dashboard extends Component {
       );
   }
 
-  goToTrip = event => {
-    console.log(event.target.parentNode.id);
+  // editTrip = event => {
+  //   console.log(event.target.parentNode);
+  //   this.setState({
+  //     EditForm: (
+  //       <EditTripForm
+  //         handleFieldChange={this.handleFieldChange}
+  //         handleChange={this.handleChange}
+  //         startDate={this.state.startDate}
+  //         endDate={this.state.endDate}
+  //         currentInfo={this.state}
+  //       />
+  //     )
+  //   });
+  // };
 
-    APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
-      this.setState({
-        newTripButton: "",
-        thisTrip: trip,
-        dashHead: `${trip.title}`,
-        dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
-        trips: [],
-        tripDash: (
-          <TripDash
-            // trip={trip}
-            props={trip}
-          />
-        )
-      });
-    });
+  goToTrip = event => {
+    if (event.target.id === "edtBtn") {
+      // this.editTrip;
+    } else {
+      // if (event.target)
+      APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
+        this.setState({
+          newTripButton: "",
+          thisTrip: trip,
+          dashHead: `${trip.title}`,
+          dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
+          trips: [],
+          tripDash: <TripDash props={trip} />
+        });
+      }).then(this.props.history.push(`/TripDash/${event.target.parentNode.id}`))
+    }
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="dashboard-nav">
-          {this.state.newTripButton}
+        <div className="dashboard-nav alert-info">
+          <button
+            className="dashboard-welcome-button pleaseCenter"
+            onClick={this.changePressed}
+          >
+            Add New Trip
+          </button>
           <h2 className="dashboard-head">{this.state.dashHead}</h2>
           <h4 className="dashboard-dates">{this.state.dashHeadDates}</h4>
         </div>
@@ -150,13 +163,15 @@ export default class Dashboard extends Component {
             <Trip
               key={trip.id}
               trip={trip}
-              goingSomewhere={this.state.goingSomewhere}
+              editTrip={this.editTrip}
               props={this.props}
               goToTrip={this.goToTrip}
               user={this.state.user}
+              state={this.state}
             />
           ))}
-          {this.state.tripDash}
+          {/* {this.state.EditForm} */}
+          {/* {this.state.tripDash} */}
         </div>
       </React.Fragment>
     );
