@@ -30,6 +30,7 @@
   
 }
 
-.nav-pills{
-    justify-content: center;
+.nav-tabs{
+    justify-content: space-around;
+    /* align-content: space-between; */
 }
