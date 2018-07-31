@@ -20,25 +20,42 @@ export default class Dashboard extends Component {
     trips: [],
     trip: "",
     tripDash: "",
-    EditForm: ""
+    EditForm: "",
   };
 
-  changePressed = () => {
-    if (this.state.tripForm === "") {
-      this.setState({
-        tripForm: (
-          <TripForm
-            addNewTrip={this.addNewTrip}
-            handleFieldChange={this.handleFieldChange}
-            handleChange={this.handleChange}
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-          />
-        )
-      });
+  // changePressed = () => {
+  //   if (this.state.tripForm === "") {
+  //     this.setState({
+  //       tripForm: (
+  //         <TripForm
+  //           // addNewTrip={this.addNewTrip}
+  //           // handleFieldChange={this.handleFieldChange}
+  //           // handleChange={this.handleChange}
+  //           // startDate={this.state.startDate}
+  //           // endDate={this.state.endDate}
+  //         />
+  //       )
+  //     });
+  //   } else {
+  //     this.setState({
+  //       tripForm: ""
+  //     });
+  //   }
+  // };
+
+  TripModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        { tripForm: ""},
+        () => {
+          this.setState({ tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props}/> }, () => {
+            document.querySelector(".modal").classList.add("is-active");
+          });
+        }
+      );
     } else {
-      this.setState({
-        tripForm: ""
+      this.setState({ tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props}/> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
       });
     }
   };
@@ -157,7 +174,7 @@ export default class Dashboard extends Component {
                 </div>
                 <Button isColor="info"
                   className="dashboard-welcome-button pleaseCenter"
-                  onClick={this.changePressed}
+                  onClick={this.TripModal}
                 >
                   Add New Trip
                 </Button>

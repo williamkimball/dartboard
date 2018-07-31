@@ -110,7 +110,7 @@ export default class loginForm extends Component {
                   type="password"
                   id="password"
                   placeholder="Password"
-                  required=""
+                  required
                 />
                 <Icon isSize="small" isAlign="left">
                   <span className="fa fa-user" aria-hidden="true" />
