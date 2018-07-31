@@ -18,7 +18,7 @@ const Trip = props => {
 
    return (
 
-    <div className="card" id={props.trip.id} onClick={props.goToTrip}>
+    <div className="card item" id={props.trip.id} onClick={props.goToTrip}>
       {
         <div className="card-body">
           <h5 className="card-title">{props.trip.title}</h5>

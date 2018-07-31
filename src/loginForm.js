@@ -1,6 +1,21 @@
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
-
+import {
+  Modal,
+  ModalBackground,
+  ModalCardBody,
+  Delete,
+  ModalCard,
+  ModalCardHeader,
+  ModalCardTitle,
+  Field,
+  Label,
+  Control,
+  Input,
+  Icon,
+  Button,
+  Checkbox
+} from "bloomer";
 export default class loginForm extends Component {
   state = {
     email: "",
@@ -15,13 +30,13 @@ export default class loginForm extends Component {
 
   handleLogin = event => {
     //Stops default action of form reloading
-    event.preventDefault()
+    event.preventDefault();
 
     APIHandler.getData(`users?email=${this.state.email}`)
       .then(user => {
-        console.log(user)
+        console.log(user);
         if (user.length > 0 && this.state.password === user[0].password) {
-          this.setState({ userId: user[0].id })
+          this.setState({ userId: user[0].id });
         } else {
           alert(
             "We're Sorry, it looks like you may have mistyped your email address or password."
@@ -40,7 +55,6 @@ export default class loginForm extends Component {
                 password: this.state.password,
                 userId: this.state.userId
               })
-              
             );
           }
         } else {
@@ -55,34 +69,97 @@ export default class loginForm extends Component {
             );
           }
         }
-      }).then(() => {this.props.history.push("/Dashboard");});
-      
+      })
+      .then(() => {
+        this.props.history.push("/Dashboard");
+      });
+  };
+  turnInactive = () => {
+    document.querySelector(".modal").classList.remove("is-active");
   };
   render() {
     return (
-      <form onSubmit={this.handleLogin}>
-        <h1 className="h3 mb-3 font-weight-normal">Please Sign-In</h1>
-        <label htmlFor="inputEmail">Email Address</label>
-        <input
-          onChange={this.handleFieldChange}
-          type="email"
-          id="email"
-          placeholder="Email Address"
-          required=""
-          autoFocus=""
-        />
-        <label htmlFor="inputPassword">password</label>
-        <input
-          onChange={this.handleFieldChange}
-          type="password"
-          id="password"
-          placeholder="Password"
-          required=""
-        />
-        <label>Remember Me</label>
-        <input type="checkbox" id="checkbox" />
-        <button type="submit">Submit</button>
-      </form>
+      <Modal>
+        <ModalBackground />
+        <ModalCard>
+          <ModalCardHeader>
+            <ModalCardTitle>Login</ModalCardTitle>
+            <Delete onClick={this.turnInactive} />
+          </ModalCardHeader>
+          <ModalCardBody>
+            <Field>
+              <Label>Email:</Label>
+              <Control>
+                <Input
+                  placeholder="Person@Place.com"
+                  onChange={this.handleFieldChange}
+                  type="email"
+                  id="email"
+                  required
+                  autoFocus=""
+                />
+              </Control>
+            </Field>
+
+            <Field>
+              <Label>Password:</Label>
+              <Control>
+                <Input
+                  placeholder="Password"
+                  onChange={this.handleFieldChange}
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  required=""
+                />
+                <Icon isSize="small" isAlign="left">
+                  <span className="fa fa-user" aria-hidden="true" />
+                </Icon>
+              </Control>
+            </Field>
+            <Field>
+              <Control>
+                <Checkbox id="checkbox"> Remember Me </Checkbox>
+              </Control>
+            </Field>
+
+            <Field isGrouped>
+              <Control>
+                <Button isColor="primary" onClick={this.handleLogin}>
+                  Submit
+                </Button>
+              </Control>
+              <Control onClick={this.turnInactive}>
+                <Button>Cancel</Button>
+              </Control>
+            </Field>
+          </ModalCardBody>
+        </ModalCard>
+      </Modal>
+
+      // <form onSubmit={this.handleLogin}>
+      //   <h1 className="h3 mb-3 font-weight-normal">Please Sign-In</h1>
+      //   <label htmlFor="inputEmail">Email Address</label>
+      //   <input
+      //     onChange={this.handleFieldChange}
+      //     type="email"
+      //     id="email"
+      //     placeholder="Email Address"
+      //     required=""
+      //     autoFocus=""
+      //   />
+      //   <label htmlFor="inputPassword">password</label>
+      //   <input
+      //     onChange={this.handleFieldChange}
+      //     type="password"
+      //     id="password"
+      //     placeholder="Password"
+      //     required=""
+      //   />
+      //   <label>Remember Me</label>
+      //   <input type="checkbox" id="checkbox" />
+      //   <button type="submit">Submit</button>
+      // </form>
     );
   }
 }

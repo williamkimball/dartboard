@@ -24,9 +24,9 @@ export default class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
               
-              return <Landing />;
+              return <Landing {...props}/>;
             } else {
-              return <LoginForm />;
+              return <LoginForm {...props}/>;
             }
           }}
         />
@@ -37,7 +37,7 @@ export default class ApplicationViews extends Component {
             if (this.isAuthenticated()) {
               return <Dashboard {...props}/>;
             } else {
-              return <Landing />;
+              return <Landing {...props}/>;
             }
           }}
         />
@@ -48,7 +48,7 @@ export default class ApplicationViews extends Component {
             if (this.isAuthenticated()) {
               return <TripDash {...props}/>;
             } else {
-              return <Landing />;
+              return <Landing {...props}/>;
             }
           }}
         />

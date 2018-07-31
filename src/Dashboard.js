@@ -3,15 +3,11 @@ import APIHandler from "./APIHandler";
 import TripForm from "./TripForm";
 import Trip from "./Trip";
 
-
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { Button } from "bloomer";
 
 import TripDash from "./TripDash";
-// import moment from "moment";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-// import history from './history';
-// import { Link } from "react-router-dom";
 
 export default class Dashboard extends Component {
   state = {
@@ -131,32 +127,45 @@ export default class Dashboard extends Component {
       // this.editTrip;
     } else {
       // if (event.target)
-      APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
-        this.setState({
-          newTripButton: "",
-          thisTrip: trip,
-          dashHead: `${trip.title}`,
-          dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
-          trips: [],
-          tripDash: <TripDash props={trip} />
-        });
-      }).then(this.props.history.push(`/TripDash/${event.target.parentNode.id}`))
+      APIHandler.getData("trips", event.target.parentNode.id)
+        .then(trip => {
+          this.setState({
+            newTripButton: "",
+            thisTrip: trip,
+            dashHead: `${trip.title}`,
+            dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
+            trips: [],
+            tripDash: <TripDash props={trip} />
+          });
+        })
+        .then(
+          this.props.history.push(`/TripDash/${event.target.parentNode.id}`)
+        );
     }
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="dashboard-nav alert-info">
-          <button
-            className="dashboard-welcome-button pleaseCenter"
-            onClick={this.changePressed}
-          >
-            Add New Trip
-          </button>
-          <h2 className="dashboard-head">{this.state.dashHead}</h2>
-          <h4 className="dashboard-dates">{this.state.dashHeadDates}</h4>
-        </div>
+        <section className="hero is-primary">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-vcentered">
+                <div className="column">
+                  <h1 className="title">{this.state.dashHead}</h1>
+                  <h2 className="subtitle">{this.state.dashHeadDates}</h2>
+                </div>
+                <Button isColor="info"
+                  className="dashboard-welcome-button pleaseCenter"
+                  onClick={this.changePressed}
+                >
+                  Add New Trip
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="dashboard-tripCards">
           {this.state.tripForm}
           {this.state.trips.map(trip => (
@@ -170,8 +179,6 @@ export default class Dashboard extends Component {
               state={this.state}
             />
           ))}
-          {/* {this.state.EditForm} */}
-          {/* {this.state.tripDash} */}
         </div>
       </React.Fragment>
     );

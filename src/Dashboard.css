@@ -3,7 +3,7 @@
   text-align: right;
 }
 .dashboard-nav {
-  min-height: 8em;
+  min-height: 6em;
   /* background: chartreuse; */
   color: black;
   text-align: center;
@@ -32,5 +32,20 @@
 
 .nav-tabs{
     justify-content: space-around;
+    background: #00d1b2;
     /* align-content: space-between; */
+    /* color: white; */
+}
+
+.nav-link {
+        color: white;
+}
+
+.content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.content a {
+   color: white;
 }

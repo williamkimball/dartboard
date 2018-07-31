@@ -3,8 +3,11 @@
 
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
-// import { Tabs, TabLink, TabList, Tab, Icon } from "bloomer";
+import { Button, Column } from "bloomer";
 import "bulma/css/bulma.css";
+import BudgetModal from "./BudgetModal";
+import ItineraryModal from "./ItineraryModal";
+import FlightModal from "./FlightModal";
 
 export default class TripDash extends Component {
   getTripInfo = tripId => {
@@ -29,20 +32,73 @@ export default class TripDash extends Component {
     this.getTripInfo(this.props.match.params.anumber);
   }
 
+  BudgetModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
+        () => {
+          this.setState({ BudgetModal: <BudgetModal /> }, () => {
+            document.querySelector(".modal").classList.add("is-active");
+          });
+        }
+      );
+    } else {
+      this.setState({ BudgetModal: <BudgetModal /> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
+      });
+    }
+  };
+
+  ItineraryModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
+        () => {
+          this.setState({ ItineraryModal: <ItineraryModal /> }, () => {
+            document.querySelector(".modal").classList.add("is-active");
+          });
+        }
+      );
+    } else {
+      this.setState({ ItineraryModal: <ItineraryModal /> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
+      });
+    }
+  };
+
+  FlightModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
+        () => {
+          this.setState({ FlightModal: <FlightModal /> }, () => {
+            document.querySelector(".modal").classList.add("is-active");
+          });
+        }
+      );
+    } else {
+      this.setState({ FlightModal: <FlightModal /> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
+      });
+    }
+  };
+
   state = {
     tripInfo: "",
     flights: "",
     itinerary: "",
     budget: "",
+    BudgetModal: "",
+    ItineraryModal: "",
+    FlightModal: ""
   };
 
-  currentInfo = ""
+  currentInfo = "";
 
   pillListener = event => {
-    console.log(event.target);
     if (event.target.classList.contains("active") === false) {
       let tabs = document.getElementsByClassName("active");
-      console.log(tabs);
+
       for (let item of tabs) {
         item.classList.remove("active");
         item.setAttribute("aria-selected", false);
@@ -53,7 +109,6 @@ export default class TripDash extends Component {
     }
     switch (event.target.parentNode.textContent) {
       case "Itinerary":
-        console.log("yo");
         let tabcont = document.getElementsByClassName("show");
         for (let item of tabcont) {
           item.classList.remove("show");
@@ -62,11 +117,11 @@ export default class TripDash extends Component {
         document.getElementById("itinerary").classList.add("show");
         document.getElementById("itinerary").classList.add("active");
 
-        this.currentInfo = "Everyone is going to see things differently - and that's the way it should be. We tell people sometimes: we're like drug dealers, come into town and get everybody absolutely addicted to painting. It doesn't take much to get you addicted. There comes a nice little fluffer."
+        this.currentInfo =
+          "Everyone is going to see things differently - and that's the way it should be. We tell people sometimes: we're like drug dealers, come into town and get everybody absolutely addicted to painting. It doesn't take much to get you addicted. There comes a nice little fluffer.";
 
         break;
       case "Flights":
-        console.log("yos");
         let tabcont1 = document.getElementsByClassName("show");
         for (let item of tabcont1) {
           item.classList.remove("show");
@@ -75,11 +130,11 @@ export default class TripDash extends Component {
         document.getElementById("flights").classList.add("show");
         document.getElementById("flights").classList.add("active");
 
-        this.currentInfo = " Hodor hodor! Hodor, hodor, hodor hodor. HODOR hodor, hodor. Hodor hodor! Hodor? Hodor hodor! HODOR? Hodor hodor. HODOR hodor, hodor. HODOR? Hodor, hodor. Hodor. HODOR HODOR!"
+        this.currentInfo =
+          " Hodor hodor! Hodor, hodor, hodor hodor. HODOR hodor, hodor. Hodor hodor! Hodor? Hodor hodor! HODOR? Hodor hodor. HODOR hodor, hodor. HODOR? Hodor, hodor. Hodor. HODOR HODOR!";
 
         break;
       case "Budget":
-        console.log("yoq");
         let tabcont2 = document.getElementsByClassName("show");
         for (let item of tabcont2) {
           item.classList.remove("show");
@@ -88,24 +143,32 @@ export default class TripDash extends Component {
         document.getElementById("budget").classList.add("show");
         document.getElementById("budget").classList.add("active");
 
-        this.currentInfo = "Mustache four dollar toast tattooed deep v church-key selvage asymmetrical pabst coloring book post-ironic ethical fam. Cornhole snackwave listicle meh, try-hard irony four dollar toast biodiesel seitan kitsch chambray jean shorts. Authentic health goth thundercats master cleanse, literally hoodie selvage slow-carb. Kinfolk pok pok kogi jianbing brooklyn. Woke freegan migas organic tote bag. Fixie ethical microdosing pop-up shaman cronut vegan brooklyn vape hoodie."
+        this.currentInfo =
+          "Mustache four dollar toast tattooed deep v church-key selvage asymmetrical pabst coloring book post-ironic ethical fam. Cornhole snackwave listicle meh, try-hard irony four dollar toast biodiesel seitan kitsch chambray jean shorts. Authentic health goth thundercats master cleanse, literally hoodie selvage slow-carb. Kinfolk pok pok kogi jianbing brooklyn. Woke freegan migas organic tote bag. Fixie ethical microdosing pop-up shaman cronut vegan brooklyn vape hoodie.";
 
         break;
       default:
-        console.log("nope");
     }
   };
 
   render() {
-    //   console.log(this.state.tripInfo.title)
     return (
       <div>
-        <div className="dashboard-nav alert-info">
-          <h2 className="trip-dashboard-head">{this.state.tripInfo.title}</h2>
-          <h4 className="trip-dashboard-dates">
-            {this.state.tripInfo.startDate} - {this.state.tripInfo.endDate}
-          </h4>
-        </div>
+        <section className="hero is-primary">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-vcentered">
+                <div className="column">
+                  <h1 className="title">{this.state.tripInfo.title}</h1>
+                  <h2 className="subtitle">
+                    {this.state.tripInfo.startDate} -{" "}
+                    {this.state.tripInfo.endDate}
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <ul className="nav nav-tabs" id="myTab" role="tablist">
           <li className="nav-item" onClick={this.pillListener}>
@@ -155,6 +218,17 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="flights-tab"
           >
+            <Button
+              isColor="info"
+              render={props => (
+                <Column hasTextAlign="centered">
+                  <p {...props} onClick={this.FlightModal}>
+                    New Flight
+                  </p>
+                </Column>
+              )}
+            />
+            {this.state.FlightModal}
             {this.currentInfo}
           </div>
           <div
@@ -163,6 +237,17 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="itinerary-tab"
           >
+            <Button
+              isColor="info"
+              render={props => (
+                <Column hasTextAlign="centered">
+                  <p {...props} onClick={this.ItineraryModal}>
+                    New Itinerary Item
+                  </p>
+                </Column>
+              )}
+            />
+            {this.state.ItineraryModal}
             {this.currentInfo}
           </div>
           <div
@@ -171,6 +256,17 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
+            <Button
+              isColor="info"
+              render={props => (
+                <Column hasTextAlign="centered">
+                  <p {...props} onClick={this.BudgetModal}>
+                    New Budget Item
+                  </p>
+                </Column>
+              )}
+            />
+            {this.state.BudgetModal}
             {this.currentInfo}
           </div>
         </div>

@@ -1,23 +1,76 @@
 import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import { Link } from "react-router-dom";
+import { Card, CardContent, Title, Content, Button } from "bloomer";
+import LoginForm from "./loginForm";
+import RegisterForm from "./register";
 
 export default class Login extends Component {
+  state = {
+    LoginModal: "",
+    RegisterModal: ""
+  };
+  loginModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState({ RegisterModal: "", LoginModal: "" }, () => {
+        this.setState({ LoginModal: <LoginForm {...this.props} /> }, () => {
+          document.querySelector(".modal").classList.add("is-active");
+        });
+      });
+    } else {
+      this.setState({ LoginModal: <LoginForm {...this.props} /> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
+      });
+    }
+  };
+
+  registerModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState({ RegisterModal: "", LoginModal: "" }, () => {
+        this.setState(
+          { RegisterModal: <RegisterForm {...this.props} /> },
+          () => {
+            document.querySelector(".modal").classList.add("is-active");
+          }
+        );
+      });
+    } else {
+      this.setState({ RegisterModal: <RegisterForm {...this.props} /> }, () => {
+        document.querySelector(".modal").classList.add("is-active");
+      });
+    }
+  };
+
   render() {
     return (
-      <React.Fragment>
-        <div>
-          <button id="linkToLoginForm">
-            <Link to={{ pathname: "/loginForm" }}>Login</Link>
-          </button>
-        </div>
+      <Card>
+        <Title>Welcome to DartBoard</Title>
+        <CardContent>
+          <Content>
+            <div>
+              <Button
+                isColor="primary"
+                id="linkToLoginForm"
+                onClick={this.loginModal}
+              >
+                Login
+              </Button>
+            </div>
 
-        <div>
-          <button id="linkToRegisterForm">
-            <Link to={{ pathname: "/register" }}>Register</Link>
-          </button>
-        </div>
-      </React.Fragment>
+            <div>
+              <Button
+                isColor="primary"
+                id="linkToRegisterForm"
+                onClick={this.registerModal}
+              >
+                Register
+              </Button>
+            </div>
+          </Content>
+        </CardContent>
+        {this.state.LoginModal}
+        {this.state.RegisterModal}
+      </Card>
     );
   }
 }

@@ -1,5 +1,21 @@
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
+import {
+  Modal,
+  ModalBackground,
+  ModalCardBody,
+  Delete,
+  ModalCard,
+  ModalCardHeader,
+  ModalCardTitle,
+  Field,
+  Label,
+  Control,
+  Input,
+  Icon,
+  Button,
+  Checkbox
+} from "bloomer";
 
 export default class Register extends Component {
   //Initially declare state, to be modified as the user types presses the register button.
@@ -54,40 +70,115 @@ export default class Register extends Component {
     }
   };
 
+  turnInactive = () => {
+    document.querySelector(".modal").classList.remove("is-active");
+  };
   render() {
     return (
-      <form onSubmit={this.handleRegister}>
-        <h4>Please Register Your Info!</h4>
 
-        {/* Field to register username */}
-        <label htmlFor="registerUsername">Username:</label>
-        <input
-          id="name"
-          name="registerUsername"
-          type="text"
-          onChange={this.handleFieldChange}
-        />
+<Modal>
+        <ModalBackground />
+        <ModalCard>
+          <ModalCardHeader>
+            <ModalCardTitle>Register</ModalCardTitle>
+            <Delete onClick={this.turnInactive} />
+          </ModalCardHeader>
+          <ModalCardBody>
+            <Field>
+            <Label>Name:</Label>
+              <Control>
+                <Input
+                  placeholder="Jim"
+                  onChange={this.handleFieldChange}
+                  type="text"
+                  id="name"
+                  required
+                  autoFocus=""
+                />
+              </Control>
+            </Field>
+            <Field>
+              <Label>Email:</Label>
+              <Control>
+                <Input
+                  placeholder="Person@Place.com"
+                  onChange={this.handleFieldChange}
+                  type="email"
+                  id="email"
+                  required
+                  autoFocus=""
+                />
+              </Control>
+            </Field>
 
-        {/* Field to register email */}
-        <label htmlFor="registerEmail">Email:</label>
-        <input
-          id="email"
-          name="registerEmail"
-          type="email"
-          onChange={this.handleFieldChange}
-        />
+            <Field>
+              <Label>Password:</Label>
+              <Control>
+                <Input
+                  placeholder="Password"
+                  onChange={this.handleFieldChange}
+                  type="password"
+                  id="password"
+                  placeholder="Password"
+                  required=""
+                />
+                <Icon isSize="small" isAlign="left">
+                  <span className="fa fa-user" aria-hidden="true" />
+                </Icon>
+              </Control>
+            </Field>
+            <Field>
+              <Control>
+                <Checkbox id="checkbox"> Remember Me </Checkbox>
+              </Control>
+            </Field>
 
-        {/* Field to register password */}
-        <label htmlFor="registerPassword">Password:</label>
-        <input
-          id="password"
-          name="registerPassword"
-          type="password"
-          onChange={this.handleFieldChange}
-        />
+            <Field isGrouped>
+              <Control>
+                <Button isColor="primary" onClick={this.handleRegister}>
+                  Submit
+                </Button>
+              </Control>
+              <Control onClick={this.turnInactive}>
+                <Button>Cancel</Button>
+              </Control>
+            </Field>
+          </ModalCardBody>
+        </ModalCard>
+      </Modal>
+      
+      // <form onSubmit={this.handleRegister}>
+      //   <h4>Please Register Your Info!</h4>
 
-        <input type="submit" />
-      </form>
+      //   {/* Field to register username */}
+      //   <label htmlFor="registerUsername">Username:</label>
+      //   <input
+      //     id="name"
+      //     name="registerUsername"
+      //     type="text"
+      //     onChange={this.handleFieldChange}
+      //   />
+
+      //   {/* Field to register email */}
+      //   <label htmlFor="registerEmail">Email:</label>
+      //   <input
+      //     id="email"
+      //     name="registerEmail"
+      //     type="email"
+      //     onChange={this.handleFieldChange}
+      //   />
+
+      //   {/* Field to register password */}
+      //   <label htmlFor="registerPassword">Password:</label>
+      //   <input
+      //     id="password"
+      //     name="registerPassword"
+      //     type="password"
+      //     onChange={this.handleFieldChange}
+      //   />
+
+      //   <input type="submit" />
+      // </form>
     );
   }
 }
