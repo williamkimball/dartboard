@@ -1,6 +1,10 @@
 class apiCalls {
-  static getData = (section, id) => {
-    return fetch(`http://localhost:5002/${section}/${id}`).then(e => e.json());
+  static getData = (section) => {
+    return fetch(`http://localhost:5002/${section}`).then(e => e.json());
+  };
+
+  static getTripData = (id) => {
+    return fetch(`http://localhost:5002/trips/${id}?_expand=user`).then(e => e.json());
   };
 
   static addData = (section, body) => {
@@ -15,9 +19,10 @@ class apiCalls {
   };
   static getUserName = id => {
     
-    return fetch(`http://localhost:5002/users?_expand=${id}`).then(e =>
+    return fetch(`http://localhost:5002/users/${id}`).then(e =>
       e.json()
-    ).then(user => {return user[0].name} )
+    ).then(user => {
+      return user.name} )
   };
 }
 

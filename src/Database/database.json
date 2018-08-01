@@ -5,6 +5,12 @@
       "email": "wkkimball043@gmail.com",
       "password": "p",
       "id": 1
+    },
+    {
+      "name": "Katherine",
+      "email": "k@k.com",
+      "password": "p",
+      "id": 2
     }
   ],
   "trips": [
@@ -21,6 +27,13 @@
       "endDate": "2018-09-06",
       "userId": 1,
       "id": 6
+    },
+    {
+      "title": "NewBraska",
+      "startDate": "2018-08-30",
+      "endDate": "2018-09-06",
+      "userId": 2,
+      "id": 7
     }
   ],
   "itinerary": [],

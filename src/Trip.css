@@ -15,10 +15,10 @@ a {
     background-color: cornsilk !important;
   }
   
-.card:hover {
+.card item:hover {
     background: tan;
 }  
 
-.card:active {
+.card item:active {
     background: #937D62;
 }

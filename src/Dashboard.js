@@ -5,56 +5,66 @@ import Trip from "./Trip";
 
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
+import { Button } from "bloomer";
 
 import TripDash from "./TripDash";
-// import moment from "moment";
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-// import history from './history';
-// import { Link } from "react-router-dom";
 
 export default class Dashboard extends Component {
   state = {
     userName: "",
     dashHead: "",
     tripForm: "",
-    startDate: "",
-    endDate: "",
+    editTrip: "",
     trips: [],
     trip: "",
     tripDash: "",
-    newTripButton: (
-      <button
-        className="dashboard-welcome-button pleaseCenter"
-        onClick={this.changePressed}
-      >
-        Add New Trip
-      </button>
-    )
+    EditForm: ""
   };
 
-  changePressed = () => {
-    if (this.state.tripForm === "") {
-      this.setState({
-        tripForm: (
-          <TripForm
-            addNewTrip={this.addNewTrip}
-            handleFieldChange={this.handleFieldChange}
-            handleChange={this.handleChange}
-            startDate={this.state.startDate}
-            endDate={this.state.endDate}
-          />
-        )
+  handleFieldChange = event => {
+    const stateToChange = {};
+    stateToChange[event.target.id] = event.target.value;
+    this.setState(stateToChange);
+  };
+  // changePressed = () => {
+  //   if (this.state.tripForm === "") {
+  //     this.setState({
+  //       tripForm: (
+  //         <TripForm
+  //           // addNewTrip={this.addNewTrip}
+  //           // handleFieldChange={this.handleFieldChange}
+  //           // handleChange={this.handleChange}
+  //           // startDate={this.state.startDate}
+  //           // endDate={this.state.endDate}
+  //         />
+  //       )
+  //     });
+  //   } else {
+  //     this.setState({
+  //       tripForm: ""
+  //     });
+  //   }
+  // };
+
+  TripModal = () => {
+    if (document.querySelector(".modal") !== null) {
+      this.setState({ tripForm: "" }, () => {
+        this.setState({ tripForm: <TripForm {...this.props} addNewTrip={this.addNewTrip} handleFieldChange={this.handleFieldChange}/> }, () => {
+          document.querySelector(".modal").classList.add("is-active");
+        });
       });
     } else {
-      this.setState({
-        tripForm: ""
-      });
+      this.setState(
+        { tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props} handleFieldChange={this.handleFieldChange}/> },
+        () => {
+          document.querySelector(".modal").classList.add("is-active");
+        }
+      );
     }
   };
 
   addNewTrip = event => {
     event.preventDefault();
-    // let timestamp = Moment().format("YYYY-MM-DD hh:mm:ss a");
 
     // Add new trips to the API
     fetch(`http://localhost:5002/trips?_expand=user`, {
@@ -63,7 +73,7 @@ export default class Dashboard extends Component {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({
-        title: this.state.title,
+        title: this.state.tripName,
         startDate: this.state.startDate,
         endDate: this.state.endDate,
         userId: this.state.user
@@ -77,14 +87,19 @@ export default class Dashboard extends Component {
         });
         alert("Added New Article Sucessfully");
         return fetch("http://localhost:5002/trips?_expand=user");
-      })
-      // Once the new array of trips is retrieved, set the state
-      .then(e => e.json())
-      .then(trip => {
-        this.setState({
-          trips: trip
+      }).then(
+      APIHandler.getUserName(this.state.user).then(username => {
+        this.setState({ userName: username }, () => {
+          fetch("http://localhost:5002/trips?_expand=user")
+            .then(e => e.json())
+            .then(trip =>
+              this.setState({
+                trips: trip.filter(user=> user.userId === this.state.user),
+                dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+              })
+            );
         });
-      });
+      }))
   };
 
   // Update state whenever an input field is edited
@@ -104,59 +119,78 @@ export default class Dashboard extends Component {
     }
     this.setState({ user: currentUser });
     APIHandler.getUserName(currentUser).then(username => {
-      this.setState({ userName: username });
+      this.setState({ userName: username }, () => {
+        fetch("http://localhost:5002/trips?_expand=user")
+          .then(e => e.json())
+          .then(trip =>
+            this.setState({
+              trips: trip.filter(user=> user.userId === this.state.user),
+              dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+            })
+          );
+      });
     });
-    fetch("http://localhost:5002/trips?_expand=user")
-      .then(e => e.json())
-      .then(trip =>
-        this.setState({
-          trips: trip,
-          dashHead: `Welcome to Dartboard, ${this.state.userName}!`
-        })
-      );
   }
 
   goToTrip = event => {
-    console.log(event.target.parentNode.id);
-
-    APIHandler.getData("trips", event.target.parentNode.id).then(trip => {
-      this.setState({
-        newTripButton: "",
-        thisTrip: trip,
-        dashHead: `${trip.title}`,
-        dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
-        trips: [],
-        tripDash: (
-          <TripDash
-            // trip={trip}
-            props={trip}
-          />
-        )
-      });
-    });
+    if (event.target.id === "edtBtn") {
+      // this.editTrip;
+    } else {
+      var id1 = event.target.closest("div").id;
+      console.log(id1)
+      APIHandler.getData("trips", id1)
+        .then(trip => {
+          this.setState({
+            newTripButton: "",
+            thisTrip: trip,
+            dashHead: `${trip.title}`,
+            dashHeadDates: `${trip.startDate} - ${trip.endDate}`,
+            trips: [],
+            tripDash: <TripDash props={trip} />
+          });
+        })
+        .then(
+          this.props.history.push(`/TripDash/${id1}`)
+        );
+    }
   };
 
   render() {
     return (
       <React.Fragment>
-        <div className="dashboard-nav">
-          {this.state.newTripButton}
-          <h2 className="dashboard-head">{this.state.dashHead}</h2>
-          <h4 className="dashboard-dates">{this.state.dashHeadDates}</h4>
-        </div>
+        <section className="hero is-primary">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-vcentered">
+                <div className="column">
+                  <h1 className="title">{this.state.dashHead}</h1>
+                  <h2 className="subtitle">{this.state.dashHeadDates}</h2>
+                </div>
+                <Button
+                  isColor="info"
+                  className="dashboard-welcome-button pleaseCenter"
+                  onClick={this.TripModal}
+                >
+                  Add New Trip
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div className="dashboard-tripCards">
           {this.state.tripForm}
           {this.state.trips.map(trip => (
             <Trip
               key={trip.id}
               trip={trip}
-              goingSomewhere={this.state.goingSomewhere}
+              editTrip={this.editTrip}
               props={this.props}
               goToTrip={this.goToTrip}
               user={this.state.user}
+              state={this.state}
             />
           ))}
-          {this.state.tripDash}
         </div>
       </React.Fragment>
     );

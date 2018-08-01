@@ -5,7 +5,6 @@ import LoginForm from "./loginForm";
 import Register from "./register";
 import Dashboard from "./Dashboard";
 import TripDash from "./TripDash"
-// import history from './history';
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () =>
@@ -24,9 +23,9 @@ export default class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
               
-              return <Landing />;
+              return <Dashboard {...props}/>;
             } else {
-              return <LoginForm />;
+              return <Landing {...props}/>;
             }
           }}
         />
@@ -35,20 +34,20 @@ export default class ApplicationViews extends Component {
           path="/Dashboard"
           render={props => {
             if (this.isAuthenticated()) {
-              return <Dashboard />;
+              return <Dashboard {...props}/>;
             } else {
-              return <Landing />;
+              return <Landing {...props}/>;
             }
           }}
         />
         <Route
           
-          path="/TripDash"
+          path="/TripDash/:anumber"
           render={props => {
             if (this.isAuthenticated()) {
-              return <TripDash props={props}/>;
+              return <TripDash {...props}/>;
             } else {
-              return <Landing />;
+              return <Landing {...props}/>;
             }
           }}
         />

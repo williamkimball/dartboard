@@ -3,26 +3,30 @@
 
 import "./Trip.css";
 import React from "react";
-// import APIHandler from "./APIHandler";
-import { Link } from "react-router-dom";
+
+// import { Link } from "react-router-dom";
+// import EditTripForm from "./EditTripForm";
 
 const Trip = props => {
-  console.log(props);
-  return (
-    <div className="card" id={props.trip.id} onClick={props.goToTrip}>
+  // let editTrip = (event) => {
+  //    console.log(event.target.parentNode);
+  //    console.log(this.props)
+  //   //  this.props.state.EditForm =
+  //   //      <EditTripForm
+  //   //      />
+  //  }
+
+   return (
+
+    <div className="card item" >
       {
-        <div className="card-body">
+        <div className="card-body" id={props.trip.id} onClick={props.goToTrip}>
           <h5 className="card-title">{props.trip.title}</h5>
           <h6 className="card-subtitle mb-2 text-muted">
             {props.trip.startDate} to {props.trip.endDate}
           </h6>
-          {/* <Link
-            to={{
-              pathname: `/TripDash/${props.trip.id}`
-            }} 
-          >
-            Let's Go!
-          </Link> */}
+          {/* <img src={require('./edtBtn.png')} id="edtBtn"/>
+          {props.state.EditForm} */}
         </div>
       }
     </div>
