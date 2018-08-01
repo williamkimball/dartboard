@@ -15,14 +15,17 @@ export default class Dashboard extends Component {
     dashHead: "",
     tripForm: "",
     editTrip: "",
-    startDate: "",
-    endDate: "",
     trips: [],
     trip: "",
     tripDash: "",
     EditForm: ""
   };
 
+  handleFieldChange = event => {
+    const stateToChange = {};
+    stateToChange[event.target.id] = event.target.value;
+    this.setState(stateToChange);
+  };
   // changePressed = () => {
   //   if (this.state.tripForm === "") {
   //     this.setState({
@@ -46,13 +49,13 @@ export default class Dashboard extends Component {
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
       this.setState({ tripForm: "" }, () => {
-        this.setState({ tripForm: <TripForm {...this.props} /> }, () => {
+        this.setState({ tripForm: <TripForm {...this.props} addNewTrip={this.addNewTrip} handleFieldChange={this.handleFieldChange}/> }, () => {
           document.querySelector(".modal").classList.add("is-active");
         });
       });
     } else {
       this.setState(
-        { tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props} /> },
+        { tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props} handleFieldChange={this.handleFieldChange}/> },
         () => {
           document.querySelector(".modal").classList.add("is-active");
         }
@@ -62,7 +65,6 @@ export default class Dashboard extends Component {
 
   addNewTrip = event => {
     event.preventDefault();
-    // let timestamp = Moment().format("YYYY-MM-DD hh:mm:ss a");
 
     // Add new trips to the API
     fetch(`http://localhost:5002/trips?_expand=user`, {
@@ -71,7 +73,7 @@ export default class Dashboard extends Component {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({
-        title: this.state.title,
+        title: this.state.tripName,
         startDate: this.state.startDate,
         endDate: this.state.endDate,
         userId: this.state.user
@@ -85,14 +87,19 @@ export default class Dashboard extends Component {
         });
         alert("Added New Article Sucessfully");
         return fetch("http://localhost:5002/trips?_expand=user");
-      })
-      // Once the new array of trips is retrieved, set the state
-      .then(e => e.json())
-      .then(trip => {
-        this.setState({
-          trips: trip
+      }).then(
+      APIHandler.getUserName(this.state.user).then(username => {
+        this.setState({ userName: username }, () => {
+          fetch("http://localhost:5002/trips?_expand=user")
+            .then(e => e.json())
+            .then(trip =>
+              this.setState({
+                trips: trip.filter(user=> user.userId === this.state.user),
+                dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+              })
+            );
         });
-      });
+      }))
   };
 
   // Update state whenever an input field is edited

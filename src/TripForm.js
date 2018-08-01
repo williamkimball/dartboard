@@ -15,19 +15,18 @@ import {
   Control,
   Input,
   Icon,
-  Button,
-  Checkbox
+  Button
 } from "bloomer";
 
 export default class TripForm extends Component {
   turnInactive = () => {
     document.querySelector(".modal").classList.remove("is-active");
   };
-  handleFieldChange = event => {
-    const stateToChange = {};
-    stateToChange[event.target.id] = event.target.value;
-    this.setState(stateToChange);
-  };
+  // handleFieldChange = event => {
+  //   const stateToChange = {};
+  //   stateToChange[event.target.id] = event.target.value;
+  //   this.setState(stateToChange);
+  // };
 
   
 
@@ -46,7 +45,7 @@ export default class TripForm extends Component {
               <Control>
                 <Input
                   placeholder="Trip Name"
-                  onChange={this.handleFieldChange}
+                  onChange={this.props.handleFieldChange}
                   type="text"
                   id="tripName"
                   required
@@ -60,7 +59,7 @@ export default class TripForm extends Component {
               <Control>
                 <Input
                   // placeholder="Password"
-                  onChange={this.handleFieldChange}
+                  onChange={this.props.handleFieldChange}
                   type="date"
                   id="startDate"
                   // placeholder="Password"
@@ -76,7 +75,7 @@ export default class TripForm extends Component {
               <Control>
                 <Input
                   // placeholder="Password"
-                  onChange={this.handleFieldChange}
+                  onChange={this.props.handleFieldChange}
                   type="date"
                   id="endDate"
                   // placeholder="Password"
@@ -85,11 +84,6 @@ export default class TripForm extends Component {
                 <Icon isSize="small" isAlign="left">
                   <span className="fa fa-user" aria-hidden="true" />
                 </Icon>
-              </Control>
-            </Field>
-            <Field>
-              <Control>
-                <Checkbox id="checkbox"> Remember Me </Checkbox>
               </Control>
             </Field>
             <Field isGrouped>
