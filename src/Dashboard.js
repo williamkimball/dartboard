@@ -116,7 +116,6 @@ export default class Dashboard extends Component {
         fetch("http://localhost:5002/trips?_expand=user")
           .then(e => e.json())
           .then(trip =>
-            //  trip.filter(user=> user.userId === this.state.user),
             this.setState({
               trips: trip.filter(user=> user.userId === this.state.user),
               dashHead: `Welcome to Dartboard, ${this.state.userName}!`
@@ -130,8 +129,9 @@ export default class Dashboard extends Component {
     if (event.target.id === "edtBtn") {
       // this.editTrip;
     } else {
-      // if (event.target)
-      APIHandler.getData("trips", event.target.parentNode.id)
+      var id1 = event.target.closest("div").id;
+      console.log(id1)
+      APIHandler.getData("trips", id1)
         .then(trip => {
           this.setState({
             newTripButton: "",
@@ -143,7 +143,7 @@ export default class Dashboard extends Component {
           });
         })
         .then(
-          this.props.history.push(`/TripDash/${event.target.parentNode.id}`)
+          this.props.history.push(`/TripDash/${id1}`)
         );
     }
   };
