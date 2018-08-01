@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-// import APIHandler from "./APIHandler";
-import { Link } from "react-router-dom";
 import { Card, CardContent, Title, Content, Button } from "bloomer";
 import LoginForm from "./loginForm";
 import RegisterForm from "./register";

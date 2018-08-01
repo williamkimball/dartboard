@@ -119,7 +119,6 @@ export default class Register extends Component {
                   onChange={this.handleFieldChange}
                   type="password"
                   id="password"
-                  placeholder="Password"
                   required
                 />
                 <Icon isSize="small" isAlign="left">

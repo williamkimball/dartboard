@@ -5,7 +5,6 @@ import LoginForm from "./loginForm";
 import Register from "./register";
 import Dashboard from "./Dashboard";
 import TripDash from "./TripDash"
-// import history from './history';
 
 export default class ApplicationViews extends Component {
   isAuthenticated = () =>
@@ -24,9 +23,9 @@ export default class ApplicationViews extends Component {
           render={props => {
             if (this.isAuthenticated()) {
               
-              return <Landing {...props}/>;
+              return <Dashboard {...props}/>;
             } else {
-              return <LoginForm {...props}/>;
+              return <Landing {...props}/>;
             }
           }}
         />

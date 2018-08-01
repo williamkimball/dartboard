@@ -20,7 +20,7 @@ export default class Dashboard extends Component {
     trips: [],
     trip: "",
     tripDash: "",
-    EditForm: "",
+    EditForm: ""
   };
 
   // changePressed = () => {
@@ -45,18 +45,18 @@ export default class Dashboard extends Component {
 
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
+      this.setState({ tripForm: "" }, () => {
+        this.setState({ tripForm: <TripForm {...this.props} /> }, () => {
+          document.querySelector(".modal").classList.add("is-active");
+        });
+      });
+    } else {
       this.setState(
-        { tripForm: ""},
+        { tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props} /> },
         () => {
-          this.setState({ tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props}/> }, () => {
-            document.querySelector(".modal").classList.add("is-active");
-          });
+          document.querySelector(".modal").classList.add("is-active");
         }
       );
-    } else {
-      this.setState({ tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props}/> }, () => {
-        document.querySelector(".modal").classList.add("is-active");
-      });
     }
   };
 
@@ -112,32 +112,19 @@ export default class Dashboard extends Component {
     }
     this.setState({ user: currentUser });
     APIHandler.getUserName(currentUser).then(username => {
-      this.setState({ userName: username });
+      this.setState({ userName: username }, () => {
+        fetch("http://localhost:5002/trips?_expand=user")
+          .then(e => e.json())
+          .then(trip =>
+            //  trip.filter(user=> user.userId === this.state.user),
+            this.setState({
+              trips: trip.filter(user=> user.userId === this.state.user),
+              dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+            })
+          );
+      });
     });
-    fetch("http://localhost:5002/trips?_expand=user")
-      .then(e => e.json())
-      .then(trip =>
-        this.setState({
-          trips: trip,
-          dashHead: `Welcome to Dartboard, ${this.state.userName}!`
-        })
-      );
   }
-
-  // editTrip = event => {
-  //   console.log(event.target.parentNode);
-  //   this.setState({
-  //     EditForm: (
-  //       <EditTripForm
-  //         handleFieldChange={this.handleFieldChange}
-  //         handleChange={this.handleChange}
-  //         startDate={this.state.startDate}
-  //         endDate={this.state.endDate}
-  //         currentInfo={this.state}
-  //       />
-  //     )
-  //   });
-  // };
 
   goToTrip = event => {
     if (event.target.id === "edtBtn") {
@@ -172,7 +159,8 @@ export default class Dashboard extends Component {
                   <h1 className="title">{this.state.dashHead}</h1>
                   <h2 className="subtitle">{this.state.dashHeadDates}</h2>
                 </div>
-                <Button isColor="info"
+                <Button
+                  isColor="info"
                   className="dashboard-welcome-button pleaseCenter"
                   onClick={this.TripModal}
                 >

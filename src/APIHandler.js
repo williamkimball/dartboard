@@ -19,9 +19,10 @@ class apiCalls {
   };
   static getUserName = id => {
     
-    return fetch(`http://localhost:5002/users?_expand=${id}`).then(e =>
+    return fetch(`http://localhost:5002/users/${id}`).then(e =>
       e.json()
-    ).then(user => {return user[0].name} )
+    ).then(user => {
+      return user.name} )
   };
 }
 

@@ -109,7 +109,6 @@ export default class loginForm extends Component {
                   onChange={this.handleFieldChange}
                   type="password"
                   id="password"
-                  placeholder="Password"
                   required
                 />
                 <Icon isSize="small" isAlign="left">
@@ -136,30 +135,6 @@ export default class loginForm extends Component {
           </ModalCardBody>
         </ModalCard>
       </Modal>
-
-      // <form onSubmit={this.handleLogin}>
-      //   <h1 className="h3 mb-3 font-weight-normal">Please Sign-In</h1>
-      //   <label htmlFor="inputEmail">Email Address</label>
-      //   <input
-      //     onChange={this.handleFieldChange}
-      //     type="email"
-      //     id="email"
-      //     placeholder="Email Address"
-      //     required=""
-      //     autoFocus=""
-      //   />
-      //   <label htmlFor="inputPassword">password</label>
-      //   <input
-      //     onChange={this.handleFieldChange}
-      //     type="password"
-      //     id="password"
-      //     placeholder="Password"
-      //     required=""
-      //   />
-      //   <label>Remember Me</label>
-      //   <input type="checkbox" id="checkbox" />
-      //   <button type="submit">Submit</button>
-      // </form>
     );
   }
 }
