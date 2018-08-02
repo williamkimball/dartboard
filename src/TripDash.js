@@ -329,18 +329,7 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="itinerary-tab"
           >
-            {/* <Button
-              isColor="info"
-              render={props => (
-                <Column hasTextAlign="centered">
-                  <p {...props} onClick={this.ItineraryModal}>
-                    New Itinerary Item
-                  </p>
-                </Column>
-              )}
-            /> */}
             <div className="dashboard-tripCards">
-              {/* {this.state.ItineraryModal} */}
               {this.state.itinerary.map(itinerary => (
                 <Itinerary
                   key={itinerary.id}

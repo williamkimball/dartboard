@@ -11,7 +11,9 @@ import ItineraryModal from "./DisplayModals/ItineraryModal";
 
 export default class Itinerary extends Component {
   state = {
-    ItineraryModal: ""
+    ItineraryModal: "",
+    itinerary: [],
+    itineraryItem: []
   };
 
   // Update state whenever an input field is edited
@@ -20,24 +22,34 @@ export default class Itinerary extends Component {
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
   };
-
+  componentDidMount() {
+    fetch("http://localhost:5002/itineraryItem")
+      .then(e => e.json())
+      .then(itinerary =>
+        this.setState({
+          itineraryItem: itinerary.filter(
+            itinerary =>
+              itinerary.tripId === this.props.state.tripInfo.id &&
+              itinerary.itineraryId === this.props.itinerary.id
+          )
+        })
+      );
+  }
   //this function handles all of the functionality related to adding a new itinerary to the database and then redrawing the page to create a card for it.
   addNewItinerary = event => {
     event.preventDefault();
 
     // Add new itinerary item to the API
-    fetch(`http://localhost:5002/itinerary`, {
+    fetch(`http://localhost:5002/itineraryItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
       },
       body: JSON.stringify({
         ItineraryName: this.state.ItineraryName,
-        ItineraryDescription: this.state.ItineraryDescription,
-        // FlightEndDate: this.state.FlightEndDate,
-        // FlightNumber: this.state.FlightNumber,
-        // FlightOrigin: this.state.FlightOrigin,
-        // FlightDestination: this.state.FlightDestination,
+        itineraryId: this.props.itinerary.id,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime,
         tripId: this.props.state.tripInfo.id
       })
     })
@@ -48,7 +60,17 @@ export default class Itinerary extends Component {
           ItineraryModal: ""
         });
         alert("Added New Itinerary Item Sucessfully");
-        return fetch("http://localhost:5002/itinerary");
+        return fetch("http://localhost:5002/itineraryItem")
+          .then(e => e.json())
+          .then(itinerary =>
+            this.setState({
+              itineraryItem: itinerary.filter(
+                itinerary =>
+                  itinerary.tripId === this.props.state.tripInfo.id &&
+                  itinerary.itineraryId === this.props.itinerary.id
+              )
+            })
+          );
       })
       .then(
         //this the username, and then sets the state of itinerary to be equal to a list of itineraries that is filtered by the trip number
@@ -103,18 +125,26 @@ export default class Itinerary extends Component {
       <div className="card item">
         {
           <div className="card-body">
-            {/* <h5 className="card-title">Flight Name: {props.itinerary.ItineraryName}</h5> */}
-            <h6 className="card-subtitle mb-2 text-muted">
-              asdf
-              {/* Flight Number: {props.itinerary.ItineraryNumber} */}
-            </h6>
-            <p className="card-subtitle mb-2 ">
-              {/* Departure Date: {props.itinerary.ItineraryStartDate} */}
-            </p>
-            {/* <img src={require('./edtBtn.png')} id="edtBtn"/>
-          {props.state.EditForm} */}
+            <h5 className="card-title">{this.props.itinerary.ItineraryName}</h5>
+            <h6 className="card-subtitle mb-2 text-muted" />
           </div>
         }
+
+        {this.state.itineraryItem.map(itinerary => {
+          itinerary.filter;
+          return (
+            <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{itinerary.ItineraryName}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {" "}
+                {itinerary.startTime} to {itinerary.endTime}
+              </h6>
+              </div>
+            </div>
+          );
+        })}
+        {this.state.ItineraryModal}
         <Button
           isColor="info"
           render={props => (
@@ -125,10 +155,7 @@ export default class Itinerary extends Component {
             </Column>
           )}
         />
-        {this.state.ItineraryModal}
       </div>
     );
   }
 }
-
-// export default Itinerary;
