@@ -313,6 +313,7 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
+            <div className="dashboard-tripCards">
             {this.state.FlightModal}
             {this.state.flight.map(flight => (
               <Flight
@@ -322,6 +323,7 @@ export default class TripDash extends Component {
                 state={this.state}
               />
             ))}
+            </div>
           </div>
           <div
             className="tab-pane fade show active"

@@ -20,31 +20,31 @@ export default class FlightForm extends Component {
       <Field>
         <Label>Flight Name:</Label>
         <Control>
-          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightName"/>
+          <Input type="text" placeholder="Flight Name" onChange={this.props.handleFieldChange} id="FlightName"/>
         </Control>
       </Field>
       <Field>
         <Label>Flight Number:</Label>
         <Control>
-          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightNumber"/>
+          <Input type="text" placeholder="AA1234" onChange={this.props.handleFieldChange} id="FlightNumber"/>
         </Control>
       </Field>
       <Field>
         <Label>Flight Origin:</Label>
         <Control>
-          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightOrigin"/>
+          <Input type="text" placeholder="BNA" onChange={this.props.handleFieldChange} id="FlightOrigin"/>
         </Control>
       </Field>
       <Field>
         <Label>Flight Destination:</Label>
         <Control>
-          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightDestination"/>
+          <Input type="text" placeholder="LHR" onChange={this.props.handleFieldChange} id="FlightDestination"/>
         </Control>
       </Field>
       <Field>
         <Label>Depart Date:</Label>
         <Control >
-          <Input type="date" placeholder="$1234" onChange={this.props.handleFieldChange} id="FlightStartDate"/>
+          <Input type="date" placeholder="7/4/2018" onChange={this.props.handleFieldChange} id="FlightStartDate"/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -56,7 +56,7 @@ export default class FlightForm extends Component {
       <Field>
         <Label>Return Date:</Label>
         <Control >
-          <Input type="date" placeholder="$1234" onChange={this.props.handleFieldChange} id="FlightEndDate"/>
+          <Input type="date" placeholder="12/13/2018" onChange={this.props.handleFieldChange} id="FlightEndDate"/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
