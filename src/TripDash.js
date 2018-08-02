@@ -117,7 +117,7 @@ export default class TripDash extends Component {
         FlightNumber: this.state.FlightNumber,
         FlightOrigin: this.state.FlightOrigin,
         FlightDestination: this.state.FlightDestination,
-        userId: this.state.tripInfo.userId
+        tripId: this.state.tripInfo.id
       })
     })
       // When POST is finished, retrieve the new list of trips
@@ -128,17 +128,17 @@ export default class TripDash extends Component {
         });
         alert("Added New Article Sucessfully");
         
-        return fetch("http://localhost:5002/flight?_expand=user");
+        return fetch("http://localhost:5002/flight");
       })
       .then(
         APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://localhost:5002/flight?_expand=user")
+            fetch("http://localhost:5002/flight")
               .then(e => e.json())
               .then(flight =>
                 this.setState({
                   flight: flight.filter(
-                    user => user.userId === this.state.tripInfo.userId
+                    flight => flight.tripId === this.state.tripInfo.id
                   )
                 })
               );
@@ -194,12 +194,12 @@ export default class TripDash extends Component {
         document.getElementById("flights").classList.add("show");
         document.getElementById("flights").classList.add("active");
 
-        fetch("http://localhost:5002/flight?_expand=user")
+        fetch("http://localhost:5002/flight")
           .then(e => e.json())
           .then(flight =>
             this.setState({
               flight: flight.filter(
-                user => user.userId === this.state.tripInfo.userId
+                flight => flight.tripId === this.state.tripInfo.id
               )
             })
           );
