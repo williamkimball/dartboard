@@ -58,6 +58,16 @@
       "FlightDestination": "LAX",
       "userId": 1,
       "id": 2
+    },
+    {
+      "FlightName": "Where even is this?",
+      "FlightStartDate": "2018-08-08",
+      "FlightEndDate": "2018-08-09",
+      "FlightNumber": "SP202",
+      "FlightOrigin": "BNA",
+      "FlightDestination": "NBR",
+      "userId": 2,
+      "id": 3
     }
   ],
   "list": [],

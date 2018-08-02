@@ -15,18 +15,6 @@ export default class TripDash extends Component {
     return APIHandler.getTripData(tripId).then(result => {
       this.setState({ tripInfo: result });
     });
-    // .then(APIHandler.getData("flight"))
-    // .then(result => {
-    //   this.setState({ flight: result });
-    // })
-    // .then(APIHandler.getData("itinerary"))
-    // .then(result => {
-    //   this.setState({ itinerary: result });
-    // })
-    // .then(APIHandler.getData("budget"))
-    // .then(result => {
-    //   this.setState({ budget: result });
-    // });
   };
 
   // Update state whenever an input field is edited
@@ -139,6 +127,7 @@ export default class TripDash extends Component {
           FlightModal: ""
         });
         alert("Added New Article Sucessfully");
+        
         return fetch("http://localhost:5002/flight?_expand=user");
       })
       .then(
