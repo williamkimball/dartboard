@@ -49,13 +49,32 @@ export default class Dashboard extends Component {
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
       this.setState({ tripForm: "" }, () => {
-        this.setState({ tripForm: <TripForm {...this.props} addNewTrip={this.addNewTrip} handleFieldChange={this.handleFieldChange}/> }, () => {
-          document.querySelector(".modal").classList.add("is-active");
-        });
+        this.setState(
+          {
+            tripForm: (
+              <TripForm
+                {...this.props}
+                addNewTrip={this.addNewTrip}
+                handleFieldChange={this.handleFieldChange}
+              />
+            )
+          },
+          () => {
+            document.querySelector(".modal").classList.add("is-active");
+          }
+        );
       });
     } else {
       this.setState(
-        { tripForm: <TripForm addNewTrip={this.addNewTrip} {...this.props} handleFieldChange={this.handleFieldChange}/> },
+        {
+          tripForm: (
+            <TripForm
+              addNewTrip={this.addNewTrip}
+              {...this.props}
+              handleFieldChange={this.handleFieldChange}
+            />
+          )
+        },
         () => {
           document.querySelector(".modal").classList.add("is-active");
         }
@@ -87,19 +106,21 @@ export default class Dashboard extends Component {
         });
         alert("Added New Article Sucessfully");
         return fetch("http://localhost:5002/trips?_expand=user");
-      }).then(
-      APIHandler.getUserName(this.state.user).then(username => {
-        this.setState({ userName: username }, () => {
-          fetch("http://localhost:5002/trips?_expand=user")
-            .then(e => e.json())
-            .then(trip =>
-              this.setState({
-                trips: trip.filter(user=> user.userId === this.state.user),
-                dashHead: `Welcome to Dartboard, ${this.state.userName}!`
-              })
-            );
-        });
-      }))
+      })
+      .then(
+        APIHandler.getUserName(this.state.user).then(username => {
+          this.setState({ userName: username }, () => {
+            fetch("http://localhost:5002/trips?_expand=user")
+              .then(e => e.json())
+              .then(trip =>
+                this.setState({
+                  trips: trip.filter(user => user.userId === this.state.user),
+                  dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+                })
+              );
+          });
+        })
+      );
   };
 
   // Update state whenever an input field is edited
@@ -124,7 +145,7 @@ export default class Dashboard extends Component {
           .then(e => e.json())
           .then(trip =>
             this.setState({
-              trips: trip.filter(user=> user.userId === this.state.user),
+              trips: trip.filter(user => user.userId === this.state.user),
               dashHead: `Welcome to Dartboard, ${this.state.userName}!`
             })
           );
@@ -137,7 +158,7 @@ export default class Dashboard extends Component {
       // this.editTrip;
     } else {
       var id1 = event.target.closest("div").id;
-      console.log(id1)
+      console.log(id1);
       APIHandler.getData("trips", id1)
         .then(trip => {
           this.setState({
@@ -149,9 +170,7 @@ export default class Dashboard extends Component {
             tripDash: <TripDash props={trip} />
           });
         })
-        .then(
-          this.props.history.push(`/TripDash/${id1}`)
-        );
+        .then(this.props.history.push(`/TripDash/${id1}`));
     }
   };
 

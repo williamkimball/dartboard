@@ -8,25 +8,25 @@ import "bulma/css/bulma.css";
 import BudgetModal from "./BudgetModal";
 import ItineraryModal from "./ItineraryModal";
 import FlightModal from "./FlightModal";
+import Flight from "./Flight";
 
 export default class TripDash extends Component {
   getTripInfo = tripId => {
-    return APIHandler.getTripData(tripId)
-      .then(result => {
-        this.setState({ tripInfo: result });
-      })
-      .then(APIHandler.getData("flight"))
-      .then(result => {
-        this.setState({ flights: result });
-      })
-      .then(APIHandler.getData("itinerary"))
-      .then(result => {
-        this.setState({ itinerary: result });
-      })
-      .then(APIHandler.getData("budget"))
-      .then(result => {
-        this.setState({ budget: result });
-      });
+    return APIHandler.getTripData(tripId).then(result => {
+      this.setState({ tripInfo: result });
+    });
+    // .then(APIHandler.getData("flight"))
+    // .then(result => {
+    //   this.setState({ flight: result });
+    // })
+    // .then(APIHandler.getData("itinerary"))
+    // .then(result => {
+    //   this.setState({ itinerary: result });
+    // })
+    // .then(APIHandler.getData("budget"))
+    // .then(result => {
+    //   this.setState({ budget: result });
+    // });
   };
 
   // Update state whenever an input field is edited
@@ -142,13 +142,15 @@ export default class TripDash extends Component {
         return fetch("http://localhost:5002/flight?_expand=user");
       })
       .then(
-        APIHandler.getUserName(this.state.user).then(username => {
+        APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
           this.setState({ userName: username }, () => {
             fetch("http://localhost:5002/flight?_expand=user")
               .then(e => e.json())
               .then(flight =>
                 this.setState({
-                  flight: flight.filter(user => user.userId === this.state.user)
+                  flight: flight.filter(
+                    user => user.userId === this.state.tripInfo.userId
+                  )
                 })
               );
           });
@@ -158,7 +160,7 @@ export default class TripDash extends Component {
 
   state = {
     tripInfo: "",
-    flights: "",
+    flight: [],
     itinerary: "",
     budget: "",
     BudgetModal: "",
@@ -202,6 +204,16 @@ export default class TripDash extends Component {
         }
         document.getElementById("flights").classList.add("show");
         document.getElementById("flights").classList.add("active");
+
+        fetch("http://localhost:5002/flight?_expand=user")
+          .then(e => e.json())
+          .then(flight =>
+            this.setState({
+              flight: flight.filter(
+                user => user.userId === this.state.tripInfo.userId
+              )
+            })
+          );
 
         this.currentInfo =
           " Hodor hodor! Hodor, hodor, hodor hodor. HODOR hodor, hodor. Hodor hodor! Hodor? Hodor hodor! HODOR? Hodor hodor. HODOR hodor, hodor. HODOR? Hodor, hodor. Hodor. HODOR HODOR!";
@@ -302,7 +314,14 @@ export default class TripDash extends Component {
               )}
             />
             {this.state.FlightModal}
-            {this.currentInfo}
+            {this.state.flight.map(flight => (
+              <Flight
+                key={flight.id}
+                flight={flight}
+                user={this.state.user}
+                state={this.state}
+              />
+            ))}
           </div>
           <div
             className="tab-pane fade show active"

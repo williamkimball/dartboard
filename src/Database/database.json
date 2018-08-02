@@ -48,6 +48,16 @@
       "FlightDestination": "asdf",
       "userId": 1,
       "id": 1
+    },
+    {
+      "FlightName": "Trip to Florida",
+      "FlightStartDate": "2018-08-08",
+      "FlightEndDate": "2018-08-16",
+      "FlightNumber": "AA234",
+      "FlightOrigin": "BNA",
+      "FlightDestination": "LAX",
+      "userId": 1,
+      "id": 2
     }
   ],
   "list": [],
