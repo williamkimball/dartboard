@@ -20,14 +20,14 @@ export default class BudgetForm extends Component {
       <Field>
         <Label>Budget Item Title:</Label>
         <Control>
-          <Input type="text" placeholder="Budget Item Title" />
+          <Input type="text" placeholder="Budget Item Title" id="budgetItemTitle" onChange={this.props.handleFieldChange}/>
         </Control>
       </Field>
 
       <Field>
         <Label>Price:</Label>
         <Control >
-          <Input placeholder="$1234" />
+          <Input placeholder="$1234" id="budgetItemPrice" onChange={this.props.handleFieldChange}/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -39,7 +39,7 @@ export default class BudgetForm extends Component {
 
       <Field isGrouped>
         <Control>
-          <Button isColor="primary">Submit</Button>
+          <Button isColor="primary" onClick={this.props.addNewBudgetItem}>Submit</Button>
         </Control>
         <Control onClick={this.turnInactive}>
           <Button >Cancel</Button>

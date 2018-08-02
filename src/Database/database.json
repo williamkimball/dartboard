@@ -115,7 +115,38 @@
       "id": 6
     }
   ],
-  "budget": [],
+  "budget": [
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "1232",
+      "tripId": 1,
+      "id": 2
+    },
+    {
+      "budgetItemTitle": "Test 2",
+      "budgetItemPrice": "4567",
+      "tripId": 1,
+      "id": 3
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "123",
+      "tripId": 1,
+      "id": 4
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "1",
+      "tripId": 1,
+      "id": 5
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "1",
+      "tripId": 3,
+      "id": 5
+    }
+  ],
   "flight": [
     {
       "FlightName": "asdf",

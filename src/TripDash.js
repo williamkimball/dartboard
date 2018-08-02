@@ -10,6 +10,7 @@ import BudgetModal from "./DisplayModals/BudgetModal";
 import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
 import Itinerary from "./Itinerary";
+import Budget from "./Budget";
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -17,10 +18,11 @@ export default class TripDash extends Component {
     tripInfo: "",
     flight: [],
     itinerary: [],
-    budget: "",
+    budget: [],
     BudgetModal: "",
     // ItineraryModal: "",
-    FlightModal: ""
+    FlightModal: "",
+    budgetTotal: 0
   };
 
   //this function gets the information related to the trip
@@ -59,18 +61,37 @@ export default class TripDash extends Component {
       this.setState(
         { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
         () => {
-          this.setState({ BudgetModal: <BudgetModal /> }, () => {
-            document.querySelector(".modal").classList.add("is-active");
-          });
+          this.setState(
+            {
+              BudgetModal: (
+                <BudgetModal
+                  addNewBudgetItem={this.addNewBudgetItem}
+                  handleFieldChange={this.handleFieldChange}
+                />
+              )
+            },
+            () => {
+              document.querySelector(".modal").classList.add("is-active");
+            }
+          );
         }
       );
     } else {
-      this.setState({ BudgetModal: <BudgetModal /> }, () => {
-        document.querySelector(".modal").classList.add("is-active");
-      });
+      this.setState(
+        {
+          BudgetModal: (
+            <BudgetModal
+              addNewBudgetItem={this.addNewBudgetItem}
+              handleFieldChange={this.handleFieldChange}
+            />
+          )
+        },
+        () => {
+          document.querySelector(".modal").classList.add("is-active");
+        }
+      );
     }
   };
-
 
   //This function creates the Flight Modal that pops up when the "add new flight" button is pressed.
   FlightModal = () => {
@@ -160,6 +181,60 @@ export default class TripDash extends Component {
       );
   };
 
+  //this function handles all of the functionality related to adding a new budgetItem to the database and then redrawing the page to create a card for it.
+  addNewBudgetItem = event => {
+    event.preventDefault();
+
+    // Add new budget to the API
+    fetch(`http://localhost:5002/budget`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        budgetItemTitle: this.state.budgetItemTitle,
+        budgetItemPrice: this.state.budgetItemPrice,
+        tripId: this.state.tripInfo.id
+      })
+    })
+      // When POST is finished, retrieve the new list of trips
+      .then(() => {
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
+        this.setState({
+          BudgetModal: ""
+        });
+        alert("Added New Budget Item Sucessfully");
+        return fetch("http://localhost:5002/budget");
+      })
+      .then(
+        //this the username, and then sets the state of budget to be equal to a list of budgets that is filtered by the trip number
+        APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
+          this.setState({ userName: username }, () => {
+            fetch("http://localhost:5002/budget")
+              .then(e => e.json())
+              .then(budget =>
+                this.setState(
+                  {
+                    budget: budget.filter(
+                      budget => budget.tripId === this.state.tripInfo.id
+                    )
+                  },
+                  () => {
+                    this.state.budget.map(budget => {
+                      this.setState({
+                        budgetTotal:
+                          parseInt(this.state.budgetTotal) +
+                          parseInt(budget.budgetItemPrice)
+                      });
+                    });
+                  }
+                )
+              );
+          });
+        })
+      );
+  };
+
   currentInfo = "";
 
   //this is the function that handles the tabbed displays, and contextually renders the contents based on which tab is selected.
@@ -225,8 +300,26 @@ export default class TripDash extends Component {
         document.getElementById("budget").classList.add("show");
         document.getElementById("budget").classList.add("active");
 
-        this.currentInfo =
-          "Mustache four dollar toast tattooed deep v church-key selvage asymmetrical pabst coloring book post-ironic ethical fam. Cornhole snackwave listicle meh, try-hard irony four dollar toast biodiesel seitan kitsch chambray jean shorts. Authentic health goth thundercats master cleanse, literally hoodie selvage slow-carb. Kinfolk pok pok kogi jianbing brooklyn. Woke freegan migas organic tote bag. Fixie ethical microdosing pop-up shaman cronut vegan brooklyn vape hoodie.";
+        fetch("http://localhost:5002/budget")
+          .then(e => e.json())
+          .then(budget =>
+            this.setState(
+              {
+                budget: budget.filter(
+                  budget => budget.tripId === this.state.tripInfo.id
+                )
+              },
+              () => {
+                this.state.budget.map(budget => {
+                  this.setState({
+                    budgetTotal:
+                      parseInt(this.state.budgetTotal) +
+                      parseInt(budget.budgetItemPrice)
+                  });
+                });
+              }
+            )
+          );
 
         break;
       default:
@@ -360,8 +453,18 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            {this.state.BudgetModal}
-            {this.currentInfo}
+            <div className="card">
+              {this.state.BudgetModal}
+              {this.state.budget.map(budget => (
+                <Budget
+                  key={budget.id}
+                  budget={budget}
+                  user={this.state.user}
+                  state={this.state}
+                />
+              ))}
+              <h5>Total: {this.state.budgetTotal}</h5>
+            </div>
           </div>
         </div>
       </div>
