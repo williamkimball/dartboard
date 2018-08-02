@@ -126,12 +126,10 @@ export default class Itinerary extends Component {
         {
           <div className="card-body">
             <h5 className="card-title">{this.props.itinerary.ItineraryName}</h5>
-            <h6 className="card-subtitle mb-2 text-muted" />
           </div>
         }
 
         {this.state.itineraryItem.map(itinerary => {
-          itinerary.filter;
           return (
             <div className="card">
             <div className="card-body">
