@@ -18,16 +18,33 @@ export default class FlightForm extends Component {
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
-        <Label>Flight Title:</Label>
+        <Label>Flight Name:</Label>
         <Control>
-          <Input type="text" placeholder="Flight Title" />
+          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightName"/>
         </Control>
       </Field>
-
+      <Field>
+        <Label>Flight Number:</Label>
+        <Control>
+          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightNumber"/>
+        </Control>
+      </Field>
+      <Field>
+        <Label>Flight Origin:</Label>
+        <Control>
+          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightOrigin"/>
+        </Control>
+      </Field>
+      <Field>
+        <Label>Flight Destination:</Label>
+        <Control>
+          <Input type="text" placeholder="Flight Title" onChange={this.props.handleFieldChange} id="FlightDestination"/>
+        </Control>
+      </Field>
       <Field>
         <Label>Depart Date:</Label>
         <Control >
-          <Input type="date" placeholder="$1234" />
+          <Input type="date" placeholder="$1234" onChange={this.props.handleFieldChange} id="FlightStartDate"/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -39,7 +56,7 @@ export default class FlightForm extends Component {
       <Field>
         <Label>Return Date:</Label>
         <Control >
-          <Input type="date" placeholder="$1234" />
+          <Input type="date" placeholder="$1234" onChange={this.props.handleFieldChange} id="FlightEndDate"/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -50,7 +67,7 @@ export default class FlightForm extends Component {
       </Field>
       <Field isGrouped>
         <Control>
-          <Button isColor="primary">Submit</Button>
+          <Button isColor="primary" onClick={this.props.addNewFlight}>Submit</Button>
         </Control>
         <Control onClick={this.turnInactive}>
           <Button>Cancel</Button>

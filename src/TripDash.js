@@ -28,6 +28,14 @@ export default class TripDash extends Component {
         this.setState({ budget: result });
       });
   };
+
+  // Update state whenever an input field is edited
+  handleFieldChange = evt => {
+    const stateToChange = {};
+    stateToChange[evt.target.id] = evt.target.value;
+    this.setState(stateToChange);
+  };
+
   componentDidMount() {
     this.getTripInfo(this.props.match.params.anumber);
   }
@@ -71,16 +79,81 @@ export default class TripDash extends Component {
       this.setState(
         { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
         () => {
-          this.setState({ FlightModal: <FlightModal /> }, () => {
-            document.querySelector(".modal").classList.add("is-active");
-          });
+          this.setState(
+            {
+              FlightModal: (
+                <FlightModal
+                  {...this.props}
+                  addNewFlight={this.addNewFlight}
+                  handleFieldChange={this.handleFieldChange}
+                />
+              )
+            },
+            () => {
+              document.querySelector(".modal").classList.add("is-active");
+            }
+          );
         }
       );
     } else {
-      this.setState({ FlightModal: <FlightModal /> }, () => {
-        document.querySelector(".modal").classList.add("is-active");
-      });
+      this.setState(
+        {
+          FlightModal: (
+            <FlightModal
+              {...this.props}
+              addNewFlight={this.addNewFlight}
+              handleFieldChange={this.handleFieldChange}
+            />
+          )
+        },
+        () => {
+          document.querySelector(".modal").classList.add("is-active");
+        }
+      );
     }
+  };
+
+  addNewFlight = event => {
+    event.preventDefault();
+
+    // Add new flight to the API
+    fetch(`http://localhost:5002/flight?_expand=user`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        FlightName: this.state.FlightName,
+        FlightStartDate: this.state.FlightStartDate,
+        FlightEndDate: this.state.FlightEndDate,
+        FlightNumber: this.state.FlightNumber,
+        FlightOrigin: this.state.FlightOrigin,
+        FlightDestination: this.state.FlightDestination,
+        userId: this.state.tripInfo.userId
+      })
+    })
+      // When POST is finished, retrieve the new list of trips
+      .then(() => {
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
+        this.setState({
+          FlightModal: ""
+        });
+        alert("Added New Article Sucessfully");
+        return fetch("http://localhost:5002/flight?_expand=user");
+      })
+      .then(
+        APIHandler.getUserName(this.state.user).then(username => {
+          this.setState({ userName: username }, () => {
+            fetch("http://localhost:5002/flight?_expand=user")
+              .then(e => e.json())
+              .then(flight =>
+                this.setState({
+                  flight: flight.filter(user => user.userId === this.state.user)
+                })
+              );
+          });
+        })
+      );
   };
 
   state = {

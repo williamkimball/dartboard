@@ -38,7 +38,18 @@
   ],
   "itinerary": [],
   "budget": [],
-  "flight": [],
+  "flight": [
+    {
+      "FlightName": "asdf",
+      "FlightStartDate": "2018-08-07",
+      "FlightEndDate": "2018-08-08",
+      "FlightNumber": "asdf",
+      "FlightOrigin": "asdf",
+      "FlightDestination": "asdf",
+      "userId": 1,
+      "id": 1
+    }
+  ],
   "list": [],
   "listItem": []
 }
