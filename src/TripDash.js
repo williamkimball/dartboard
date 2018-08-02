@@ -9,13 +9,14 @@ import BudgetModal from "./DisplayModals/BudgetModal";
 import ItineraryModal from "./DisplayModals/ItineraryModal";
 import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
+import Itinerary from "./Itinerary";
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
   state = {
     tripInfo: "",
     flight: [],
-    itinerary: "",
+    itinerary: [],
     budget: "",
     BudgetModal: "",
     ItineraryModal: "",
@@ -24,9 +25,21 @@ export default class TripDash extends Component {
 
   //this function gets the information related to the trip
   getTripInfo = tripId => {
-    return APIHandler.getTripData(tripId).then(result => {
-      this.setState({ tripInfo: result });
-    });
+    return APIHandler.getTripData(tripId)
+      .then(result => {
+        this.setState({ tripInfo: result });
+      })
+      .then(() => {
+        fetch("http://localhost:5002/itinerary")
+          .then(e => e.json())
+          .then(itinerary =>
+            this.setState({
+              itinerary: itinerary.filter(
+                itinerary => itinerary.tripId === this.state.tripInfo.id
+              )
+            })
+          );
+      });
   };
 
   // Update state whenever an input field is edited
@@ -58,20 +71,44 @@ export default class TripDash extends Component {
     }
   };
 
+  //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
   ItineraryModal = () => {
+    //checks to see if the modal is in state
     if (document.querySelector(".modal") !== null) {
       this.setState(
         { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
         () => {
-          this.setState({ ItineraryModal: <ItineraryModal /> }, () => {
-            document.querySelector(".modal").classList.add("is-active");
-          });
+          this.setState(
+            {
+              ItineraryModal: (
+                <ItineraryModal
+                  {...this.props}
+                  addNewItinerary={this.addNewItinerary}
+                  handleFieldChange={this.handleFieldChange}
+                />
+              )
+            },
+            () => {
+              document.querySelector(".modal").classList.add("is-active");
+            }
+          );
         }
       );
     } else {
-      this.setState({ ItineraryModal: <ItineraryModal /> }, () => {
-        document.querySelector(".modal").classList.add("is-active");
-      });
+      this.setState(
+        {
+          ItineraryModal: (
+            <ItineraryModal
+              {...this.props}
+              addNewItinerary={this.addNewItinerary}
+              handleFieldChange={this.handleFieldChange}
+            />
+          )
+        },
+        () => {
+          document.querySelector(".modal").classList.add("is-active");
+        }
+      );
     }
   };
 
@@ -163,11 +200,56 @@ export default class TripDash extends Component {
       );
   };
 
+  //this function handles all of the functionality related to adding a new itinerary to the database and then redrawing the page to create a card for it.
+  addNewItinerary = event => {
+    event.preventDefault();
+
+    // Add new itinerary item to the API
+    fetch(`http://localhost:5002/itinerary`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        ItineraryName: this.state.ItineraryName,
+        ItineraryDescription: this.state.ItineraryDescription,
+        // FlightEndDate: this.state.FlightEndDate,
+        // FlightNumber: this.state.FlightNumber,
+        // FlightOrigin: this.state.FlightOrigin,
+        // FlightDestination: this.state.FlightDestination,
+        tripId: this.state.tripInfo.id
+      })
+    })
+      // When POST is finished, retrieve the new list of itinerary items
+      .then(() => {
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
+        this.setState({
+          ItineraryModal: ""
+        });
+        alert("Added New Itinerary Item Sucessfully");
+        return fetch("http://localhost:5002/itinerary");
+      })
+      .then(
+        //this the username, and then sets the state of itinerary to be equal to a list of itineraries that is filtered by the trip number
+        APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
+          this.setState({ userName: username }, () => {
+            fetch("http://localhost:5002/itinerary")
+              .then(e => e.json())
+              .then(itinerary =>
+                this.setState({
+                  itinerary: itinerary.filter(
+                    itinerary => itinerary.tripId === this.state.tripInfo.id
+                  )
+                })
+              );
+          });
+        })
+      );
+  };
 
   currentInfo = "";
 
-
-  //this is the function that handles the tabbed displays, and contextually renders the contents based on which tab is selected. 
+  //this is the function that handles the tabbed displays, and contextually renders the contents based on which tab is selected.
   pillListener = event => {
     if (event.target.classList.contains("active") === false) {
       let tabs = document.getElementsByClassName("active");
@@ -189,9 +271,16 @@ export default class TripDash extends Component {
         }
         document.getElementById("itinerary").classList.add("show");
         document.getElementById("itinerary").classList.add("active");
-
-        this.currentInfo =
-          "Everyone is going to see things differently - and that's the way it should be. We tell people sometimes: we're like drug dealers, come into town and get everybody absolutely addicted to painting. It doesn't take much to get you addicted. There comes a nice little fluffer.";
+        fetch("http://localhost:5002/itinerary")
+          .then(e => e.json())
+          .then(itinerary =>
+            this.setState({
+              itinerary: itinerary.filter(
+                itinerary => itinerary.tripId === this.state.tripInfo.id
+              )
+            })
+          );
+        this.currentInfo = "";
 
         break;
       case "Flights":
@@ -310,15 +399,15 @@ export default class TripDash extends Component {
               )}
             />
             <div className="dashboard-tripCards">
-            {this.state.FlightModal}
-            {this.state.flight.map(flight => (
-              <Flight
-                key={flight.id}
-                flight={flight}
-                user={this.state.user}
-                state={this.state}
-              />
-            ))}
+              {this.state.FlightModal}
+              {this.state.flight.map(flight => (
+                <Flight
+                  key={flight.id}
+                  flight={flight}
+                  user={this.state.user}
+                  state={this.state}
+                />
+              ))}
             </div>
           </div>
           <div
@@ -337,8 +426,17 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            {this.state.ItineraryModal}
-            {this.currentInfo}
+            <div className="dashboard-tripCards">
+              {this.state.ItineraryModal}
+              {this.state.itinerary.map(itinerary => (
+                <Itinerary
+                  key={itinerary.id}
+                  itinerary={itinerary}
+                  user={this.state.user}
+                  state={this.state}
+                />
+              ))}
+            </div>
           </div>
           <div
             className="tab-pane fade"

@@ -19,14 +19,14 @@ export default class ItineraryForm extends Component {
       <Field>
         <Label>Itinerary Item Title:</Label>
         <Control>
-          <Input type="text" placeholder="Itinerary Item Title" />
+          <Input type="text" placeholder="Itinerary Item Title" id="ItineraryName" onChange={this.props.handleFieldChange}/>
         </Control>
       </Field>
 
       <Field>
         <Label>Description:</Label>
         <Control >
-          <Input placeholder="Visit the Pyramids" />
+          <Input placeholder="Visit the Pyramids" id="ItineraryDescription" onChange={this.props.handleFieldChange}/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -38,7 +38,7 @@ export default class ItineraryForm extends Component {
 
       <Field isGrouped>
         <Control>
-          <Button isColor="primary">Submit</Button>
+          <Button isColor="primary" onClick={this.props.addNewItinerary}>Submit</Button>
         </Control>
         <Control onClick={this.turnInactive}>
           <Button >Cancel</Button>

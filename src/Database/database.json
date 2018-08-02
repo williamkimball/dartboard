@@ -36,7 +36,14 @@
       "id": 7
     }
   ],
-  "itinerary": [],
+  "itinerary": [
+    {
+      "ItineraryName": "asdf",
+      "ItineraryDescription": "fsfsf",
+      "tripId": 4,
+      "id": 1
+    }
+  ],
   "budget": [],
   "flight": [
     {
