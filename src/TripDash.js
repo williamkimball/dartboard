@@ -5,9 +5,9 @@ import React, { Component } from "react";
 import APIHandler from "./APIHandler";
 import { Button, Column } from "bloomer";
 import "bulma/css/bulma.css";
-import BudgetModal from "./BudgetModal";
-import ItineraryModal from "./ItineraryModal";
-import FlightModal from "./FlightModal";
+import BudgetModal from "./DisplayModals/BudgetModal";
+import ItineraryModal from "./DisplayModals/ItineraryModal";
+import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
 
 export default class TripDash extends Component {

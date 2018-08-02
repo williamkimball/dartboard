@@ -58,6 +58,16 @@
       "FlightDestination": "LAX",
       "id": 2,
       "tripId": 4
+    },
+    {
+      "FlightName": "asdf",
+      "FlightStartDate": "2018-08-24",
+      "FlightEndDate": "2018-08-31",
+      "FlightNumber": "aadsf",
+      "FlightOrigin": "afaf",
+      "FlightDestination": "dd",
+      "tripId": 4,
+      "id": 3
     }
   ],
   "list": [],
