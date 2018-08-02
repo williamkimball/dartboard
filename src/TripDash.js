@@ -21,7 +21,8 @@ export default class TripDash extends Component {
     budget: [],
     BudgetModal: "",
     // ItineraryModal: "",
-    FlightModal: ""
+    FlightModal: "",
+    budgetTotal: 0
   };
 
   //this function gets the information related to the trip
@@ -212,11 +213,22 @@ export default class TripDash extends Component {
             fetch("http://localhost:5002/budget")
               .then(e => e.json())
               .then(budget =>
-                this.setState({
-                  budget: budget.filter(
-                    budget => budget.tripId === this.state.tripInfo.id
-                  )
-                })
+                this.setState(
+                  {
+                    budget: budget.filter(
+                      budget => budget.tripId === this.state.tripInfo.id
+                    )
+                  },
+                  () => {
+                    this.state.budget.map(budget => {
+                      this.setState({
+                        budgetTotal:
+                          parseInt(this.state.budgetTotal) +
+                          parseInt(budget.budgetItemPrice)
+                      });
+                    });
+                  }
+                )
               );
           });
         })
@@ -287,16 +299,27 @@ export default class TripDash extends Component {
         }
         document.getElementById("budget").classList.add("show");
         document.getElementById("budget").classList.add("active");
-        
+
         fetch("http://localhost:5002/budget")
-        .then(e => e.json())
-        .then(budget =>
-          this.setState({
-            budget: budget.filter(
-              budget => budget.tripId === this.state.tripInfo.id
+          .then(e => e.json())
+          .then(budget =>
+            this.setState(
+              {
+                budget: budget.filter(
+                  budget => budget.tripId === this.state.tripInfo.id
+                )
+              },
+              () => {
+                this.state.budget.map(budget => {
+                  this.setState({
+                    budgetTotal:
+                      parseInt(this.state.budgetTotal) +
+                      parseInt(budget.budgetItemPrice)
+                  });
+                });
+              }
             )
-          })
-        );
+          );
 
         break;
       default:
@@ -430,7 +453,7 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            <div className="dashboard-tripCards">
+            <div className="card">
               {this.state.BudgetModal}
               {this.state.budget.map(budget => (
                 <Budget
@@ -440,6 +463,7 @@ export default class TripDash extends Component {
                   state={this.state}
                 />
               ))}
+              <h5>Total: {this.state.budgetTotal}</h5>
             </div>
           </div>
         </div>
