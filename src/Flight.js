@@ -4,17 +4,7 @@
 import "./Trip.css";
 import React from "react";
 
-// import { Link } from "react-router-dom";
-// import EditFlightForm from "./EditFlightForm";
-
 const Flight = props => {
-  // let editTrip = (event) => {
-  //    console.log(event.target.parentNode);
-  //    console.log(this.props)
-  //   //  this.props.state.EditForm =
-  //   //      <EditTripForm
-  //   //      />
-  //  }
 
   return (
     <div className="card item">

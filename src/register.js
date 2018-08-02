@@ -145,39 +145,6 @@ export default class Register extends Component {
           </ModalCardBody>
         </ModalCard>
       </Modal>
-      
-      // <form onSubmit={this.handleRegister}>
-      //   <h4>Please Register Your Info!</h4>
-
-      //   {/* Field to register username */}
-      //   <label htmlFor="registerUsername">Username:</label>
-      //   <input
-      //     id="name"
-      //     name="registerUsername"
-      //     type="text"
-      //     onChange={this.handleFieldChange}
-      //   />
-
-      //   {/* Field to register email */}
-      //   <label htmlFor="registerEmail">Email:</label>
-      //   <input
-      //     id="email"
-      //     name="registerEmail"
-      //     type="email"
-      //     onChange={this.handleFieldChange}
-      //   />
-
-      //   {/* Field to register password */}
-      //   <label htmlFor="registerPassword">Password:</label>
-      //   <input
-      //     id="password"
-      //     name="registerPassword"
-      //     type="password"
-      //     onChange={this.handleFieldChange}
-      //   />
-
-      //   <input type="submit" />
-      // </form>
     );
   }
 }

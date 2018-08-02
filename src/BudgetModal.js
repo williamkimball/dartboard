@@ -6,7 +6,6 @@ export default class BudgetForm extends Component {
     turnInactive = () => {
         console.log(this.props)
         document.querySelector(".modal").classList.remove("is-active")
-        // this.setState({BudgetModal: ""})
     }
     render() {
         return (
