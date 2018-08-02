@@ -5,7 +5,6 @@ import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeade
 export default class FlightForm extends Component {
     turnInactive = () => {
         document.querySelector(".modal").classList.remove("is-active")
-        // this.setState({FlightModal: ""})
     }
     render() {
         return (

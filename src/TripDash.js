@@ -5,12 +5,24 @@ import React, { Component } from "react";
 import APIHandler from "./APIHandler";
 import { Button, Column } from "bloomer";
 import "bulma/css/bulma.css";
-import BudgetModal from "./BudgetModal";
-import ItineraryModal from "./ItineraryModal";
-import FlightModal from "./FlightModal";
+import BudgetModal from "./DisplayModals/BudgetModal";
+import ItineraryModal from "./DisplayModals/ItineraryModal";
+import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
 
 export default class TripDash extends Component {
+  //this is the state for this component. Turns out state is pretty important in react.
+  state = {
+    tripInfo: "",
+    flight: [],
+    itinerary: "",
+    budget: "",
+    BudgetModal: "",
+    ItineraryModal: "",
+    FlightModal: ""
+  };
+
+  //this function gets the information related to the trip
   getTripInfo = tripId => {
     return APIHandler.getTripData(tripId).then(result => {
       this.setState({ tripInfo: result });
@@ -24,6 +36,7 @@ export default class TripDash extends Component {
     this.setState(stateToChange);
   };
 
+  //this function is what calls the getTripInfo function
   componentDidMount() {
     this.getTripInfo(this.props.match.params.anumber);
   }
@@ -62,7 +75,9 @@ export default class TripDash extends Component {
     }
   };
 
+  //This function creates the Flight Modal that pops up when the "add new flight" button is pressed.
   FlightModal = () => {
+    //checks to see if the modal is in state
     if (document.querySelector(".modal") !== null) {
       this.setState(
         { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
@@ -101,6 +116,7 @@ export default class TripDash extends Component {
     }
   };
 
+  //this function handles all of the functionality related to adding a new flight to the database and then redrawing the page to create a card for it.
   addNewFlight = event => {
     event.preventDefault();
 
@@ -127,10 +143,10 @@ export default class TripDash extends Component {
           FlightModal: ""
         });
         alert("Added New Article Sucessfully");
-        
         return fetch("http://localhost:5002/flight");
       })
       .then(
+        //this the username, and then sets the state of flight to be equal to a list of flights that is filtered by the trip number
         APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
           this.setState({ userName: username }, () => {
             fetch("http://localhost:5002/flight")
@@ -147,18 +163,11 @@ export default class TripDash extends Component {
       );
   };
 
-  state = {
-    tripInfo: "",
-    flight: [],
-    itinerary: "",
-    budget: "",
-    BudgetModal: "",
-    ItineraryModal: "",
-    FlightModal: ""
-  };
 
   currentInfo = "";
 
+
+  //this is the function that handles the tabbed displays, and contextually renders the contents based on which tab is selected. 
   pillListener = event => {
     if (event.target.classList.contains("active") === false) {
       let tabs = document.getElementsByClassName("active");
@@ -204,9 +213,6 @@ export default class TripDash extends Component {
             })
           );
 
-        this.currentInfo =
-          " Hodor hodor! Hodor, hodor, hodor hodor. HODOR hodor, hodor. Hodor hodor! Hodor? Hodor hodor! HODOR? Hodor hodor. HODOR hodor, hodor. HODOR? Hodor, hodor. Hodor. HODOR HODOR!";
-
         break;
       case "Budget":
         let tabcont2 = document.getElementsByClassName("show");
@@ -226,6 +232,7 @@ export default class TripDash extends Component {
   };
 
   render() {
+    //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
     return (
       <div>
         <section className="hero is-primary">

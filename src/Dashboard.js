@@ -26,25 +26,6 @@ export default class Dashboard extends Component {
     stateToChange[event.target.id] = event.target.value;
     this.setState(stateToChange);
   };
-  // changePressed = () => {
-  //   if (this.state.tripForm === "") {
-  //     this.setState({
-  //       tripForm: (
-  //         <TripForm
-  //           // addNewTrip={this.addNewTrip}
-  //           // handleFieldChange={this.handleFieldChange}
-  //           // handleChange={this.handleChange}
-  //           // startDate={this.state.startDate}
-  //           // endDate={this.state.endDate}
-  //         />
-  //       )
-  //     });
-  //   } else {
-  //     this.setState({
-  //       tripForm: ""
-  //     });
-  //   }
-  // };
 
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
