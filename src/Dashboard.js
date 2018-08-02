@@ -66,6 +66,11 @@ export default class Dashboard extends Component {
   addNewTrip = event => {
     event.preventDefault();
 
+    let tripEnd = Date.parse(this.state.endDate);
+    let tripStart = Date.parse(this.state.startDate);
+    let tripLength = (tripEnd - tripStart) / 86400000;
+    console.log(tripLength);
+
     // Add new trips to the API
     fetch(`http://localhost:5002/trips?_expand=user`, {
       method: "POST",
@@ -76,9 +81,28 @@ export default class Dashboard extends Component {
         title: this.state.tripName,
         startDate: this.state.startDate,
         endDate: this.state.endDate,
+        tripLength: tripLength,
         userId: this.state.user
       })
     })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(trip) {
+        console.log(trip)
+        for (let i = 0; i <= tripLength; i++) {
+          fetch(`http://localhost:5002/itinerary`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+              tripId: trip.id,
+              ItineraryName: `Day ${i+1}`
+            })
+          });
+        }
+      })
       // When POST is finished, retrieve the new list of trips
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`
@@ -139,7 +163,7 @@ export default class Dashboard extends Component {
       // this.editTrip;
     } else {
       var id1 = event.target.closest("div").id;
-      console.log(id1);
+      // console.log(id1);
       APIHandler.getData("trips", id1)
         .then(trip => {
           this.setState({

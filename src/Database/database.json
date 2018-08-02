@@ -15,28 +15,106 @@
   ],
   "trips": [
     {
-      "title": "Cape canaveral",
+      "title": "Cape Canaveral",
       "startDate": "2018-08-03",
       "endDate": "2018-08-04",
       "userId": 1,
-      "id": 4
+      "tripLength": 3,
+      "id": 1
     },
     {
       "title": "New Zealand",
       "startDate": "2018-08-30",
       "endDate": "2018-09-06",
       "userId": 1,
-      "id": 6
+      "tripLength": 2,
+      "id": 2
     },
     {
       "title": "NewBraska",
       "startDate": "2018-08-30",
       "endDate": "2018-09-06",
       "userId": 2,
-      "id": 7
+      "tripLength": 4,
+      "id": 3
     }
   ],
-  "itinerary": [],
+  "itinerary": [
+    {
+      "ItineraryName": "Day 1",
+      "tripId": 1,
+      "id": 1
+    },
+    {
+      "ItineraryName": "Day 2",
+      "tripId": 1,
+      "id": 2
+    },
+    {
+      "ItineraryName": "Day 3",
+      "tripId": 1,
+      "id": 3
+    },
+    {
+      "ItineraryName": "Day 4",
+      "tripId": 1,
+      "id": 4
+    },
+    {
+      "ItineraryName": "Day 1",
+      "tripId": 2,
+      "id": 5
+    },
+    {
+      "ItineraryName": "Day 2",
+      "tripId": 2,
+      "id": 6
+    },
+    {
+      "ItineraryName": "Day 3",
+      "tripId": 2,
+      "id": 7
+    },
+    {
+      "ItineraryName": "Day 4",
+      "tripId": 2,
+      "id": 8
+    }
+  ],
+  "itineraryItem": [
+    {
+      "ItineraryName": "asdf",
+      "itineraryId": 1,
+      "startTime": "02:33",
+      "endTime": "15:04",
+      "tripId": 1,
+      "id": 3
+    },
+    {
+      "ItineraryName": "zxv",
+      "itineraryId": 1,
+      "startTime": "03:02",
+      "endTime": "13:01",
+      "tripId": 1,
+      "id": 4
+    },
+    {
+      "ItineraryName": "ride the train",
+      "itineraryId": 2,
+      "startTime": "02:22",
+      "endTime": "16:30",
+      "tripId": 1,
+      "id": 5
+    },
+    {
+      "ItineraryName": "adfasfd",
+      "itineraryId": 5,
+      "startTime": "15:03",
+      "endTime": "18:19",
+      "tripId": 2,
+      "id": 6
+    }
+  ],
   "budget": [],
   "flight": [
     {
@@ -47,7 +125,7 @@
       "FlightOrigin": "asdf",
       "FlightDestination": "asdf",
       "id": 1,
-      "tripId": 3
+      "tripId": 1
     },
     {
       "FlightName": "Trip to Florida",
@@ -58,16 +136,6 @@
       "FlightDestination": "LAX",
       "id": 2,
       "tripId": 4
-    },
-    {
-      "FlightName": "asdf",
-      "FlightStartDate": "2018-08-24",
-      "FlightEndDate": "2018-08-31",
-      "FlightNumber": "aadsf",
-      "FlightOrigin": "afaf",
-      "FlightDestination": "dd",
-      "tripId": 4,
-      "id": 3
     }
   ],
   "list": [],

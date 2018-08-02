@@ -19,26 +19,27 @@ export default class ItineraryForm extends Component {
       <Field>
         <Label>Itinerary Item Title:</Label>
         <Control>
-          <Input type="text" placeholder="Itinerary Item Title" />
+          <Input type="text" placeholder="Visit the Pyramids" id="ItineraryName" onChange={this.props.handleFieldChange}/>
         </Control>
       </Field>
 
       <Field>
-        <Label>Description:</Label>
+        <Label>Start Time:</Label>
         <Control >
-          <Input placeholder="Visit the Pyramids" />
-          <Icon isSize="small" isAlign="left">
-            <span className="fa fa-user" aria-hidden="true" />
-          </Icon>
-          <Icon isSize="small" isAlign="right">
-            <span className="fa fa-check" aria-hidden="true" />
-          </Icon>
+          <Input placeholder="" id="startTime" type="time" onChange={this.props.handleFieldChange}/>
+        </Control>
+      </Field>
+
+      <Field>
+        <Label>End Time:</Label>
+        <Control >
+          <Input placeholder="" id="endTime" type="time" onChange={this.props.handleFieldChange}/>
         </Control>
       </Field>
 
       <Field isGrouped>
         <Control>
-          <Button isColor="primary">Submit</Button>
+          <Button isColor="primary" onClick={this.props.addNewItinerary}>Submit</Button>
         </Control>
         <Control onClick={this.turnInactive}>
           <Button >Cancel</Button>
