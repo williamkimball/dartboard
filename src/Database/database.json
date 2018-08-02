@@ -75,6 +75,14 @@
       "FlightDestination": "dd",
       "tripId": 4,
       "id": 3
+    },
+    {
+      "FlightName": "sdfg",
+      "FlightNumber": "sdfg",
+      "FlightOrigin": "sdgfs",
+      "FlightDestination": "dfg",
+      "tripId": 4,
+      "id": 4
     }
   ],
   "list": [],

@@ -6,7 +6,7 @@ import APIHandler from "./APIHandler";
 import { Button, Column } from "bloomer";
 import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
-import ItineraryModal from "./DisplayModals/ItineraryModal";
+// import ItineraryModal from "./DisplayModals/ItineraryModal";
 import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
 import Itinerary from "./Itinerary";
@@ -19,7 +19,7 @@ export default class TripDash extends Component {
     itinerary: [],
     budget: "",
     BudgetModal: "",
-    ItineraryModal: "",
+    // ItineraryModal: "",
     FlightModal: ""
   };
 
@@ -71,46 +71,6 @@ export default class TripDash extends Component {
     }
   };
 
-  //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
-  ItineraryModal = () => {
-    //checks to see if the modal is in state
-    if (document.querySelector(".modal") !== null) {
-      this.setState(
-        { FlightModal: "", ItineraryModal: "", BudgetModal: "" },
-        () => {
-          this.setState(
-            {
-              ItineraryModal: (
-                <ItineraryModal
-                  {...this.props}
-                  addNewItinerary={this.addNewItinerary}
-                  handleFieldChange={this.handleFieldChange}
-                />
-              )
-            },
-            () => {
-              document.querySelector(".modal").classList.add("is-active");
-            }
-          );
-        }
-      );
-    } else {
-      this.setState(
-        {
-          ItineraryModal: (
-            <ItineraryModal
-              {...this.props}
-              addNewItinerary={this.addNewItinerary}
-              handleFieldChange={this.handleFieldChange}
-            />
-          )
-        },
-        () => {
-          document.querySelector(".modal").classList.add("is-active");
-        }
-      );
-    }
-  };
 
   //This function creates the Flight Modal that pops up when the "add new flight" button is pressed.
   FlightModal = () => {
@@ -192,53 +152,6 @@ export default class TripDash extends Component {
                 this.setState({
                   flight: flight.filter(
                     flight => flight.tripId === this.state.tripInfo.id
-                  )
-                })
-              );
-          });
-        })
-      );
-  };
-
-  //this function handles all of the functionality related to adding a new itinerary to the database and then redrawing the page to create a card for it.
-  addNewItinerary = event => {
-    event.preventDefault();
-
-    // Add new itinerary item to the API
-    fetch(`http://localhost:5002/itinerary`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        ItineraryName: this.state.ItineraryName,
-        ItineraryDescription: this.state.ItineraryDescription,
-        // FlightEndDate: this.state.FlightEndDate,
-        // FlightNumber: this.state.FlightNumber,
-        // FlightOrigin: this.state.FlightOrigin,
-        // FlightDestination: this.state.FlightDestination,
-        tripId: this.state.tripInfo.id
-      })
-    })
-      // When POST is finished, retrieve the new list of itinerary items
-      .then(() => {
-        // Remember you HAVE TO return this fetch to the subsequent `then()`
-        this.setState({
-          ItineraryModal: ""
-        });
-        alert("Added New Itinerary Item Sucessfully");
-        return fetch("http://localhost:5002/itinerary");
-      })
-      .then(
-        //this the username, and then sets the state of itinerary to be equal to a list of itineraries that is filtered by the trip number
-        APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
-          this.setState({ userName: username }, () => {
-            fetch("http://localhost:5002/itinerary")
-              .then(e => e.json())
-              .then(itinerary =>
-                this.setState({
-                  itinerary: itinerary.filter(
-                    itinerary => itinerary.tripId === this.state.tripInfo.id
                   )
                 })
               );
@@ -416,7 +329,7 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="itinerary-tab"
           >
-            <Button
+            {/* <Button
               isColor="info"
               render={props => (
                 <Column hasTextAlign="centered">
@@ -425,15 +338,19 @@ export default class TripDash extends Component {
                   </p>
                 </Column>
               )}
-            />
+            /> */}
             <div className="dashboard-tripCards">
-              {this.state.ItineraryModal}
+              {/* {this.state.ItineraryModal} */}
               {this.state.itinerary.map(itinerary => (
                 <Itinerary
                   key={itinerary.id}
                   itinerary={itinerary}
                   user={this.state.user}
                   state={this.state}
+                  itineraryModalState={this.state.ItineraryModal}
+                  ItineraryModal={this.ItineraryModal}
+                  {...this.props}
+                  getTripInfo={this.getTripInfo}
                 />
               ))}
             </div>
