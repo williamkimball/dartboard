@@ -300,6 +300,7 @@ export default class TripDash extends Component {
         document.getElementById("budget").classList.add("show");
         document.getElementById("budget").classList.add("active");
 
+        let total = 0;
         fetch("http://localhost:5002/budget")
           .then(e => e.json())
           .then(budget =>
@@ -311,15 +312,17 @@ export default class TripDash extends Component {
               },
               () => {
                 this.state.budget.map(budget => {
-                  this.setState({
-                    budgetTotal:
-                      parseInt(this.state.budgetTotal) +
-                      parseInt(budget.budgetItemPrice)
-                  });
+                  total += parseInt(budget.budgetItemPrice);
+                  console.log(total);
                 });
               }
             )
-          );
+          )
+          .then(() => {
+            this.setState({
+              budgetTotal: total
+            });
+          });
 
         break;
       default:
@@ -455,6 +458,7 @@ export default class TripDash extends Component {
             />
             <div className="card">
               {this.state.BudgetModal}
+              <h2>Budget</h2>
               {this.state.budget.map(budget => (
                 <Budget
                   key={budget.id}

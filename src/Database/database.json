@@ -11,6 +11,12 @@
       "email": "k@k.com",
       "password": "p",
       "id": 2
+    },
+    {
+      "name": "Kimberly",
+      "email": "kim@k.com",
+      "password": "p",
+      "id": 3
     }
   ],
   "trips": [
@@ -37,6 +43,14 @@
       "userId": 2,
       "tripLength": 4,
       "id": 3
+    },
+    {
+      "title": "Greece",
+      "startDate": "2019-03-11",
+      "endDate": "2019-03-18",
+      "tripLength": 7,
+      "userId": 3,
+      "id": 4
     }
   ],
   "itinerary": [
@@ -79,6 +93,46 @@
       "ItineraryName": "Day 4",
       "tripId": 2,
       "id": 8
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 1",
+      "id": 9
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 2",
+      "id": 10
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 4",
+      "id": 11
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 3",
+      "id": 12
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 5",
+      "id": 13
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 6",
+      "id": 14
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 7",
+      "id": 15
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 8",
+      "id": 16
     }
   ],
   "itineraryItem": [
@@ -113,6 +167,14 @@
       "endTime": "18:19",
       "tripId": 2,
       "id": 6
+    },
+    {
+      "ItineraryName": "Flight to greece",
+      "itineraryId": 9,
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "tripId": 4,
+      "id": 7
     }
   ],
   "budget": [
@@ -145,6 +207,47 @@
       "budgetItemPrice": "1",
       "tripId": 3,
       "id": 5
+    },
+    {
+      "budgetItemTitle": "tr",
+      "budgetItemPrice": "100",
+      "tripId": 1,
+      "id": 6
+    },
+    {
+      "budgetItemTitle": "Flight",
+      "budgetItemPrice": "1400",
+      "tripId": 4,
+      "id": 7
+    },
+    {
+      "budgetItemTitle": "Hotels",
+      "budgetItemPrice": "400",
+      "tripId": 4,
+      "id": 8
+    },
+    {
+      "budgetItemTitle": "saf",
+      "budgetItemPrice": "1",
+      "tripId": 4,
+      "id": 9
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "1",
+      "tripId": 4,
+      "id": 10
+    },
+    {
+      "budgetItemTitle": "sfd",
+      "budgetItemPrice": "1",
+      "tripId": 4,
+      "id": 11
+    },
+    {
+      "budgetItemPrice": "2421",
+      "tripId": 4,
+      "id": 12
     }
   ],
   "flight": [
@@ -166,7 +269,17 @@
       "FlightOrigin": "BNA",
       "FlightDestination": "LAX",
       "id": 2,
-      "tripId": 4
+      "tripId": 1
+    },
+    {
+      "FlightName": "Flight to Greece",
+      "FlightStartDate": "2019-03-11",
+      "FlightEndDate": "2019-03-18",
+      "FlightNumber": "AA56874",
+      "FlightOrigin": "BNA",
+      "FlightDestination": "GRE",
+      "tripId": 4,
+      "id": 3
     }
   ],
   "list": [],

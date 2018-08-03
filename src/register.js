@@ -50,20 +50,24 @@ export default class Register extends Component {
     ) {
       //gets all users to check if they already exist in the database
       APIHandler.getData("users").then(users => {
+        let userExists = false
         users.forEach(user => {
           if (
             user.name === registerData.name ||
             user.email === registerData.email
           ) {
             alert("User already exists");
-          } else {
-            //if the new user doesn't already exist, it adds the new user to the database, and redirects to the login form
-            APIHandler.addData("users", registerData).then(() => {
-              alert("Registration Successful");
-              this.props.history.push("/loginForm");
-            });
-          }
+            userExists = true
+          } 
         });
+        if (userExists === false) {
+                      //if the new user doesn't already exist, it adds the new user to the database, and redirects to the login form
+                      this.turnInactive();
+                      APIHandler.addData("users", registerData).then(() => {
+                        alert("Registration Successful");
+                        this.props.history.push("/Dashboard");
+                      });
+        }
       });
     } else {
       alert("Please ensure all fields are filled in.");
@@ -75,8 +79,7 @@ export default class Register extends Component {
   };
   render() {
     return (
-
-<Modal>
+      <Modal>
         <ModalBackground />
         <ModalCard>
           <ModalCardHeader>
@@ -85,7 +88,7 @@ export default class Register extends Component {
           </ModalCardHeader>
           <ModalCardBody>
             <Field>
-            <Label>Name:</Label>
+              <Label>Name:</Label>
               <Control>
                 <Input
                   placeholder="Jim"
