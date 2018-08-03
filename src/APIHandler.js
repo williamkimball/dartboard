@@ -1,14 +1,15 @@
 class apiCalls {
-  static getData = (section) => {
+  static getData = section => {
     return fetch(`http://localhost:5002/${section}`).then(e => e.json());
   };
 
-  static getTripData = (id) => {
-    return fetch(`http://localhost:5002/trips/${id}?_expand=user`).then(e => e.json());
+  static getTripData = id => {
+    return fetch(`http://localhost:5002/trips/${id}?_expand=user`).then(e =>
+      e.json()
+    );
   };
 
   static addData = (section, body) => {
-    
     return fetch(`http://localhost:5002/${section}`, {
       method: "POST",
       headers: {
@@ -17,12 +18,19 @@ class apiCalls {
       body: JSON.stringify(body)
     });
   };
+  
+  static deleteData = (section, id) => {
+    return fetch(`http://localhost:5002/${section}/${id}`, {
+      method: "DELETE"
+    });
+  };
+
   static getUserName = id => {
-    
-    return fetch(`http://localhost:5002/users/${id}`).then(e =>
-      e.json()
-    ).then(user => {
-      return user.name} )
+    return fetch(`http://localhost:5002/users/${id}`)
+      .then(e => e.json())
+      .then(user => {
+        return user.name;
+      });
   };
 }
 

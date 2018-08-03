@@ -89,7 +89,7 @@ export default class Dashboard extends Component {
         return response.json();
       })
       .then(function(trip) {
-        console.log(trip)
+        console.log(trip);
         for (let i = 0; i <= tripLength; i++) {
           fetch(`http://localhost:5002/itinerary`, {
             method: "POST",
@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
             },
             body: JSON.stringify({
               tripId: trip.id,
-              ItineraryName: `Day ${i+1}`
+              ItineraryName: `Day ${i + 1}`
             })
           });
         }
@@ -161,6 +161,14 @@ export default class Dashboard extends Component {
   goToTrip = event => {
     if (event.target.id === "edtBtn") {
       // this.editTrip;
+    } else if (event.target.id === "deleteBtn") {
+      fetch("http://localhost:5002/trips?_expand=user")
+        .then(e => e.json())
+        .then(trip =>
+          this.setState({
+            trips: trip.filter(user => user.userId === this.state.user)
+          })
+        );
     } else {
       var id1 = event.target.closest("div").id;
       // console.log(id1);

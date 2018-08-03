@@ -16,6 +16,23 @@ export default class Itinerary extends Component {
     itineraryItem: []
   };
 
+   deleteItineraryItem = (event) => {
+    console.log(event.target.parentNode.id)
+    fetch(`http://localhost:5002/itineraryItem/${event.target.parentNode.id}`, {
+      method: "DELETE"
+    }).then(()=> {    fetch("http://localhost:5002/itineraryItem")
+    .then(e => e.json())
+    .then(itinerary =>
+      this.setState({
+        itineraryItem: itinerary.filter(
+          itinerary =>
+            itinerary.tripId === this.props.state.tripInfo.id &&
+            itinerary.itineraryId === this.props.itinerary.id
+        )
+      })
+    );});
+  }
+
   // Update state whenever an input field is edited
   handleFieldChange = evt => {
     const stateToChange = {};
@@ -132,12 +149,14 @@ export default class Itinerary extends Component {
         {this.state.itineraryItem.map(itinerary => {
           return (
             <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{itinerary.ItineraryName}</h5>
-              <h6 className="card-subtitle mb-2 text-muted">
-                {" "}
-                {itinerary.startTime} to {itinerary.endTime}
-              </h6>
+              <div className="card-body" id={itinerary.id}>
+                <h5 className="card-title">{itinerary.ItineraryName}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">
+                  {" "}
+                  {itinerary.startTime} to {itinerary.endTime}
+                </h6>
+                <img src={require("./edit-solid.svg")} id="edtBtn" />
+                <img src={require("./trash-alt-solid.svg")} id="deleteBtn" onClick={this.deleteItineraryItem}/>
               </div>
             </div>
           );

@@ -70,11 +70,6 @@
       "id": 3
     },
     {
-      "ItineraryName": "Day 4",
-      "tripId": 1,
-      "id": 4
-    },
-    {
       "ItineraryName": "Day 1",
       "tripId": 2,
       "id": 5
@@ -145,14 +140,6 @@
       "id": 3
     },
     {
-      "ItineraryName": "zxv",
-      "itineraryId": 1,
-      "startTime": "03:02",
-      "endTime": "13:01",
-      "tripId": 1,
-      "id": 4
-    },
-    {
       "ItineraryName": "ride the train",
       "itineraryId": 2,
       "startTime": "02:22",
@@ -180,39 +167,9 @@
   "budget": [
     {
       "budgetItemTitle": "asdf",
-      "budgetItemPrice": "1232",
-      "tripId": 1,
-      "id": 2
-    },
-    {
-      "budgetItemTitle": "Test 2",
-      "budgetItemPrice": "4567",
-      "tripId": 1,
-      "id": 3
-    },
-    {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "123",
-      "tripId": 1,
-      "id": 4
-    },
-    {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "1",
-      "tripId": 1,
-      "id": 5
-    },
-    {
-      "budgetItemTitle": "asdf",
       "budgetItemPrice": "1",
       "tripId": 3,
       "id": 5
-    },
-    {
-      "budgetItemTitle": "tr",
-      "budgetItemPrice": "100",
-      "tripId": 1,
-      "id": 6
     },
     {
       "budgetItemTitle": "Flight",
@@ -248,6 +205,12 @@
       "budgetItemPrice": "2421",
       "tripId": 4,
       "id": 12
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "2333",
+      "tripId": 1,
+      "id": 17
     }
   ],
   "flight": [
