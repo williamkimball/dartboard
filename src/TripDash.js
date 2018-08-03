@@ -181,6 +181,23 @@ export default class TripDash extends Component {
       );
   };
 
+  deleteFlightItem = event => {
+    console.log(event.target.parentNode.id);
+    fetch(`http://localhost:5002/flight/${event.target.parentNode.id}`, {
+      method: "DELETE"
+    }).then(() => {
+      fetch("http://localhost:5002/flight")
+        .then(e => e.json())
+        .then(flight =>
+          this.setState({
+            flight: flight.filter(
+              flight => flight.tripId === this.state.tripInfo.id
+            )
+          })
+        );
+    });
+  };
+
   //this function handles all of the functionality related to adding a new budgetItem to the database and then redrawing the page to create a card for it.
   addNewBudgetItem = event => {
     event.preventDefault();
@@ -233,6 +250,41 @@ export default class TripDash extends Component {
           });
         })
       );
+  };
+
+  deleteBudgetItem = event => {
+    let total = this.state.budgetTotal;
+    let targetPrice = 0;
+    let targetId = event.target.parentNode.id
+    // this.setState({
+    //   budgetTotal: parseInt(total) - parseInt(event.target)
+    // });
+    return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
+      method: "GET"
+    })
+      .then(e => e.json())
+      .then(response => {
+        targetPrice = response.budgetItemPrice;
+      }).then(()=> {
+        this.setState({
+          budgetTotal: parseInt(total) - targetPrice
+        })
+      })
+      .then(() => {
+        fetch(`http://localhost:5002/budget/${targetId}`, {
+          method: "DELETE"
+        }).then(() => {
+          fetch("http://localhost:5002/budget")
+            .then(e => e.json())
+            .then(budget =>
+              this.setState({
+                budget: budget.filter(
+                  budget => budget.tripId === this.state.tripInfo.id
+                )
+              })
+            );
+        });
+      });
   };
 
   currentInfo = "";
@@ -415,6 +467,8 @@ export default class TripDash extends Component {
                   flight={flight}
                   user={this.state.user}
                   state={this.state}
+                  tripInfo={this.state.tripInfo}
+                  deleteFlightItem={this.deleteFlightItem}
                 />
               ))}
             </div>
@@ -465,6 +519,8 @@ export default class TripDash extends Component {
                   budget={budget}
                   user={this.state.user}
                   state={this.state}
+                  tripInfo={this.state.tripInfo}
+                  deleteBudgetItem={this.deleteBudgetItem}
                 />
               ))}
               <h5>Total: {this.state.budgetTotal}</h5>

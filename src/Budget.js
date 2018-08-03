@@ -9,13 +9,12 @@ const Budget = props => {
   return (
     <div className="">
       {
-        <div >
+        <div id={props.budget.id}>
           <h5 className="card-title">{props.budget.budgetItemTitle}</h5>
           <p className="mb-2 text-muted">
             Price: {props.budget.budgetItemPrice}
           </p>
-          {/* <img src={require('./edtBtn.png')} id="edtBtn"/>
-          {props.state.EditForm} */}
+          <img src={require('./trash-alt-solid.svg')} id="deleteBtn" onClick={props.deleteBudgetItem}/>
         </div>
       }
     </div>

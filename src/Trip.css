@@ -10,3 +10,14 @@ a {
     align-content: center;
   }
   
+  #edtBtn {
+    width: 6%;
+    height: 6%;
+  }
+
+  #deleteBtn{
+    margin-left: 80%;
+    width: 5%;
+    height: 5%;
+  }
+
