@@ -15,6 +15,12 @@ class apiCalls {
     );
   };
 
+  static getItineraryItemData = id => {
+    return fetch(`http://localhost:5002/itineraryItem/${id}`).then(e =>
+      e.json()
+    );
+  };
+
   static addData = (section, body) => {
     return fetch(`http://localhost:5002/${section}`, {
       method: "POST",
