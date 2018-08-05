@@ -2,6 +2,7 @@
 //This file builds an input form for adding a new trip item
 
 import React, { Component } from "react";
+import APIHandler from "./APIHandler";
 import {
   Modal,
   ModalBackground,
@@ -18,17 +19,10 @@ import {
   Button
 } from "bloomer";
 
-export default class TripForm extends Component {
+export default class editTripModal extends Component {
   turnInactive = () => {
     document.querySelector(".modal").classList.remove("is-active");
   };
-  // handleFieldChange = event => {
-  //   const stateToChange = {};
-  //   stateToChange[event.target.id] = event.target.value;
-  //   this.setState(stateToChange);
-  // };
-
-  
 
   render() {
     return (
@@ -36,7 +30,7 @@ export default class TripForm extends Component {
         <ModalBackground />
         <ModalCard>
           <ModalCardHeader>
-            <ModalCardTitle>New Trip</ModalCardTitle>
+            <ModalCardTitle>Edit Trip</ModalCardTitle>
             <Delete onClick={this.turnInactive} />
           </ModalCardHeader>
           <ModalCardBody>
@@ -44,7 +38,7 @@ export default class TripForm extends Component {
               <Label>Trip Name:</Label>
               <Control>
                 <Input
-                  placeholder="Trip Name"
+                  value={this.props.targInfo.title}
                   onChange={this.props.handleFieldChange}
                   type="text"
                   id="tripName"
@@ -58,37 +52,31 @@ export default class TripForm extends Component {
               <Label>Start Date</Label>
               <Control>
                 <Input
-                  // placeholder="Password"
+                  defaultValue={this.props.targInfo.startDate}
                   onChange={this.props.handleFieldChange}
                   type="date"
                   id="startDate"
-                  // placeholder="Password"
                   required
                 />
-                <Icon isSize="small" isAlign="left">
-                  <span className="fa fa-user" aria-hidden="true" />
-                </Icon>
+
               </Control>
             </Field>
             <Field>
               <Label>End Date</Label>
               <Control>
                 <Input
-                  // placeholder="Password"
+                  defaultValue={this.props.targInfo.endDate}
                   onChange={this.props.handleFieldChange}
                   type="date"
                   id="endDate"
-                  // placeholder="Password"
                   required
                 />
-                <Icon isSize="small" isAlign="left">
-                  <span className="fa fa-user" aria-hidden="true" />
-                </Icon>
+
               </Control>
             </Field>
             <Field isGrouped>
               <Control>
-                <Button isColor="primary" onClick={this.props.addNewTrip}>
+                <Button isColor="primary" onClick={this.props.editTrip}>
                   Submit
                 </Button>
               </Control>
@@ -99,27 +87,6 @@ export default class TripForm extends Component {
           </ModalCardBody>
         </ModalCard>
       </Modal>
-      // <form onSubmit={props.addNewTrip} className="pleaseCenterForm">
-      //   <input
-      //     type="text"
-      //     placeholder="Trip Name"
-      //     id="title"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <input
-      //     type="date"
-      //     placeholder="Trip Start Date"
-      //     id="startDate"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <input
-      //     type="date"
-      //     placeholder="Trip End Date"
-      //     id="endDate"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <button type="submit">Save Trip</button>
-      // </form>
     );
   }
 }
