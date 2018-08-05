@@ -164,9 +164,23 @@ export default class Dashboard extends Component {
     });
   }
 
+deleteTrip = event => {
+  var id3 = event.target.closest("div").id;
+  // console.log(id3)
+      return fetch(`http://localhost:5002/trips/${id3}`, {
+        method: "DELETE"
+      }).then(() => {return fetch("http://localhost:5002/trips?_expand=user")})
+        .then(e => e.json())
+        .then(trip =>
+          this.setState({
+            trips: trip.filter(user => user.userId === this.state.user)
+          })
+        );
+}
+
   editTrip = event => {
     let targId = this.state.targId;
-    console.log(targId);
+    // console.log(targId);
     fetch(`http://localhost:5002/trips/${targId}`, {
       method: "PATCH",
       headers: {
@@ -282,15 +296,9 @@ export default class Dashboard extends Component {
 
   goToTrip = event => {
     if (event.target.id === "edtBtn") {
-      // this.editTrip;
+      
     } else if (event.target.id === "deleteBtn") {
-      fetch("http://localhost:5002/trips?_expand=user")
-        .then(e => e.json())
-        .then(trip =>
-          this.setState({
-            trips: trip.filter(user => user.userId === this.state.user)
-          })
-        );
+      
     } else {
       var id1 = event.target.closest("div").id;
       // console.log(id1);
@@ -344,6 +352,7 @@ export default class Dashboard extends Component {
               user={this.state.user}
               state={this.state}
               editTripModal={this.state.editTrip}
+              deleteTrip = {this.deleteTrip}
             />
           ))}
         </div>
