@@ -132,10 +132,10 @@
   ],
   "itineraryItem": [
     {
-      "ItineraryName": "asdf",
+      "ItineraryName": "test9",
       "itineraryId": 1,
-      "startTime": "02:33",
-      "endTime": "15:04",
+      "startTime": "01:03",
+      "endTime": "14:04",
       "tripId": 1,
       "id": 3
     },
@@ -162,6 +162,14 @@
       "endTime": "16:00",
       "tripId": 4,
       "id": 7
+    },
+    {
+      "ItineraryName": "testing",
+      "itineraryId": 3,
+      "tripId": 1,
+      "id": 8,
+      "startTime": "00:03",
+      "endTime": "12:04"
     }
   ],
   "budget": [

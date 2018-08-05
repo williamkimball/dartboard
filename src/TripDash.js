@@ -12,6 +12,7 @@ import Flight from "./Flight";
 import Itinerary from "./Itinerary";
 import Budget from "./Budget";
 import EditFlightModal from "./EditFlightModal"
+import EditItineraryModal from "./EditItineraryItemModal"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -326,6 +327,136 @@ export default class TripDash extends Component {
     });
   };
 
+  getItineraryInfoForEdit = () => {
+    return APIHandler.getItineraryItemData(this.state.targId);
+  };
+
+  editItineraryModal = event => {
+    let targId = event.target.parentNode.id;
+
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        {
+          editItineraryModal: "",
+          // editItinerary: "",
+          targId: targId,
+          ItineraryModal: ""
+        },
+        () => {
+          this.getItineraryInfoForEdit(this.state.targId).then(response => {
+            console.log(this.editItinerary);
+            this.setState(
+              {
+                targInfo: { response }
+              },
+              () => {
+                this.setState(
+                  {
+                    editItineraryModal: (
+                      <EditItineraryModal
+                        editItinerary={this.editItinerary}
+                        {...this.props}
+                        handleFieldChange={this.handleFieldChange}
+                        targId={this.state.targId}
+                        targInfo={this.state.targInfo.response}
+                      />
+                    )
+                  },
+                  () => {
+                    document.querySelector(".modal").classList.add("is-active");
+                  }
+                );
+              }
+            );
+          });
+        }
+      );
+    } else {
+      this.setState(
+        {
+          editItineraryModal: "",
+          targId: targId,
+          ItineraryModal: ""
+        },
+        () => {
+          this.getItineraryInfoForEdit(this.state.targId).then(response => {
+            console.log(this.editItinerary);
+            this.setState(
+              {
+                targInfo: { response }
+              },
+              () => {
+                this.setState(
+                  {
+                    editItineraryModal: (
+                      <EditItineraryModal
+                        editItinerary={this.editItinerary}
+                        {...this.props}
+                        handleFieldChange={this.handleFieldChange}
+                        targId={this.state.targId}
+                        targInfo={this.state.targInfo.response}
+                      />
+                    )
+                  },
+                  () => {
+                    document.querySelector(".modal").classList.add("is-active");
+                  }
+                );
+              }
+            );
+          });
+        }
+      );
+    }
+  };
+
+  editItinerary = event => {
+    let targId = this.state.targId;
+    console.log(targId);
+    fetch(`http://localhost:5002/itineraryItem/${targId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        ItineraryName: this.state.ItineraryName,
+        // itineraryId: this.props.itinerary.id,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime
+      })
+    }) // When POST is finished, retrieve the new list of flights
+      .then(() => {
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
+        this.setState({
+          ItineraryModal: "",
+          editItineraryModal: "",
+          ItineraryName: "",
+          // itineraryId: this.props.itinerary.id,
+          startTime: "",
+          endTime: ""
+        });
+            alert("Edited Itinerary Item Sucessfully");
+            return fetch("http://localhost:5002/itineraryItem")
+              .then(e => e.json())
+              .then(itinerary =>
+                this.setState({
+                  itinerary: itinerary.filter(
+                    itinerary =>
+                      itinerary.tripId === this.state.tripInfo.id &&
+                      itinerary.itineraryId === this.state.targInfo.itineraryId
+                  )
+                })
+              );
+          })
+          .then(
+            //this the username, and then sets the state of itinerary to be equal to a list of itineraries that is filtered by the trip number
+            () => {
+              this.getTripInfo(this.state.tripInfo.id);
+            }
+          );
+  };
+
+
   //this function handles all of the functionality related to adding a new budgetItem to the database and then redrawing the page to create a card for it.
   addNewBudgetItem = event => {
     event.preventDefault();
@@ -617,8 +748,13 @@ export default class TripDash extends Component {
                   user={this.state.user}
                   state={this.state}
                   itineraryModalState={this.state.ItineraryModal}
+                  editItinerary={this.editItinerary}
+                  editItineraryModal={this.editItineraryModal}
+                  editItineraryModalState={this.state.editItineraryModal}
+                  // editItineraryModalState={this.state.ItineraryModal}
                   ItineraryModal={this.ItineraryModal}
                   {...this.props}
+                  tripInfo={this.state.tripInfo}
                   getTripInfo={this.getTripInfo}
                 />
               ))}
