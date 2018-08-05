@@ -24,7 +24,7 @@ const Flight = props => {
           <p className="card-subtitle mb-2 ">
             Return Date: {props.flight.FlightEndDate}
           </p>
-          <img src={require("./edit-solid.svg")} id="edtBtn" />
+          <img src={require("./edit-solid.svg")} id="edtBtn" onClick={props.editFlight}/>
           <img
             src={require("./trash-alt-solid.svg")}
             id="deleteBtn"
@@ -32,6 +32,7 @@ const Flight = props => {
           />
         </div>
       }
+      {props.editFlightModal}
     </div>
   );
 };

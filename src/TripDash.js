@@ -11,6 +11,7 @@ import FlightModal from "./DisplayModals/FlightModal";
 import Flight from "./Flight";
 import Itinerary from "./Itinerary";
 import Budget from "./Budget";
+import EditFlightModal from "./EditFlightModal"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -22,7 +23,8 @@ export default class TripDash extends Component {
     BudgetModal: "",
     // ItineraryModal: "",
     FlightModal: "",
-    budgetTotal: 0
+    budgetTotal: 0,
+    editFlightModal: ""
   };
 
   //this function gets the information related to the trip
@@ -180,6 +182,132 @@ export default class TripDash extends Component {
         })
       );
   };
+  
+    editFlight = event => {
+      let targId = this.state.targId;
+      console.log(targId);
+      fetch(`http://localhost:5002/flight/${targId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        body: JSON.stringify({
+          FlightName: this.state.FlightName,
+          FlightStartDate: this.state.FlightStartDate,
+          FlightEndDate: this.state.FlightEndDate,
+          FlightNumber: this.state.FlightNumber,
+          FlightOrigin: this.state.FlightOrigin,
+          FlightDestination: this.state.FlightDestination,
+          endDate: this.state.endDate
+        })
+      }) // When POST is finished, retrieve the new list of flights
+        .then(() => {
+          // Remember you HAVE TO return this fetch to the subsequent `then()`
+          this.setState({
+            FlightModal: "",
+            editFlightModal: ""
+          });
+          alert("Edited Flight Sucessfully");
+          return fetch("http://localhost:5002/flight");
+        })
+        .then(
+          APIHandler.getUserName(this.state.user).then(username => {
+            this.setState({ userName: username }, () => {
+              fetch("http://localhost:5002/flight")
+                .then(e => e.json())
+                .then(flight =>
+                  this.setState({
+                    flight: flight.filter(flight => flight.tripId === this.state.tripInfo.id)
+                  })
+                );
+            });
+          })
+        )
+        .then(() => {
+          document.querySelector(".modal").classList.remove("is-active")
+        });
+    };
+  
+    getFlightInfoForEdit = () => {
+      return APIHandler.getFlightData(this.state.targId);
+    };
+
+    editFlightModal = event => {
+      let targId = event.target.parentNode.id;
+  
+      if (document.querySelector(".modal") !== null) {
+        this.setState(
+          {
+            editFlightModal: "",
+            FlightModal: "",
+            targId: targId
+          },
+          () => {
+            this.getFlightInfoForEdit(this.state.targId).then(response => {
+              console.log(response)
+              this.setState(
+                {
+                  targInfo: { response }
+                },
+                () => {
+                  this.setState(
+                    {
+                      editFlight: (
+                        <EditFlightModal
+                          editFlight={this.editFlight}
+                          {...this.props}
+                          handleFieldChange={this.handleFieldChange}
+                          targId={this.state.targId}
+                          targInfo={this.state.targInfo.response}
+                        />
+                      )
+                    },
+                    () => {
+                      document.querySelector(".modal").classList.add("is-active");
+                    }
+                  );
+                }
+              );
+            });
+          }
+        );
+      } else {
+        this.setState(
+          {
+            FlightModal: "",
+            targId: targId
+          },
+          () => {
+            this.getFlightInfoForEdit(this.state.targId).then(response => {
+              console.log(response)
+              this.setState(
+                {
+                  targInfo: { response }
+                },
+                () => {
+                  this.setState(
+                    {
+                      editFlight: (
+                        <EditFlightModal
+                          editFlight={this.editFlight}
+                          {...this.props}
+                          handleFieldChange={this.handleFieldChange}
+                          targId={this.state.targId}
+                          targInfo={this.state.targInfo.response}
+                        />
+                      )
+                    },
+                    () => {
+                      document.querySelector(".modal").classList.add("is-active");
+                    }
+                  );
+                }
+              );
+            });
+          }
+        );
+      }
+    };
 
   deleteFlightItem = event => {
     console.log(event.target.parentNode.id);
@@ -469,6 +597,8 @@ export default class TripDash extends Component {
                   state={this.state}
                   tripInfo={this.state.tripInfo}
                   deleteFlightItem={this.deleteFlightItem}
+                  editFlight={this.editFlightModal}
+                  editFlightModal={this.state.editFlight}
                 />
               ))}
             </div>

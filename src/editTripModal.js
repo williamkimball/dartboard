@@ -38,7 +38,7 @@ export default class editTripModal extends Component {
               <Label>Trip Name:</Label>
               <Control>
                 <Input
-                  value={this.props.targInfo.title}
+                  defaultValue={this.props.targInfo.title}
                   onChange={this.props.handleFieldChange}
                   type="text"
                   id="tripName"

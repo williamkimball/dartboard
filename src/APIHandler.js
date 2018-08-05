@@ -9,6 +9,12 @@ class apiCalls {
     );
   };
 
+  static getFlightData = id => {
+    return fetch(`http://localhost:5002/flight/${id}`).then(e =>
+      e.json()
+    );
+  };
+
   static addData = (section, body) => {
     return fetch(`http://localhost:5002/${section}`, {
       method: "POST",
