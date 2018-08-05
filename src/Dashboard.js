@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "bloomer";
 
 import TripDash from "./TripDash";
+import EditTripModal from "./editTripModal";
 
 export default class Dashboard extends Component {
   state = {
@@ -18,7 +19,8 @@ export default class Dashboard extends Component {
     trips: [],
     trip: "",
     tripDash: "",
-    EditForm: ""
+    editTripModal: "",
+    targInfo: ""
   };
 
   handleFieldChange = event => {
@@ -135,6 +137,10 @@ export default class Dashboard extends Component {
     this.setState(stateToChange);
   };
 
+  getTripInfoForEdit = () => {
+    return APIHandler.getTripData(this.state.targId);
+  };
+
   componentDidMount() {
     let currentUser = JSON.parse(localStorage.getItem("credentials"));
     if (currentUser === null) {
@@ -158,17 +164,141 @@ export default class Dashboard extends Component {
     });
   }
 
-  goToTrip = event => {
-    if (event.target.id === "edtBtn") {
-      // this.editTrip;
-    } else if (event.target.id === "deleteBtn") {
-      fetch("http://localhost:5002/trips?_expand=user")
+deleteTrip = event => {
+  var id3 = event.target.closest("div").id;
+  // console.log(id3)
+      return fetch(`http://localhost:5002/trips/${id3}`, {
+        method: "DELETE"
+      }).then(() => {return fetch("http://localhost:5002/trips?_expand=user")})
         .then(e => e.json())
         .then(trip =>
           this.setState({
             trips: trip.filter(user => user.userId === this.state.user)
           })
         );
+}
+
+  editTrip = event => {
+    let targId = this.state.targId;
+    // console.log(targId);
+    fetch(`http://localhost:5002/trips/${targId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        title: this.state.tripName,
+        startDate: this.state.startDate,
+        endDate: this.state.endDate
+      })
+    }) // When POST is finished, retrieve the new list of trips
+      .then(() => {
+        // Remember you HAVE TO return this fetch to the subsequent `then()`
+        this.setState({
+          tripForm: "",
+          editTripModal: ""
+        });
+        alert("Edited Trip Sucessfully");
+        return fetch("http://localhost:5002/trips?_expand=user");
+      })
+      .then(
+        APIHandler.getUserName(this.state.user).then(username => {
+          this.setState({ userName: username }, () => {
+            fetch("http://localhost:5002/trips?_expand=user")
+              .then(e => e.json())
+              .then(trip =>
+                this.setState({
+                  trips: trip.filter(user => user.userId === this.state.user)
+                })
+              );
+          });
+        })
+      )
+      .then(() => {
+        document.querySelector(".modal").classList.remove("is-active")
+      });
+  };
+
+  editTripModal = event => {
+    let targId = event.target.parentNode.id;
+
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        {
+          editTripModal: "",
+          tripForm: "",
+          targId: targId
+        },
+        () => {
+          this.getTripInfoForEdit(this.state.targId).then(response => {
+            this.setState(
+              {
+                targInfo: { response }
+              },
+              () => {
+                this.setState(
+                  {
+                    editTrip: (
+                      <EditTripModal
+                        editTrip={this.editTrip}
+                        {...this.props}
+                        handleFieldChange={this.handleFieldChange}
+                        targId={this.state.targId}
+                        targInfo={this.state.targInfo.response}
+                      />
+                    )
+                  },
+                  () => {
+                    document.querySelector(".modal").classList.add("is-active");
+                  }
+                );
+              }
+            );
+          });
+        }
+      );
+    } else {
+      this.setState(
+        {
+          tripForm: "",
+          targId: targId
+        },
+        () => {
+          this.getTripInfoForEdit(this.state.targId).then(response => {
+            this.setState(
+              {
+                targInfo: { response }
+              },
+              () => {
+                this.setState(
+                  {
+                    editTrip: (
+                      <EditTripModal
+                        editTrip={this.editTrip}
+                        {...this.props}
+                        handleFieldChange={this.handleFieldChange}
+                        targId={this.state.targId}
+                        targInfo={this.state.targInfo.response}
+                      />
+                    )
+                  },
+                  () => {
+                    document.querySelector(".modal").classList.add("is-active");
+                  }
+                );
+              }
+            );
+          });
+        }
+      );
+    }
+  };
+
+  goToTrip = event => {
+    if (event.target.id === "edtBtn") {
+      
+    } else if (event.target.id === "deleteBtn") {
+      
     } else {
       var id1 = event.target.closest("div").id;
       // console.log(id1);
@@ -216,11 +346,13 @@ export default class Dashboard extends Component {
             <Trip
               key={trip.id}
               trip={trip}
-              editTrip={this.editTrip}
+              editTrip={this.editTripModal}
               props={this.props}
               goToTrip={this.goToTrip}
               user={this.state.user}
               state={this.state}
+              editTripModal={this.state.editTrip}
+              deleteTrip = {this.deleteTrip}
             />
           ))}
         </div>
