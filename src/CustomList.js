@@ -5,11 +5,12 @@ import "./Trip.css";
 import React from "react";
 
 const List = props => {
-console.log(props)
+// console.log(props)
   return (
     <div className="card item">
       {
         <div id={props.list.listName}>
+        {props.list.listItemContent}
         </div>
       }
     </div>

@@ -32,7 +32,8 @@ export default class TripDash extends Component {
     editFlightModal: "",
     listTabs: [],
     name: [],
-    ListItemModal: ""
+    ListItemModal: "",
+    listItemList: []
   };
 
   //this function gets the information related to the trip
@@ -675,7 +676,7 @@ export default class TripDash extends Component {
               document
                 .getElementById(`${name}`)
                 .classList.add("active");})
-          )
+          ).then(this.getMyListItems())
     }
   };
 
@@ -764,12 +765,25 @@ export default class TripDash extends Component {
         listId: this.state.name[0].id,
 
       })
-    })
+    }).then(()=> {this.getMyListItems()})
       .then(() => {
         this.turnInactive();
       });
   };
 
+  getMyListItems = () => {
+    // console.log("yo")
+    fetch(`http://localhost:5002/listItem`)
+    .then(e => e.json())
+    .then(listItemList =>
+      this.setState({
+        listItemList: listItemList.filter(
+          listItemList => this.state.name[0].id === listItemList.listId
+        )
+      }
+    )
+    )}
+  
    
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
@@ -947,6 +961,8 @@ export default class TripDash extends Component {
               tripInfo={this.state.tripInfo}
               pillListener={this.pillListener}
               tab={tab}
+              getMyListItems={this.getMyListItems}
+              listItemList={this.state.listItemList}
               
             />
           ))}
