@@ -3,7 +3,7 @@
 
 import "./Trip.css";
 import React from "react";
-import APIHandler from "./APIHandler";
+// import APIHandler from "./APIHandler";
 import { Button } from "bloomer";
 
 // import { Link } from "react-router-dom";
@@ -25,11 +25,13 @@ const Trip = props => {
           <img
             src={require("./edit-solid.svg")}
             id="edtBtn"
+            alt="edit pen"
             onClick={props.editTrip}
           />
           <img
             src={require("./trash-alt-solid.svg")}
             id="deleteBtn"
+            alt="delete Trash Can"
             onClick={props.deleteTrip}
           />
           {props.editTripModal}

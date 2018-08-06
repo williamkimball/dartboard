@@ -14,7 +14,7 @@ const Budget = props => {
           <p className="mb-2 text-muted">
             Price: {props.budget.budgetItemPrice}
           </p>
-          <img src={require('./trash-alt-solid.svg')} id="deleteBtn" onClick={props.deleteBudgetItem}/>
+          <img src={require('./trash-alt-solid.svg')} id="deleteBtn" onClick={props.deleteBudgetItem} alt="delete Trash Can"/>
         </div>
       }
     </div>

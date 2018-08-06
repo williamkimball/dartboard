@@ -132,7 +132,7 @@
   ],
   "itineraryItem": [
     {
-      "ItineraryName": "test9",
+      "ItineraryName": "test10",
       "itineraryId": 1,
       "startTime": "01:03",
       "endTime": "14:04",
@@ -162,14 +162,6 @@
       "endTime": "16:00",
       "tripId": 4,
       "id": 7
-    },
-    {
-      "ItineraryName": "testing",
-      "itineraryId": 3,
-      "tripId": 1,
-      "id": 8,
-      "startTime": "00:03",
-      "endTime": "12:04"
     }
   ],
   "budget": [
@@ -219,6 +211,12 @@
       "budgetItemPrice": "2333",
       "tripId": 1,
       "id": 17
+    },
+    {
+      "budgetItemTitle": "Trio",
+      "budgetItemPrice": "2222",
+      "tripId": 1,
+      "id": 18
     }
   ],
   "flight": [
@@ -253,6 +251,27 @@
       "id": 3
     }
   ],
-  "list": [],
+  "list": [
+    {
+      "listName": "Vocabulary",
+      "tripId": 1,
+      "id": 1
+    },
+    {
+      "listName": "Restaurants",
+      "tripId": 1,
+      "id": 2
+    },
+    {
+      "listName": "q",
+      "tripId": 2,
+      "id": 2
+    },
+    {
+      "listName": "Travel Tips",
+      "tripId": 1,
+      "id": 3
+    }
+  ],
   "listItem": []
 }
