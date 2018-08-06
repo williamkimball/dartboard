@@ -15,6 +15,7 @@ import EditItineraryModal from "./EditItineraryItemModal";
 import ListModal from "./DisplayModals/ListModal";
 import ListTab from "./ListTab";
 import ListTabContent from "./ListTabContent";
+import ListItemModal from "./DisplayModals/ListItemModal"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -30,7 +31,8 @@ export default class TripDash extends Component {
     budgetTotal: 0,
     editFlightModal: "",
     listTabs: [],
-    name: []
+    name: [],
+    ListItemModal: ""
   };
 
   //this function gets the information related to the trip
@@ -731,6 +733,44 @@ export default class TripDash extends Component {
       );
   };
 
+  NewListItem = () => {
+    this.setState(
+      {
+        ListItemModal: (
+          <ListItemModal
+          addListItem={this.addListItem}
+            {...this.props}
+            handleFieldChange={this.handleFieldChange}
+            targId={this.state.targId}
+            addList={this.addList}
+          />
+        )
+      },
+      () => {
+        document.querySelector(".modal").classList.add("is-active");
+      }
+    );
+  }
+
+  addListItem = () => {
+    // Add new list to the API
+    fetch(`http://localhost:5002/listItem`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify({
+        listItemContent: this.state.ListItemContent,
+        listId: this.state.name[0].id,
+
+      })
+    })
+      .then(() => {
+        this.turnInactive();
+      });
+  };
+
+   
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
     return (
@@ -901,10 +941,13 @@ export default class TripDash extends Component {
             <ListTabContent
               key={tab.id}
               user={this.state.user}
+              ListItemModal={this.state.ListItemModal}
+              NewListItem={this.NewListItem}
               state={this.state}
               tripInfo={this.state.tripInfo}
               pillListener={this.pillListener}
               tab={tab}
+              
             />
           ))}
         </div>

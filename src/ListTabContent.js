@@ -7,7 +7,7 @@ import { Button, Column } from "bloomer";
 import CustomList from "./CustomList"
 
 const ListTabContent = props => {
-    console.log(props)
+    // console.log(props)
   return (
     <div
       className="tab-pane fade"
@@ -17,16 +17,17 @@ const ListTabContent = props => {
     >
       <Button
         isColor="info"
+        onClick={props.NewListItem}
         render={props => (
           <Column hasTextAlign="centered">
-            <p {...props} onClick={this.ListItemModal}>
+            <p {...props} >
               New List Item
             </p>
           </Column>
         )}
       />
       <div className="card">
-        {/* {this.state.ListItemModal} */}
+        {props.state.ListItemModal}
         <h2>{props.tab.listName} </h2>
         {props.state.name.map(list => (
           <CustomList
