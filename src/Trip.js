@@ -26,14 +26,18 @@ export default class Trip extends Component {
     image: ""
   };
   getImage = async destination => {
-    console.log(destination)
+    // console.log(destination)
+
+    // const json = await fetch(
+    //   `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+    // )
 
     const json = await fetch(
-      `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+      `https://api.unsplash.com/photos/random/?query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
     )
       .then(response => response.json())
       .then(image => {
-        this.setState({ image: image.results[0].urls.regular });
+        this.setState({ image: image.urls.regular});
       });
   };
 

@@ -10,11 +10,14 @@
 
 }
 
+
+
 .dashboard-tripCards {
   display: flex;
   justify-content: space-around;
   margin-top: 5%;
   flex-wrap: wrap;
+  background-color: #fff
 
 }
 
@@ -28,11 +31,20 @@
 
 .nav-tabs{
     justify-content: space-around;
-    background: #00d1b2;
+    background: #7EBDC2;
+}
+
+.hero-body {
+  background: #7EBDC2;
 }
 
 .nav-link {
         color: white;
+        /* background-color: #fff */
+}
+
+.nav-link:active {
+  background-color: #fff;
 }
 
 .content{
@@ -41,5 +53,5 @@
 }
 
 .content a {
-   color: white;
+   color: #fff;
 }

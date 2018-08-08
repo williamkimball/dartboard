@@ -1,23 +1,42 @@
 /* William Kimball 2018
 This file styles the news component */
 
+.dashboard-tripCards {
+  background: #d3d3d3;
+}
+
+body {
+  background: #d3d3d3;
+}
+
 a {
-    margin-left: 3%;
-  }
-  
-  .card {
-    max-width: 60%;
-    align-content: center;
-  }
-  
-  #edtBtn {
-    width: 6%;
-    height: 6%;
-  }
+  margin-left: 3%;
+}
 
-  #deleteBtn{
-    margin-left: 80%;
-    width: 5%;
-    height: 5%;
-  }
+.card {
+  max-width: 60%;
+  align-content: center;
+}
 
+.budget-card {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.budget-card-content {
+  width: 60%;
+  margin: 0 auto;
+  max-height: 10%;
+}
+
+#edtBtn {
+  width: 6%;
+  height: 6%;
+}
+
+#deleteBtn {
+  margin-left: 80%;
+  width: 5%;
+  height: 5%;
+}

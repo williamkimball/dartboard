@@ -3,7 +3,7 @@
 
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
-import { Button, Column } from "bloomer";
+import { Button, Column, Card } from "bloomer";
 import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
 import FlightModal from "./DisplayModals/FlightModal";
@@ -986,7 +986,7 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            <Button
+            {/* <Button
               isColor="info"
               render={props => (
                 <Column hasTextAlign="centered">
@@ -994,8 +994,8 @@ export default class TripDash extends Component {
                     Find Flight
                   </p>
                 </Column>
-              )}
-            />
+              )} 
+            /> */}
             <div className="dashboard-tripCards">
               {this.state.FlightModal}
               {this.state.FindFlightModal}
@@ -1056,7 +1056,7 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            <div className="card">
+            <Card className="card budget-card">
               {this.state.BudgetModal}
               <h2>Budget</h2>
               {this.state.budget.map(budget => (
@@ -1070,7 +1070,7 @@ export default class TripDash extends Component {
                 />
               ))}
               <h5>Total: {this.state.budgetTotal}</h5>
-            </div>
+            </Card>
           </div>
           {this.state.name.map(tab => (
             <ListTabContent
