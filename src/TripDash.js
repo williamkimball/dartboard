@@ -381,18 +381,16 @@ export default class TripDash extends Component {
       this.state.FindFlightDestination
     );
 
-
-
     fetch(
-      "http://api.travelpayouts.com/v1/prices/cheap?origin=MOW&destination=HKT&depart_date=2018-08-15&return_date=2018-08-22&token=7fe8a6850404e8611035f004e2a6bc3f¤cy=usd",
+      "http://localhost:6060/api/prices/cheap?origin=MOW&destination=HKT&depart_date=2018-08-15&return_date=2018-08-22&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd",
       {
-        headers: {
-          "Content-Type": "text/plain",
-          "X-Auth-Token": "7fe8a6850404e8611035f004e2a6bc3f"
-        },
+        // headers: {
+        //   "Content-Type": "text/plain",
+        //   "X-Auth-Token": "7fe8a6850404e8611035f004e2a6bc3f"
+        // },
         method: "GET"
       }
-    );
+    ).then(e=> e.json()).then((results) =>{console.log(results)});
 
     // var data = null;
 
@@ -986,7 +984,7 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            {/* <Button
+            <Button
               isColor="info"
               render={props => (
                 <Column hasTextAlign="centered">
@@ -995,7 +993,7 @@ export default class TripDash extends Component {
                   </p>
                 </Column>
               )} 
-            /> */}
+            />
             <div className="dashboard-tripCards">
               {this.state.FlightModal}
               {this.state.FindFlightModal}
