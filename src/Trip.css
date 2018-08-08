@@ -9,6 +9,14 @@ body {
   background: #d3d3d3;
 }
 
+.card-cont {
+  background: white;
+}
+.card .card-resize {
+  max-width: 60%;
+  align-self: center;
+}
+
 a {
   margin-left: 3%;
 }
@@ -18,16 +26,55 @@ a {
   align-content: center;
 }
 
+/* .card .item {
+  align-content: center;
+} */
+
+.tripCard {
+  background-color: #f3f3f3;
+}
+
 .budget-card {
   width: 60%;
   margin: 0 auto;
   text-align: center;
+}
+#budgetCard {
+  background-color: #f3f3f3;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 
 .budget-card-content {
   width: 60%;
   margin: 0 auto;
   max-height: 10%;
+  background-color: #f3f3f3;
+}
+
+.itinerary-card-content {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 1%;
+  background-color: #ffffff;
+  border: solid 2px #d5d5d5;
+  border-radius: 3%;
+}
+
+#itineraryButton {
+/* max-width: 40%; */
+align-self: center;
+margin: 2%;
+}
+
+#budgetTotal {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.itinerary-card-body{
+  /* max-height: 30px; */
+  margin-bottom: 2%;
 }
 
 #edtBtn {
@@ -39,4 +86,69 @@ a {
   margin-left: 80%;
   width: 5%;
   height: 5%;
+}
+
+/* .deleteBtn {
+  margin-left: 80%;
+  width: 5%;
+  height: 5%;
+}
+.edtBtn {
+  width: 6%;
+  height: 6%;
+} */
+
+
+.tripCardButtonColor {
+  background-color: #f3f3f3;
+}
+
+.card-image {
+  background-color: #f3f3f3;
+}
+
+.goToTripButton {
+  max-width: 60%;
+  background-color: #f3f3f3;
+  margin: 0 auto;
+}
+
+#budgetButton {
+  margin-top: -2%;
+}
+
+#header {
+  /* background: #d3d3d3; */
+  height: 130px;
+  padding: 0%;
+}
+
+#hero-body-header{
+  padding: 0%;
+  /* padding-top: 1% */
+}
+
+.card-body {
+  min-width: 35%;
+}
+
+.customCard{
+  width: 60%;
+  margin: 0 auto;
+  margin-top: 3%;
+  height: 4em;
+  background-color: #f3f3f3;
+  align-items: center
+}
+
+.custCard{
+  
+}
+
+#deleteBtnCust {
+  margin-left: 80%;
+  width: 25%;
+  height: 25%;
+  display: inline;
+
 }

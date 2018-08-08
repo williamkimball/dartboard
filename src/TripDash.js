@@ -897,9 +897,9 @@ export default class TripDash extends Component {
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
     return (
-      <div>
-        <section className="hero is-primary">
-          <div className="hero-body">
+      <div id="header">
+        <section className="hero is-primary" id="header">
+          <div className="hero-body" id="hero-body-header">
             <div className="container">
               <div className="columns is-vcentered">
                 <div className="column">
@@ -1046,19 +1046,10 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
-            <Button
-              isColor="info"
-              render={props => (
-                <Column hasTextAlign="centered">
-                  <p {...props} onClick={this.BudgetModal}>
-                    New Budget Item
-                  </p>
-                </Column>
-              )}
-            />
-            <Card className="card budget-card">
+
+            <Card className="card budget-card" id="budgetCard">
               {this.state.BudgetModal}
-              <h2>Budget</h2>
+              <h2 id="budgetTotal">Budget</h2>
               {this.state.budget.map(budget => (
                 <Budget
                   key={budget.id}
@@ -1069,7 +1060,18 @@ export default class TripDash extends Component {
                   deleteBudgetItem={this.deleteBudgetItem}
                 />
               ))}
-              <h5>Total: {this.state.budgetTotal}</h5>
+              <h5 id="budgetTotal">Total: ${this.state.budgetTotal}</h5>
+              <Button
+              isColor="info"
+              id="budgetButton"
+              render={props => (
+                <Column hasTextAlign="centered">
+                  <p {...props} onClick={this.BudgetModal}>
+                    New Budget Item
+                  </p>
+                </Column>
+              )}
+            />
             </Card>
           </div>
           {this.state.name.map(tab => (

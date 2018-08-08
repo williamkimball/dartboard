@@ -11,7 +11,7 @@ const Budget = props => {
     <Card className="budget-card-content">
       {
         <CardContent id={props.budget.id} className="">
-          <h5 className="card-title">{props.budget.budgetItemTitle}</h5>
+          <h5 className="card-title" >{props.budget.budgetItemTitle}</h5>
           <p className="mb-2 text-muted">
             Price: {props.budget.budgetItemPrice}
           </p>

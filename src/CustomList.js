@@ -3,23 +3,20 @@
 
 import "./Trip.css";
 import React from "react";
+import { Card } from "bloomer";
 
 const List = props => {
-// console.log(props)
+  // console.log(props)
   return (
-    <div className="card item" id={props.list.id}>
-      {
-        <div id={props.list.listName}>
-        {props.list.listItemContent}
-        </div>
-      }
+    <Card id={props.list.id} className="customCard">
+      {<div id={props.list.listName} class="custCard">{props.list.listItemContent}</div>}
       <img
-                  src={require("./trash-alt-solid.svg")}
-                  id="deleteBtn"
-                  alt="delete Trash Can"
-                  onClick={props.deleteListItem}
-                />
-    </div>
+        src={require("./trash-alt-solid.svg")}
+        id="deleteBtnCust"
+        alt="delete Trash Can"
+        onClick={props.deleteListItem}
+      />
+    </Card>
   );
 };
 

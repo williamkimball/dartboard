@@ -15,30 +15,31 @@ const ListTabContent = props => {
       role="tabpanel"
       aria-labelledby={props.tab.listName + "-tab"}
     >
-      <Button
-        isColor="info"
-        onClick={props.NewListItem}
-        render={props => (
-          <Column hasTextAlign="centered">
-            <p {...props} >
-              New List Item
-            </p>
-          </Column>
-        )}
-      />
-      <div className="card">
+      <div className="card budget-card" id="budgetCard">
         {props.state.ListItemModal}
         <h2>{props.tab.listName} </h2>
         {props.listItemList.map(list => (
           <CustomList
-            key={list.id}
-            list={list}
-            user={props.state.user}
-            // state={this.state}
-            tripInfo={props.state.tripInfo}
-            deleteListItem={props.deleteListItem}
+          key={list.id}
+          list={list}
+          user={props.state.user}
+          // state={this.state}
+          tripInfo={props.state.tripInfo}
+          deleteListItem={props.deleteListItem}
           />
         ))}
+        <Button
+          isColor="info"
+          id="customButton"
+          onClick={props.NewListItem}
+          render={props => (
+            <Column hasTextAlign="centered">
+              <p {...props} >
+                New List Item
+              </p>
+            </Column>
+          )}
+        />
       </div>
     </div>
   );

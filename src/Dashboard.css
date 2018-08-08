@@ -7,18 +7,14 @@
   color: black;
   text-align: center;
   align-content: center;
-
 }
-
-
 
 .dashboard-tripCards {
   display: flex;
   justify-content: space-around;
   margin-top: 5%;
   flex-wrap: wrap;
-  background-color: #fff
-
+  background-color: #fff;
 }
 
 .tripDash {
@@ -26,32 +22,45 @@
   justify-content: space-around;
   margin-top: 5%;
   flex-wrap: wrap;
-  
 }
 
-.nav-tabs{
-    justify-content: space-around;
-    background: #7EBDC2;
+.nav-tabs {
+  justify-content: space-around;
+  background: #7ebdc2;
 }
 
 .hero-body {
-  background: #7EBDC2;
+  background: #7ebdc2;
 }
 
 .nav-link {
-        color: white;
-        /* background-color: #fff */
+  color: white;
+  /* background-color: #fff */
 }
 
 .nav-link:active {
   background-color: #fff;
 }
 
-.content{
-    display: flex;
-    justify-content: space-around;
+.content {
+  display: flex;
+  justify-content: space-around;
 }
 
 .content a {
-   color: #fff;
+  color: #fff;
 }
+
+.dashboard-tripCards .card {
+  background-color: #f3f3f3;
+  margin-bottom: 20%;
+}
+
+#deleteBtn {
+  display: inline-block
+}
+
+#edtBtn {
+  display: inline-block
+}
+

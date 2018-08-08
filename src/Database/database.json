@@ -132,7 +132,7 @@
   ],
   "itineraryItem": [
     {
-      "ItineraryName": "test10",
+      "ItineraryName": "Train trip to the other City",
       "itineraryId": 1,
       "startTime": "01:03",
       "endTime": "14:04",
@@ -140,7 +140,7 @@
       "id": 3
     },
     {
-      "ItineraryName": "ride the train",
+      "ItineraryName": "See the Castle",
       "itineraryId": 2,
       "startTime": "02:22",
       "endTime": "16:30",
@@ -162,6 +162,44 @@
       "endTime": "16:00",
       "tripId": 4,
       "id": 7
+    },
+    {
+      "ItineraryName": "Eat at the good good restaurant",
+      "itineraryId": 1,
+      "startTime": "17:00",
+      "endTime": "18:30",
+      "tripId": 1,
+      "id": 8
+    },
+    {
+      "ItineraryName": "Mreersasd",
+      "itineraryId": 1,
+      "tripId": 1,
+      "id": 9
+    },
+    {
+      "ItineraryName": "asdf",
+      "itineraryId": 2,
+      "tripId": 1,
+      "id": 10
+    },
+    {
+      "ItineraryName": "afd",
+      "itineraryId": 2,
+      "tripId": 1,
+      "id": 11
+    },
+    {
+      "ItineraryName": "adf",
+      "itineraryId": 2,
+      "tripId": 1,
+      "id": 12
+    },
+    {
+      "ItineraryName": "asdf",
+      "itineraryId": 3,
+      "tripId": 1,
+      "id": 13
     }
   ],
   "budget": [
@@ -207,16 +245,16 @@
       "id": 12
     },
     {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "2333",
-      "tripId": 1,
-      "id": 17
-    },
-    {
       "budgetItemTitle": "Trio",
       "budgetItemPrice": "2222",
       "tripId": 1,
       "id": 18
+    },
+    {
+      "budgetItemTitle": "Food",
+      "budgetItemPrice": "324",
+      "tripId": 1,
+      "id": 19
     }
   ],
   "flight": [

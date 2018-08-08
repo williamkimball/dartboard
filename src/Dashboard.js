@@ -373,6 +373,7 @@ export default class Dashboard extends Component {
               editTripModal={this.state.editTrip}
               deleteTrip={this.deleteTrip}
               getImage={this.getImage}
+              isColor="light"
             />
           ))}
         </div>

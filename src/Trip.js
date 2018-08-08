@@ -26,19 +26,19 @@ export default class Trip extends Component {
     image: ""
   };
   getImage = async destination => {
-    // console.log(destination)
+    // // console.log(destination)
+
+    // // const json = await fetch(
+    // //   `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+    // // )
 
     // const json = await fetch(
-    //   `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+    //   `https://api.unsplash.com/photos/random/?query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
     // )
-
-    const json = await fetch(
-      `https://api.unsplash.com/photos/random/?query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
-    )
-      .then(response => response.json())
-      .then(image => {
-        this.setState({ image: image.urls.regular});
-      });
+    //   .then(response => response.json())
+    //   .then(image => {
+    //     this.setState({ image: image.urls.regular});
+    //   });
   };
 
   componentDidMount() {
@@ -48,7 +48,7 @@ export default class Trip extends Component {
   }
   render() {
     return (
-      <Card id={this.props.trip.id}>
+      <Card id={this.props.trip.id} >
         <CardHeader>
           <CardHeaderTitle>{this.props.trip.title}</CardHeaderTitle>
           <CardContent>
@@ -66,25 +66,28 @@ export default class Trip extends Component {
         </CardImage>
         {this.props.editTripModal}
         <Button
-          isColor="light"
+          isColor="info"
           onClick={this.props.goToTrip}
           id={this.props.trip.id}
+          className="goToTripButton"
         >
           {" "}
           Go to Trip
         </Button>
-        <CardContent>
+        <CardContent className="tripCardButtonColor">
           <Image
             src={require("./edit-solid.svg")}
             id="edtBtn"
             alt="edit pen"
             onClick={this.props.editTrip}
+            className="edtBtn"
           />
           <Image
             src={require("./trash-alt-solid.svg")}
             id="deleteBtn"
             alt="delete Trash Can"
             onClick={this.props.deleteTrip}
+            className="deleteBtn"
           />
         </CardContent>
       </Card>

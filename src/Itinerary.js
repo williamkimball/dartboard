@@ -3,7 +3,7 @@
 
 import "./Trip.css";
 import React, { Component } from "react";
-import { Button, Column } from "bloomer";
+import { Button, Column, Card, CardContent } from "bloomer";
 import ItineraryModal from "./DisplayModals/ItineraryModal";
 // import APIHandler from "./APIHandler";
 // import EditItineraryModal from "./EditItineraryItemModal"
@@ -143,18 +143,17 @@ export default class Itinerary extends Component {
 
   render() {
     return (
-      <div className="card item">
+      <Card >
         {
-          <div className="card-body">
+          <div className="card-body itinerary-card-body">
             <h5 className="card-title">{this.props.itinerary.ItineraryName}</h5>
           </div>
         }
 
         {this.state.itineraryItem.map(itinerary => {
           return (
-            <div className="card">
-              <div className="card-body" id={itinerary.id}>
-                <h5 className="card-title">{itinerary.ItineraryName}</h5>
+            <CardContent id={itinerary.id} className="itinerary-card-content">
+                <h5 className="card-title ">{itinerary.ItineraryName}</h5>
                 <h6 className="card-subtitle mb-2 text-muted">
                   {" "}
                   {itinerary.startTime} to {itinerary.endTime}
@@ -166,23 +165,21 @@ export default class Itinerary extends Component {
                   alt="delete Trash Can"
                   onClick={this.deleteItineraryItem}
                 />
-              </div>
-            </div>
+            </CardContent>
           );
         })}
         {this.state.ItineraryModal}
         {this.props.editItineraryModalState}
         <Button
+        id="itineraryButton"
           isColor="info"
           render={props => (
-            <Column hasTextAlign="centered">
               <p {...props} onClick={this.ItineraryModal}>
                 New Itinerary Item
               </p>
-            </Column>
           )}
         />
-      </div>
+      </Card>
     );
   }
 }
