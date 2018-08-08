@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import APIHandler from "./APIHandler";
 import TripForm from "./TripForm";
 import Trip from "./Trip";
+import Unsplash from "unsplash-js";
 
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,6 +29,22 @@ export default class Dashboard extends Component {
     stateToChange[event.target.id] = event.target.value;
     this.setState(stateToChange);
   };
+
+  // getImage = async destination => {
+  //   const response = await  fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`, {
+  //     headers: {
+  //       "Cache-Control": "no-cache",
+  //       "Postman-Token": "d73fa50b-25c2-455b-861f-89c874d1aa02"
+  //     }
+  //   })
+  //   const json = await response.json();
+  //   return await json
+
+  //   // const json = await fetch(
+  //   //   `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+  //   // ).then(response => response.json()).then(response => {return response});
+  //   // return json
+  // };
 
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
@@ -71,7 +88,7 @@ export default class Dashboard extends Component {
     let tripEnd = Date.parse(this.state.endDate);
     let tripStart = Date.parse(this.state.startDate);
     let tripLength = (tripEnd - tripStart) / 86400000;
-    console.log(tripLength);
+    // console.log(tripLength);
 
     // Add new trips to the API
     fetch(`http://localhost:5002/trips?_expand=user`, {
@@ -164,19 +181,22 @@ export default class Dashboard extends Component {
     });
   }
 
-deleteTrip = event => {
-  var id3 = event.target.closest("div").id;
-  // console.log(id3)
-      return fetch(`http://localhost:5002/trips/${id3}`, {
-        method: "DELETE"
-      }).then(() => {return fetch("http://localhost:5002/trips?_expand=user")})
-        .then(e => e.json())
-        .then(trip =>
-          this.setState({
-            trips: trip.filter(user => user.userId === this.state.user)
-          })
-        );
-}
+  deleteTrip = event => {
+    var id3 = event.target.closest("div").id;
+    // console.log(id3)
+    return fetch(`http://localhost:5002/trips/${id3}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        return fetch("http://localhost:5002/trips?_expand=user");
+      })
+      .then(e => e.json())
+      .then(trip =>
+        this.setState({
+          trips: trip.filter(user => user.userId === this.state.user)
+        })
+      );
+  };
 
   editTrip = event => {
     let targId = this.state.targId;
@@ -215,7 +235,7 @@ deleteTrip = event => {
         })
       )
       .then(() => {
-        document.querySelector(".modal").classList.remove("is-active")
+        document.querySelector(".modal").classList.remove("is-active");
       });
   };
 
@@ -295,12 +315,11 @@ deleteTrip = event => {
   };
 
   goToTrip = event => {
+    console.log(event.target);
     if (event.target.id === "edtBtn") {
-      
     } else if (event.target.id === "deleteBtn") {
-      
     } else {
-      var id1 = event.target.closest("div").id;
+      var id1 = event.target.id;
       // console.log(id1);
       APIHandler.getData("trips", id1)
         .then(trip => {
@@ -352,7 +371,8 @@ deleteTrip = event => {
               user={this.state.user}
               state={this.state}
               editTripModal={this.state.editTrip}
-              deleteTrip = {this.deleteTrip}
+              deleteTrip={this.deleteTrip}
+              getImage={this.getImage}
             />
           ))}
         </div>

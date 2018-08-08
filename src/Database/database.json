@@ -21,7 +21,7 @@
   ],
   "trips": [
     {
-      "title": "Cape Canaveral",
+      "title": "Croatia",
       "startDate": "2018-08-03",
       "endDate": "2018-08-08",
       "userId": 1,
@@ -280,24 +280,9 @@
       "id": 2
     },
     {
-      "listItemContent": "fafafafa",
-      "listId": 1,
-      "id": 1
-    },
-    {
       "listItemContent": "npme",
       "listId": 2,
       "id": 3
-    },
-    {
-      "listItemContent": "Testing123",
-      "listId": 1,
-      "id": 4
-    },
-    {
-      "listItemContent": "And a third",
-      "listId": 1,
-      "id": 5
     },
     {
       "listItemContent": "Fourth try's the charm?",
