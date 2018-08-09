@@ -133,6 +133,7 @@ export default class Dashboard extends Component {
                       {...this.props}
                       AirportResults={this.state.AirportResults}
                       FindFlightResults={this.state.FindFlightResults}
+                      addFoundFlight={this.addSearchedTrip}
                     />
                   )
                 },
@@ -226,7 +227,7 @@ export default class Dashboard extends Component {
       })
       .then(function(trip) {
         console.log(trip);
-        for (let i = 0; i <= tripLength; i++) {
+        for (let i = 0; i < tripLength; i++) {
           fetch(`http://localhost:5002/itinerary`, {
             method: "POST",
             headers: {
@@ -262,6 +263,103 @@ export default class Dashboard extends Component {
           });
         })
       );
+  };
+
+  addSearchedTrip = event => {
+    event.preventDefault();
+
+    let destination = event.target.id;
+    for (let key in this.state.FindFlightResults) {
+      let title = "";
+      this.state.AirportResults.map(Airport => {
+        //   console.log(Airport.term);
+        //   console.log(key);
+        if (Airport.term === key) {
+          // console.log("itsa match");
+          title = Airport.airport.full_location;
+        }
+      });
+      let Dest = this.state.FindFlightResults[key][0];
+      if (key === destination) {
+        let tripEnd = Date.parse(Dest.return_at.slice(0, -10));
+        let tripStart = Date.parse(Dest.departure_at.slice(0, -10));
+        let tripLength = (tripEnd - tripStart) / 86400000;
+        console.log(tripLength);
+        // Add new trips to the API
+        fetch(`http://localhost:5002/trips?_expand=user`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8"
+          },
+          body: JSON.stringify({
+            title: title,
+            startDate: Dest.departure_at.slice(0, -10),
+            endDate: Dest.return_at.slice(0, -10),
+            tripLength: tripLength,
+            userId: this.state.user
+          })
+        })
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(trip) {
+            console.log(tripLength);
+            for (let i = 0; i < tripLength; i++) {
+              fetch(`http://localhost:5002/itinerary`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify({
+                  tripId: trip.id,
+                  ItineraryName: `Day ${i + 1}`
+                })
+              });
+            }
+            return trip;
+          })
+          .then(trip => {
+            console.log("budget")
+            // Add new budget to the API
+            fetch(`http://localhost:5002/budget`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              },
+              body: JSON.stringify({
+                budgetItemTitle: `Flight to ${trip.title}`,
+                budgetItemPrice: Dest.price,
+                tripId: trip.id
+              })
+            });
+          })
+          // When POST is finished, retrieve the new list of trips
+          .then(() => {
+            // Remember you HAVE TO return this fetch to the subsequent `then()`
+            this.setState({
+              FindFlightResultsModal: ""
+            });
+            alert("Added New Trip Sucessfully");
+            return fetch("http://localhost:5002/trips?_expand=user");
+          })
+          .then(
+            APIHandler.getUserName(this.state.user).then(username => {
+              this.setState({ userName: username }, () => {
+                fetch("http://localhost:5002/trips?_expand=user")
+                  .then(e => e.json())
+                  .then(trip =>
+                    this.setState({
+                      trips: trip.filter(
+                        user => user.userId === this.state.user
+                      ),
+                      dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+                    })
+                  );
+              });
+            })
+          );
+      }
+    }
   };
 
   // Update state whenever an input field is edited

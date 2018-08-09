@@ -51,6 +51,22 @@
       "tripLength": 7,
       "userId": 3,
       "id": 4
+    },
+    {
+      "title": "Nassau,  New Providence, Bahamas",
+      "startDate": "2018-08-30",
+      "endDate": "2018-09-07",
+      "tripLength": 8,
+      "userId": 1,
+      "id": 5
+    },
+    {
+      "title": "Gulfport, MS, United States",
+      "startDate": "2018-08-24",
+      "endDate": "2018-08-26",
+      "tripLength": 2,
+      "userId": 1,
+      "id": 6
     }
   ],
   "itinerary": [
@@ -128,6 +144,231 @@
       "tripId": 4,
       "ItineraryName": "Day 8",
       "id": 16
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 1",
+      "id": 17
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 2",
+      "id": 18
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 3",
+      "id": 19
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 4",
+      "id": 20
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 5",
+      "id": 21
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 6",
+      "id": 22
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 1",
+      "id": 23
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 2",
+      "id": 24
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 3",
+      "id": 25
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 4",
+      "id": 26
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 6",
+      "id": 27
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 7",
+      "id": 28
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 5",
+      "id": 29
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 1",
+      "id": 30
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 2",
+      "id": 31
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 3",
+      "id": 32
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 4",
+      "id": 33
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 5",
+      "id": 34
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 6",
+      "id": 35
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 7",
+      "id": 36
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 8",
+      "id": 37
+    },
+    {
+      "tripId": 8,
+      "ItineraryName": "Day 1",
+      "id": 38
+    },
+    {
+      "tripId": 8,
+      "ItineraryName": "Day 2",
+      "id": 39
+    },
+    {
+      "tripId": 8,
+      "ItineraryName": "Day 3",
+      "id": 40
+    },
+    {
+      "tripId": 8,
+      "ItineraryName": "Day 4",
+      "id": 41
+    },
+    {
+      "tripId": 9,
+      "ItineraryName": "Day 1",
+      "id": 42
+    },
+    {
+      "tripId": 9,
+      "ItineraryName": "Day 2",
+      "id": 43
+    },
+    {
+      "tripId": 9,
+      "ItineraryName": "Day 3",
+      "id": 44
+    },
+    {
+      "tripId": 9,
+      "ItineraryName": "Day 4",
+      "id": 45
+    },
+    {
+      "tripId": 10,
+      "ItineraryName": "Day 1",
+      "id": 46
+    },
+    {
+      "tripId": 10,
+      "ItineraryName": "Day 2",
+      "id": 47
+    },
+    {
+      "tripId": 11,
+      "ItineraryName": "Day 1",
+      "id": 48
+    },
+    {
+      "tripId": 11,
+      "ItineraryName": "Day 2",
+      "id": 49
+    },
+    {
+      "tripId": 11,
+      "ItineraryName": "Day 3",
+      "id": 50
+    },
+    {
+      "tripId": 11,
+      "ItineraryName": "Day 4",
+      "id": 51
+    },
+    {
+      "tripId": 11,
+      "ItineraryName": "Day 5",
+      "id": 52
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 1",
+      "id": 53
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 2",
+      "id": 54
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 3",
+      "id": 55
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 6",
+      "id": 56
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 4",
+      "id": 57
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 5",
+      "id": 58
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 7",
+      "id": 59
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 1",
+      "id": 60
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 2",
+      "id": 61
     }
   ],
   "itineraryItem": [
@@ -255,6 +496,12 @@
       "budgetItemPrice": "324",
       "tripId": 1,
       "id": 19
+    },
+    {
+      "budgetItemTitle": "Flight to Gulfport, MS, United States",
+      "budgetItemPrice": 540,
+      "tripId": 6,
+      "id": 20
     }
   ],
   "flight": [

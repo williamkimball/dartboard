@@ -29,21 +29,30 @@ export default class FindFlightResults extends Component {
       for (let key in this.props.FindFlightResults) {
         let destination = "";
         this.props.AirportResults.map(Airport => {
-          console.log(Airport.term);
-          console.log(key);
+        //   console.log(Airport.term);
+        //   console.log(key);
           if (Airport.term === key) {
-            console.log("itsa match");
+            // console.log("itsa match");
             destination = Airport.airport.full_location;
           }
         });
-        let departDate = this.props.FindFlightResults[key][0].departure_at.slice(0, -10);
-        let returnDate = this.props.FindFlightResults[key][0].return_at.slice(0, -10);
+        let departureKeyNo = 0 
+       let testResultKey = () => {
+            if (this.props.FindFlightResults[key][departureKeyNo] === undefined) {
+                departureKeyNo += 1
+                testResultKey()
+            }
 
-        console.log(key);
+        }
+        testResultKey()
+        let departDate = this.props.FindFlightResults[key][departureKeyNo].departure_at.slice(0, -10);
+        let returnDate = this.props.FindFlightResults[key][departureKeyNo].return_at.slice(0, -10);
+
+        // console.log(key);
         children.push(
-          <ModalContent className="cardShrink">
+          <ModalContent className='cardShrink'>
             <h4>{destination}</h4>
-            <p>Price: ${this.props.FindFlightResults[key][0].price}</p>{" "}
+            <p>Price: ${this.props.FindFlightResults[key][departureKeyNo].price}</p>{" "}
             <p>
               Depart Date: {departDate}
             </p>
@@ -53,7 +62,10 @@ export default class FindFlightResults extends Component {
             <Button
                   isColor="info"
                   {...this.props}
-                  className="buttonShrink"
+                  className='buttonShrink'
+                  id={key}
+                  onClick={this.props.addFoundFlight}
+
                 >
                   Let's Go!
                 </Button>
