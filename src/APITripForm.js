@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Icon, Button } from "bloomer";
 
-export default class FlightForm extends Component {
+export default class FindFlightForm extends Component {
     turnInactive = () => {
         document.querySelector(".modal").classList.remove("is-active")
     }
@@ -17,21 +17,9 @@ export default class FlightForm extends Component {
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
-        <Label>Flight Name:</Label>
-        <Control>
-          <Input type="text" placeholder="Flight Name" onChange={this.props.handleFieldChange} id="FindFlightName"/>
-        </Control>
-      </Field>
-      <Field>
         <Label>Flight Origin:</Label>
         <Control>
           <Input type="text" placeholder="BNA" onChange={this.props.handleFieldChange} id="FindFlightOrigin"/>
-        </Control>
-      </Field>
-      <Field>
-        <Label>Flight Destination:</Label>
-        <Control>
-          <Input type="text" placeholder="LHR" onChange={this.props.handleFieldChange} id="FindFlightDestination"/>
         </Control>
       </Field>
       <Field>
@@ -46,7 +34,7 @@ export default class FlightForm extends Component {
           </Icon>
         </Control>
       </Field>
-      <Field>
+      {/* <Field>
         <Label>Return Date:</Label>
         <Control >
           <Input type="date" placeholder="12/13/2018" onChange={this.props.handleFieldChange} id="FindFlightEndDate"/>
@@ -57,7 +45,7 @@ export default class FlightForm extends Component {
             <span className="fa fa-check" aria-hidden="true" />
           </Icon>
         </Control>
-      </Field>
+      </Field> */}
       <Field isGrouped>
         <Control>
           <Button isColor="primary" onClick={this.props.FindFlight}>Submit</Button>

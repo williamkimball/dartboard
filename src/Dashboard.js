@@ -3,7 +3,8 @@ import APIHandler from "./APIHandler";
 import TripForm from "./TripForm";
 import Trip from "./Trip";
 import Unsplash from "unsplash-js";
-
+import FindFlightModal from "./APITripForm";
+import FindFlightResults from "./FindFlightResults";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button } from "bloomer";
@@ -21,7 +22,10 @@ export default class Dashboard extends Component {
     trip: "",
     tripDash: "",
     editTripModal: "",
-    targInfo: ""
+    targInfo: "",
+    FindFlightModal: "",
+    FindFlightResults: {},
+    AirportResults: []
   };
 
   handleFieldChange = event => {
@@ -29,6 +33,119 @@ export default class Dashboard extends Component {
     stateToChange[event.target.id] = event.target.value;
     this.setState(stateToChange);
   };
+
+  //This function creates the Flight Modal that pops up when the "add new flight" button is pressed.
+  FindFlightModal = () => {
+    //checks to see if the modal is in state
+    if (document.querySelector(".modal") !== null) {
+      this.setState(
+        {
+          FlightModal: "",
+          ItineraryModal: "",
+          BudgetModal: "",
+          FindFlightModal: ""
+        },
+        () => {
+          this.setState(
+            {
+              FindFlightModal: (
+                <FindFlightModal
+                  {...this.props}
+                  FindFlight={this.FindFlight}
+                  handleFieldChange={this.handleFieldChange}
+                />
+              )
+            },
+            () => {
+              document.querySelector(".modal").classList.add("is-active");
+            }
+          );
+        }
+      );
+    } else {
+      this.setState(
+        {
+          FindFlightModal: (
+            <FindFlightModal
+              {...this.props}
+              FindFlight={this.FindFlight}
+              handleFieldChange={this.handleFieldChange}
+            />
+          )
+        },
+        () => {
+          document.querySelector(".modal").classList.add("is-active");
+        }
+      );
+    }
+  };
+
+  FindFlight = () => {
+    let startDate = this.state.FindFlightStartDate;
+    // console.log(startDate)
+    // startDate = startDate.slice(0, -3);
+    // console.log(startDate)
+    let endDate = this.state.FindFlightEndDate;
+    // console.log(endDate)
+    // endDate = endDate.slice(0, -3);
+    // console.log(endDate)
+    let origin = this.state.FindFlightOrigin;
+    let destination = this.state.FindFlightDestination;
+
+    fetch(
+      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd`,
+      {
+        method: "GET"
+      }
+    )
+      .then(e => e.json())
+      .then(results => {
+        console.log(results.data);
+        this.setState({
+          FindFlightResults: results.data,
+          FindFlightModal: ""
+        });
+        return results;
+      })
+      .then(results => {
+        // console.log(results.data)
+        let AirportList = this.state.AirportResults;
+        for (let result in results.data) {
+          // console.log(result)
+          fetch(`https://www.air-port-codes.com/api/v1/single?iata=${result}`, {
+            headers: {
+              // Accept: "application/json",
+              "Apc-Auth": "3d57d73c4b"
+            },
+            method: "POST"
+          })
+            .then(e => e.json())
+            .then(results => {
+              this.setState({
+                AirportResults: this.state.AirportResults.concat(results)
+              });
+            })
+            .then(() => {
+              this.setState(
+                {
+                  FindFlightResultsModal: (
+                    <FindFlightResults
+                      {...this.props}
+                      AirportResults={this.state.AirportResults}
+                      FindFlightResults={this.state.FindFlightResults}
+                    />
+                  )
+                },
+                () => {
+                  document.querySelector(".modal").classList.add("is-active");
+                }
+              );
+            });
+        }
+      });
+  };
+
+  // .then((results)=>{if (results.data === 0) {alert("There seem to be no cheap flights on that date. Try another departure date or airport.")}})
 
   // getImage = async destination => {
   //   const response = await  fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`, {
@@ -354,6 +471,13 @@ export default class Dashboard extends Component {
                 >
                   Add New Trip
                 </Button>
+                <Button
+                  isColor="info"
+                  {...this.props}
+                  onClick={this.FindFlightModal}
+                >
+                  Throw a Dart
+                </Button>
               </div>
             </div>
           </div>
@@ -361,6 +485,8 @@ export default class Dashboard extends Component {
 
         <div className="dashboard-tripCards">
           {this.state.tripForm}
+          {this.state.FindFlightModal}
+          {this.state.FindFlightResultsModal}
           {this.state.trips.map(trip => (
             <Trip
               key={trip.id}

@@ -7,7 +7,7 @@ import { Button, Column, Card } from "bloomer";
 import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
 import FlightModal from "./DisplayModals/FlightModal";
-import FindFlightModal from "./APITripForm";
+
 import Flight from "./Flight";
 import Itinerary from "./Itinerary";
 import Budget from "./Budget";
@@ -29,13 +29,16 @@ export default class TripDash extends Component {
     listModal: "",
     BudgetModal: "",
     FlightModal: "",
-    FindFlightModal: "",
     budgetTotal: 0,
     editFlightModal: "",
     listTabs: [],
     name: [],
     ListItemModal: "",
-    listItemList: []
+    listItemList: [],
+    FindFlightResultsModal: "",
+    AirportMatches: [],
+    FindFlightResults: "",
+
   };
 
   //this function gets the information related to the trip
@@ -327,95 +330,7 @@ export default class TripDash extends Component {
     }
   };
 
-  //This function creates the Flight Modal that pops up when the "add new flight" button is pressed.
-  FindFlightModal = () => {
-    //checks to see if the modal is in state
-    if (document.querySelector(".modal") !== null) {
-      this.setState(
-        {
-          FlightModal: "",
-          ItineraryModal: "",
-          BudgetModal: "",
-          FindFlightModal: ""
-        },
-        () => {
-          this.setState(
-            {
-              FindFlightModal: (
-                <FindFlightModal
-                  {...this.props}
-                  FindFlight={this.FindFlight}
-                  handleFieldChange={this.handleFieldChange}
-                />
-              )
-            },
-            () => {
-              document.querySelector(".modal").classList.add("is-active");
-            }
-          );
-        }
-      );
-    } else {
-      this.setState(
-        {
-          FindFlightModal: (
-            <FindFlightModal
-              {...this.props}
-              FindFlight={this.FindFlight}
-              handleFieldChange={this.handleFieldChange}
-            />
-          )
-        },
-        () => {
-          document.querySelector(".modal").classList.add("is-active");
-        }
-      );
-    }
-  };
-
-  FindFlight = () => {
-    console.log(
-      this.state.FindFlightStartDate,
-      this.state.FindFlightEndDate,
-      this.state.FindFlightOrigin,
-      this.state.FindFlightDestination
-    );
-
-    fetch(
-      "http://localhost:6060/api/prices/cheap?origin=MOW&destination=HKT&depart_date=2018-08-15&return_date=2018-08-22&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd",
-      {
-        // headers: {
-        //   "Content-Type": "text/plain",
-        //   "X-Auth-Token": "7fe8a6850404e8611035f004e2a6bc3f"
-        // },
-        method: "GET"
-      }
-    ).then(e=> e.json()).then((results) =>{console.log(results)});
-
-    // var data = null;
-
-    // var xhr = new XMLHttpRequest();
-    // xhr.withCredentials = true;
-
-    // xhr.addEventListener("readystatechange", function() {
-    //   if (this.readyState === 4) {
-    //     console.log(this.responseText);
-    //   }
-    // });
-
-    // xhr.open(
-    //   "GET",
-    //   "http://api.travelpayouts.com/v1/prices/cheap?origin=MOW&destination=HKT&depart_date=2018-08&return_date=2018-08&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd"
-    // );
-    // // xhr.setRequestHeader("X-Auth-Token", "7fe8a6850404e8611035f004e2a6bc3f");
-    // xhr.setRequestHeader("Cache-Control", "no-cache");
-    // xhr.setRequestHeader(
-    //   "Postman-Token",
-    //   "5aa8c7ab-0ee3-4b0e-9174-eac6fe519702"
-    // );
-
-    // xhr.send(data);
-  };
+  
 
   deleteFlightItem = event => {
     console.log(event.target.parentNode.id);
@@ -984,19 +899,10 @@ export default class TripDash extends Component {
                 </Column>
               )}
             />
-            <Button
-              isColor="info"
-              render={props => (
-                <Column hasTextAlign="centered">
-                  <p {...props} onClick={this.FindFlightModal}>
-                    Find Flight
-                  </p>
-                </Column>
-              )} 
-            />
             <div className="dashboard-tripCards">
               {this.state.FlightModal}
               {this.state.FindFlightModal}
+              {this.state.FindFlightResultsModal}
               {this.state.flight.map(flight => (
                 <Flight
                   key={flight.id}
@@ -1007,7 +913,7 @@ export default class TripDash extends Component {
                   deleteFlightItem={this.deleteFlightItem}
                   editFlight={this.editFlightModal}
                   editFlightModal={this.state.editFlight}
-                  FindFlightModal={this.state.FindFlightModal}
+                  // FindFlightModal={this.state.FindFlightModal}
                 />
               ))}
             </div>
