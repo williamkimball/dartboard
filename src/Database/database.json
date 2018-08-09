@@ -53,20 +53,28 @@
       "id": 4
     },
     {
-      "title": "Nassau,  New Providence, Bahamas",
-      "startDate": "2018-08-30",
-      "endDate": "2018-09-07",
-      "tripLength": 8,
+      "title": "Guadalajara, JA, Mexico",
+      "startDate": "2018-08-25",
+      "endDate": "2018-08-28",
+      "tripLength": 3,
       "userId": 1,
       "id": 5
     },
     {
-      "title": "Gulfport, MS, United States",
-      "startDate": "2018-08-24",
-      "endDate": "2018-08-26",
-      "tripLength": 2,
+      "title": "Cancun, QR, Mexico",
+      "startDate": "2018-08-27",
+      "endDate": "2018-08-28",
+      "tripLength": 1,
       "userId": 1,
       "id": 6
+    },
+    {
+      "title": "Cleveland, OH, United States",
+      "startDate": "2018-08-27",
+      "endDate": "2018-08-31",
+      "tripLength": 4,
+      "userId": 1,
+      "id": 7
     }
   ],
   "itinerary": [
@@ -369,6 +377,76 @@
       "tripId": 6,
       "ItineraryName": "Day 2",
       "id": 61
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 1",
+      "id": 62
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 2",
+      "id": 63
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 3",
+      "id": 64
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 1",
+      "id": 65
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 2",
+      "id": 66
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 3",
+      "id": 67
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 1",
+      "id": 68
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 2",
+      "id": 69
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 3",
+      "id": 70
+    },
+    {
+      "tripId": 6,
+      "ItineraryName": "Day 1",
+      "id": 71
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 1",
+      "id": 72
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 2",
+      "id": 73
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 3",
+      "id": 74
+    },
+    {
+      "tripId": 7,
+      "ItineraryName": "Day 4",
+      "id": 75
     }
   ],
   "itineraryItem": [
@@ -498,10 +576,34 @@
       "id": 19
     },
     {
-      "budgetItemTitle": "Flight to Gulfport, MS, United States",
-      "budgetItemPrice": 540,
-      "tripId": 6,
+      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
+      "budgetItemPrice": 205,
+      "tripId": 5,
       "id": 20
+    },
+    {
+      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
+      "budgetItemPrice": 205,
+      "tripId": 6,
+      "id": 21
+    },
+    {
+      "budgetItemTitle": "Flight to Guadalajara, JA, Mexico",
+      "budgetItemPrice": 733,
+      "tripId": 5,
+      "id": 22
+    },
+    {
+      "budgetItemTitle": "Flight to Cancun, QR, Mexico",
+      "budgetItemPrice": 512,
+      "tripId": 6,
+      "id": 23
+    },
+    {
+      "budgetItemTitle": "Flight to Cleveland, OH, United States",
+      "budgetItemPrice": 162,
+      "tripId": 7,
+      "id": 24
     }
   ],
   "flight": [
@@ -533,7 +635,17 @@
       "FlightOrigin": "BNA",
       "FlightDestination": "GRE",
       "tripId": 4,
-      "id": 3
+      "id": 3   
+    },
+    {
+      "FlightName": "Flight to Cleveland, OH, United States",
+      "FlightStartDate": "2018-08-27",
+      "FlightEndDate": "2018-08-31",
+      "FlightNumber": "XX 1",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "CLE",
+      "tripId": 7,
+      "id": 6
     }
   ],
   "list": [

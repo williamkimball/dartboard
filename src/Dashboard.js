@@ -319,7 +319,7 @@ export default class Dashboard extends Component {
             return trip;
           })
           .then(trip => {
-            console.log("budget")
+            console.log("budget");
             // Add new budget to the API
             fetch(`http://localhost:5002/budget`, {
               method: "POST",
@@ -329,6 +329,24 @@ export default class Dashboard extends Component {
               body: JSON.stringify({
                 budgetItemTitle: `Flight to ${trip.title}`,
                 budgetItemPrice: Dest.price,
+                tripId: trip.id
+              })
+            });
+            return trip;
+          })
+          .then(trip => {
+            fetch(`http://localhost:5002/flight?_expand=user`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              },
+              body: JSON.stringify({
+                FlightName: `Flight to ${trip.title}`,
+                FlightStartDate: Dest.departure_at.slice(0, -10),
+                FlightEndDate: Dest.return_at.slice(0, -10),
+                FlightNumber: `${Dest.airline} ${Dest.flight_number}`,
+                FlightOrigin: this.state.FindFlightOrigin,
+                FlightDestination: destination,
                 tripId: trip.id
               })
             });
