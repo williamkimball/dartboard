@@ -75,6 +75,38 @@
       "tripLength": 4,
       "userId": 1,
       "id": 7
+    },
+    {
+      "title": "Philadelphia, PA, United States",
+      "startDate": "2018-08-29",
+      "endDate": "2018-08-31",
+      "tripLength": 2,
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "title": "Baltimore, MD, United States",
+      "startDate": "2018-08-22",
+      "endDate": "2018-08-26",
+      "tripLength": 4,
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "title": "Fort Lauderdale, FL, United States",
+      "startDate": "2018-08-14",
+      "endDate": "2018-08-15",
+      "tripLength": 1,
+      "userId": 1,
+      "id": 10
+    },
+    {
+      "title": "Philadelphia, PA, United States",
+      "startDate": "2018-08-29",
+      "endDate": "2018-08-31",
+      "tripLength": 2,
+      "userId": 1,
+      "id": 11
     }
   ],
   "itinerary": [
@@ -154,299 +186,39 @@
       "id": 16
     },
     {
-      "tripId": 5,
+      "tripId": 9,
       "ItineraryName": "Day 1",
       "id": 17
     },
     {
-      "tripId": 5,
+      "tripId": 9,
       "ItineraryName": "Day 2",
       "id": 18
     },
     {
-      "tripId": 5,
+      "tripId": 9,
       "ItineraryName": "Day 3",
       "id": 19
     },
     {
-      "tripId": 5,
+      "tripId": 9,
       "ItineraryName": "Day 4",
       "id": 20
     },
     {
-      "tripId": 5,
-      "ItineraryName": "Day 5",
+      "tripId": 10,
+      "ItineraryName": "Day 1",
       "id": 21
     },
     {
-      "tripId": 5,
-      "ItineraryName": "Day 6",
+      "tripId": 11,
+      "ItineraryName": "Day 1",
       "id": 22
     },
     {
-      "tripId": 6,
-      "ItineraryName": "Day 1",
+      "tripId": 11,
+      "ItineraryName": "Day 2",
       "id": 23
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 2",
-      "id": 24
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 3",
-      "id": 25
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 4",
-      "id": 26
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 6",
-      "id": 27
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 7",
-      "id": 28
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 5",
-      "id": 29
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 1",
-      "id": 30
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 2",
-      "id": 31
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 3",
-      "id": 32
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 4",
-      "id": 33
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 5",
-      "id": 34
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 6",
-      "id": 35
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 7",
-      "id": 36
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 8",
-      "id": 37
-    },
-    {
-      "tripId": 8,
-      "ItineraryName": "Day 1",
-      "id": 38
-    },
-    {
-      "tripId": 8,
-      "ItineraryName": "Day 2",
-      "id": 39
-    },
-    {
-      "tripId": 8,
-      "ItineraryName": "Day 3",
-      "id": 40
-    },
-    {
-      "tripId": 8,
-      "ItineraryName": "Day 4",
-      "id": 41
-    },
-    {
-      "tripId": 9,
-      "ItineraryName": "Day 1",
-      "id": 42
-    },
-    {
-      "tripId": 9,
-      "ItineraryName": "Day 2",
-      "id": 43
-    },
-    {
-      "tripId": 9,
-      "ItineraryName": "Day 3",
-      "id": 44
-    },
-    {
-      "tripId": 9,
-      "ItineraryName": "Day 4",
-      "id": 45
-    },
-    {
-      "tripId": 10,
-      "ItineraryName": "Day 1",
-      "id": 46
-    },
-    {
-      "tripId": 10,
-      "ItineraryName": "Day 2",
-      "id": 47
-    },
-    {
-      "tripId": 11,
-      "ItineraryName": "Day 1",
-      "id": 48
-    },
-    {
-      "tripId": 11,
-      "ItineraryName": "Day 2",
-      "id": 49
-    },
-    {
-      "tripId": 11,
-      "ItineraryName": "Day 3",
-      "id": 50
-    },
-    {
-      "tripId": 11,
-      "ItineraryName": "Day 4",
-      "id": 51
-    },
-    {
-      "tripId": 11,
-      "ItineraryName": "Day 5",
-      "id": 52
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 1",
-      "id": 53
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 2",
-      "id": 54
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 3",
-      "id": 55
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 6",
-      "id": 56
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 4",
-      "id": 57
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 5",
-      "id": 58
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 7",
-      "id": 59
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 1",
-      "id": 60
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 2",
-      "id": 61
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 1",
-      "id": 62
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 2",
-      "id": 63
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 3",
-      "id": 64
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 1",
-      "id": 65
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 2",
-      "id": 66
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 3",
-      "id": 67
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 1",
-      "id": 68
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 2",
-      "id": 69
-    },
-    {
-      "tripId": 5,
-      "ItineraryName": "Day 3",
-      "id": 70
-    },
-    {
-      "tripId": 6,
-      "ItineraryName": "Day 1",
-      "id": 71
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 1",
-      "id": 72
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 2",
-      "id": 73
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 3",
-      "id": 74
-    },
-    {
-      "tripId": 7,
-      "ItineraryName": "Day 4",
-      "id": 75
     }
   ],
   "itineraryItem": [
@@ -519,6 +291,14 @@
       "itineraryId": 3,
       "tripId": 1,
       "id": 13
+    },
+    {
+      "ItineraryName": "Visit the Rocky steps",
+      "itineraryId": 22,
+      "startTime": "01:02",
+      "endTime": "15:20",
+      "tripId": 11,
+      "id": 14
     }
   ],
   "budget": [
@@ -604,6 +384,30 @@
       "budgetItemPrice": 162,
       "tripId": 7,
       "id": 24
+    },
+    {
+      "budgetItemTitle": "Flight to Philadelphia, PA, United States",
+      "budgetItemPrice": 181,
+      "tripId": 8,
+      "id": 25
+    },
+    {
+      "budgetItemTitle": "Flight to Baltimore, MD, United States",
+      "budgetItemPrice": 117,
+      "tripId": 9,
+      "id": 26
+    },
+    {
+      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
+      "budgetItemPrice": 201,
+      "tripId": 10,
+      "id": 27
+    },
+    {
+      "budgetItemTitle": "Flight to Philadelphia, PA, United States",
+      "budgetItemPrice": 181,
+      "tripId": 11,
+      "id": 28
     }
   ],
   "flight": [
@@ -635,7 +439,7 @@
       "FlightOrigin": "BNA",
       "FlightDestination": "GRE",
       "tripId": 4,
-      "id": 3   
+      "id": 3
     },
     {
       "FlightName": "Flight to Cleveland, OH, United States",
@@ -646,6 +450,46 @@
       "FlightDestination": "CLE",
       "tripId": 7,
       "id": 6
+    },
+    {
+      "FlightName": "Flight to Philadelphia, PA, United States",
+      "FlightStartDate": "2018-08-29",
+      "FlightEndDate": "2018-08-31",
+      "FlightNumber": "AA 1828",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "PHL",
+      "tripId": 8,
+      "id": 7
+    },
+    {
+      "FlightName": "Flight to Baltimore, MD, United States",
+      "FlightStartDate": "2018-08-22",
+      "FlightEndDate": "2018-08-26",
+      "FlightNumber": "NK 556",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "BWI",
+      "tripId": 9,
+      "id": 8
+    },
+    {
+      "FlightName": "Flight to Fort Lauderdale, FL, United States",
+      "FlightStartDate": "2018-08-14",
+      "FlightEndDate": "2018-08-15",
+      "FlightNumber": "NK 808",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "FLL",
+      "tripId": 10,
+      "id": 9
+    },
+    {
+      "FlightName": "Flight to Philadelphia, PA, United States",
+      "FlightStartDate": "2018-08-29",
+      "FlightEndDate": "2018-08-31",
+      "FlightNumber": "AA 1828",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "PHL",
+      "tripId": 11,
+      "id": 10
     }
   ],
   "list": [
@@ -658,6 +502,11 @@
       "listName": "Restaurants",
       "tripId": 1,
       "id": 2
+    },
+    {
+      "listName": "Hotels",
+      "tripId": 11,
+      "id": 3
     }
   ],
   "listItem": [
