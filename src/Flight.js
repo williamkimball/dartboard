@@ -24,10 +24,11 @@ const Flight = props => {
           <p className="card-subtitle mb-2 ">
             Return Date: {props.flight.FlightEndDate}
           </p>
-          <img src={require("./edit-solid.svg")} id="edtBtn" onClick={props.editFlight}/>
+          <img src={require("./edit-solid.svg")} id="edtBtn" onClick={props.editFlight} alt="edit pen"/>
           <img
             src={require("./trash-alt-solid.svg")}
             id="deleteBtn"
+            alt="delete Trash Can"
             onClick={props.deleteFlightItem}
           />
         </div>

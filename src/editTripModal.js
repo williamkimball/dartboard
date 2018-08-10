@@ -2,7 +2,7 @@
 //This file builds an input form for adding a new trip item
 
 import React, { Component } from "react";
-import APIHandler from "./APIHandler";
+// import APIHandler from "./APIHandler";
 import {
   Modal,
   ModalBackground,
@@ -15,7 +15,6 @@ import {
   Label,
   Control,
   Input,
-  Icon,
   Button
 } from "bloomer";
 
