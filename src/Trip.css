@@ -119,13 +119,14 @@ margin: 2%;
 
 #header {
   /* background: #d3d3d3; */
-  height: 130px;
+  height: 100px;
   padding: 0%;
 }
 
 #hero-body-header{
   padding: 0%;
-  /* padding-top: 1% */
+  height: 2em;
+  /* margin-bottom: 3%; */
 }
 
 .card-body {
@@ -141,8 +142,10 @@ margin: 2%;
   align-items: center
 }
 
-.custCard{
-  
+.newListBtn{
+  margin-left: 75%;
+  /* padding-bottom: 3%; */
+  margin-top: 2%
 }
 
 #deleteBtnCust {
@@ -151,4 +154,43 @@ margin: 2%;
   height: 25%;
   display: inline;
 
+}
+
+#Hdg{
+  margin-bottom: 0px;
+  margin-top: 5%;
+  display: inline;
+}
+
+#subHdg{
+  display: block;
+  margin-top: -2%
+}
+
+#tripHead{
+  margin-top: 1%;
+}
+
+a{
+  color: #ffffff
+}
+
+#main-head{
+  margin-top:-2%;
+}
+
+#dartBtn{
+  margin-left: 10%;
+}
+
+#logo{display: inline-block}
+
+div .cardShrink{
+  width: 80%;
+  margin-top:2%;
+  margin-bottom:1%;
+}
+button .button .is-info .buttonShrink{
+  width: 40%;
+  margin: 0 auto;
 }

@@ -7,7 +7,7 @@ import FindFlightModal from "./APITripForm";
 import FindFlightResults from "./FindFlightResults";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from "bloomer";
+import { Button, Image } from "bloomer";
 
 import TripDash from "./TripDash";
 import EditTripModal from "./editTripModal";
@@ -259,7 +259,7 @@ export default class Dashboard extends Component {
               .then(trip =>
                 this.setState({
                   trips: trip.filter(user => user.userId === this.state.user),
-                  dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+                  dashHead: `Welcome to DartBoard, ${this.state.userName}!`
                 })
               );
           });
@@ -577,20 +577,23 @@ export default class Dashboard extends Component {
         <section className="hero is-primary">
           <div className="hero-body">
             <div className="container">
-              <div className="columns is-vcentered">
+              <div className="columns ">
                 <div className="column">
-                  <h1 className="title">{this.state.dashHead}</h1>
+                {/* <Image isSize="48x48" src={require('././DartBoardRed.png')} id="logo"/> */}
+                  <h1 className="title" id="main-head">{this.state.dashHead}</h1>
                   <h2 className="subtitle">{this.state.dashHeadDates}</h2>
                 </div>
                 <Button
                   isColor="info"
                   className="dashboard-welcome-button pleaseCenter"
+                  id="newTripBtn"
                   onClick={this.TripModal}
                 >
                   Add New Trip
                 </Button>
                 <Button
                   isColor="info"
+                  id="dartBtn"
                   {...this.props}
                   onClick={this.FindFlightModal}
                 >

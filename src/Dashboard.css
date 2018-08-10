@@ -4,7 +4,7 @@
 }
 .dashboard-nav {
   min-height: 6em;
-  color: black;
+  /* color: black; */
   text-align: center;
   align-content: center;
 }
@@ -26,29 +26,38 @@
 
 .nav-tabs {
   justify-content: space-around;
-  background: #7ebdc2;
+  background: #1881BE;
 }
 
 .hero-body {
-  background: #7ebdc2;
+  background: #1881BE;
+  height: 4em;
 }
 
 .nav-link {
   color: white;
   /* background-color: #fff */
+  border: solid 1px black
+  
 }
 
 .nav-link:active {
   background-color: #fff;
+  color: black
 }
 
 .content {
   display: flex;
   justify-content: space-around;
+  color: #fff;
 }
 
 .content a {
   color: #fff;
+}
+
+#budget-tab{
+  /* color: #fff; */
 }
 
 .dashboard-tripCards .card {
@@ -64,3 +73,16 @@
   display: inline-block
 }
 
+.column {
+  padding: 0%
+}
+
+.subtitle{
+  display: inline-block;
+}
+
+a{
+  color: white
+}
+
+#main-head{}

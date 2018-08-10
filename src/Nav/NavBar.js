@@ -4,6 +4,7 @@ import "./NavBar.css";
 // import APIManager from "./../APIHandler";
 // import { Redirect } from "react-router-dom";
 // import history from './../history'
+import Image from "bloomer";
 
 export default class NavBar extends Component {
   state = {
@@ -22,7 +23,8 @@ export default class NavBar extends Component {
 
     return (
       <nav>
-      <h2>Dartboard</h2>
+        {/* <Image isSize="128x128" src={require('../DartBoardRed.png')}/> */}
+      <h2>DartBoard</h2>
       </nav>
     );
   }

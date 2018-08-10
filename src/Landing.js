@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card, CardContent, Title, Content, Button } from "bloomer";
+import { Card, CardContent, Title, Content, Button, Image } from "bloomer";
 import LoginForm from "./loginForm";
 import RegisterForm from "./register";
 
@@ -42,22 +42,23 @@ export default class Login extends Component {
   render() {
     return (
       <Card>
-        <Title>Welcome to DartBoard</Title>
+        <Title>Welcome to DartBoard!</Title>
         <CardContent>
+          
           <Content>
             <div>
               <Button
-                isColor="primary"
+                isColor="info"
                 id="linkToLoginForm"
                 onClick={this.loginModal}
               >
                 Login
               </Button>
             </div>
-
+            <Image isSize="256x256" src={require('././DartBoardRed.png')}/>
             <div>
               <Button
-                isColor="primary"
+                isColor="info"
                 id="linkToRegisterForm"
                 onClick={this.registerModal}
               >

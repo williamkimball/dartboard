@@ -37,8 +37,7 @@ export default class TripDash extends Component {
     listItemList: [],
     FindFlightResultsModal: "",
     AirportMatches: [],
-    FindFlightResults: "",
-
+    FindFlightResults: ""
   };
 
   //this function gets the information related to the trip
@@ -329,8 +328,6 @@ export default class TripDash extends Component {
       );
     }
   };
-
-  
 
   deleteFlightItem = event => {
     console.log(event.target.parentNode.id);
@@ -815,15 +812,21 @@ export default class TripDash extends Component {
           <div className="hero-body" id="hero-body-header">
             <div className="container">
               <div className="columns is-vcentered">
-                <div className="column">
-                  <h1 className="title">{this.state.tripInfo.title}</h1>
-                  <h2 className="subtitle">
+                <div className="column" id="tripHead">
+                  <h1 className="title" id="Hdg">
+                    {this.state.tripInfo.title}
+                  </h1>
+                  <Button
+                    isColor="info"
+                    onClick={this.addNewList}
+                    className="newListBtn"
+                  >
+                    New List
+                  </Button>
+                  <h2 className="subtitle" id="subHdg">
                     {this.state.tripInfo.startDate} to{" "}
                     {this.state.tripInfo.endDate}
                   </h2>
-                  <Button isColor="info" onClick={this.addNewList}>
-                    New List
-                  </Button>
                   {this.state.listModal}
                 </div>
               </div>
@@ -837,7 +840,6 @@ export default class TripDash extends Component {
               className="nav-link"
               id="flights-tab"
               data-toggle="tab"
-              href="#flight"
               role="tab"
               aria-controls="flights"
               aria-selected="false"
@@ -850,7 +852,6 @@ export default class TripDash extends Component {
               className="nav-link active"
               id="itinerary-tab"
               data-toggle="tab"
-              href="#itinerary"
               role="tab"
               aria-controls="itinerary"
               aria-selected="true"
@@ -863,7 +864,6 @@ export default class TripDash extends Component {
               className="nav-link"
               id="budget-tab"
               data-toggle="tab"
-              href="#budget"
               role="tab"
               aria-controls="budget"
               aria-selected="false"
@@ -950,7 +950,6 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
-
             <Card className="card budget-card" id="budgetCard">
               {this.state.BudgetModal}
               <h2 id="budgetTotal">Budget</h2>
@@ -966,16 +965,16 @@ export default class TripDash extends Component {
               ))}
               <h5 id="budgetTotal">Total: ${this.state.budgetTotal}</h5>
               <Button
-              isColor="info"
-              id="budgetButton"
-              render={props => (
-                <Column hasTextAlign="centered">
-                  <p {...props} onClick={this.BudgetModal}>
-                    New Budget Item
-                  </p>
-                </Column>
-              )}
-            />
+                isColor="info"
+                id="budgetButton"
+                render={props => (
+                  <Column hasTextAlign="centered">
+                    <p {...props} onClick={this.BudgetModal}>
+                      New Budget Item
+                    </p>
+                  </Column>
+                )}
+              />
             </Card>
           </div>
           {this.state.name.map(tab => (

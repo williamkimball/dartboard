@@ -13,7 +13,6 @@ const ListTab = props => {
       className="nav-link"
       id={props.tab.listName + "-tab"}
       data-toggle="tab"
-      href={"#" + props.tab.listName}
       role="tab"
       aria-controls={props.tab.listName + "s"}
       aria-selected="false"
