@@ -114,6 +114,7 @@ export default class Itinerary extends Component {
                   {...this.props}
                   addNewItinerary={this.addNewItinerary}
                   handleFieldChange={this.handleFieldChange}
+                  turnInactive={this.turnInactive}
                 />
               )
             },
@@ -131,6 +132,7 @@ export default class Itinerary extends Component {
               {...this.props}
               addNewItinerary={this.addNewItinerary}
               handleFieldChange={this.handleFieldChange}
+              turnInactive={this.turnInactive}
             />
           )
         },
@@ -141,9 +143,17 @@ export default class Itinerary extends Component {
     }
   };
 
+  turnInactive = () => {
+    this.setState({
+      ItineraryModal: ""
+    })
+    
+    
+}
+
   render() {
     return (
-      <Card >
+      <Card className="item">
         {
           <div className="card-body itinerary-card-body">
             <h5 className="card-title">{this.props.itinerary.ItineraryName}</h5>

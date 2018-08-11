@@ -1,56 +1,82 @@
 /* William Kimball 2018
 This file styles the news component */
 
-.dashboard-tripCards {
-  background: #d3d3d3;
-}
+/* 
 
 body {
   background: #d3d3d3;
+} */
+
+.dashboard-tripCards {
+
+  /* justify-content: space-around */
 }
 
 .card-cont {
   background: white;
 }
-.card .card-resize {
-  max-width: 60%;
-  align-self: center;
+.card.item {
+ /* align-content: center; */
+ display: flex;
+ flex-wrap: wrap;
+ max-width: 40%;
+ margin: 0 auto;
+ margin-bottom: 3%;
+} 
+
+.p-3 {
+  padding: 0%;
+  margin: 5%;
+  margin-top: 2%;
+  margin-bottom: 0%;
 }
 
+#newTripBtn {
+  margin-right: 10%;
+}
+
+#loginLogo{
+  max-width: 35%;
+  max-height: 35%;
+  margin: 0 auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+/* div .columns .is-centered .is-grid .is-multiline .dashboard-tripCards{
+  margin-bottom: 5%;
+} */
+/* .card .card-resize {
+  align-self: center;
+}  
 a {
   margin-left: 3%;
-}
-
-.card {
-  max-width: 60%;
-  align-content: center;
-}
-
-/* .card .item {
-  align-content: center;
-} */
-
+} 
+/*
 .tripCard {
   background-color: #f3f3f3;
 }
-
-.budget-card {
+.card {
+  max-width: 60%;
+  align-content: center;
+} 
+*/
+ .budget-card {
   width: 60%;
   margin: 0 auto;
   text-align: center;
-}
-#budgetCard {
+} 
+ #budgetCard {
   background-color: #f3f3f3;
   margin-top: 5%;
   margin-bottom: 5%;
-}
-
-.budget-card-content {
+} 
+ .budget-card-content {
   width: 60%;
   margin: 0 auto;
   max-height: 10%;
   background-color: #f3f3f3;
-}
+} 
 
 .itinerary-card-content {
   width: 80%;
@@ -58,32 +84,32 @@ a {
   margin-top: 1%;
   background-color: #ffffff;
   border: solid 2px #d5d5d5;
-  border-radius: 3%;
-}
+  border-radius: 4px;
+} 
 
 #itineraryButton {
-/* max-width: 40%; */
+max-width: 40%;
 align-self: center;
 margin: 2%;
-}
+} 
 
-#budgetTotal {
+ #budgetTotal {
   margin-top: 2%;
   margin-bottom: 2%;
-}
-
-.itinerary-card-body{
-  /* max-height: 30px; */
+} 
+ .itinerary-card-body{
+  max-height: 30px;
   margin-bottom: 2%;
-}
+ }
 
 #edtBtn {
   width: 6%;
   height: 6%;
+  margin-left: 2%;
 }
 
 #deleteBtn {
-  margin-left: 80%;
+  margin-left: 85%;
   width: 5%;
   height: 5%;
 }
@@ -98,8 +124,7 @@ margin: 2%;
   height: 6%;
 } */
 
-
-.tripCardButtonColor {
+/* .tripCardButtonColor {
   background-color: #f3f3f3;
 }
 
@@ -115,10 +140,10 @@ margin: 2%;
 
 #budgetButton {
   margin-top: -2%;
-}
+} */
 
-#header {
-  /* background: #d3d3d3; */
+/* #header {
+  background: #d3d3d3;
   height: 100px;
   padding: 0%;
 }
@@ -126,13 +151,14 @@ margin: 2%;
 #hero-body-header{
   padding: 0%;
   height: 2em;
-  /* margin-bottom: 3%; */
-}
+  margin-bottom: 3%;
+} */
 
-.card-body {
-  min-width: 35%;
-}
-
+/*
+*/
+   .card-body {
+    min-width: 35%;
+  }
 .customCard{
   width: 60%;
   margin: 0 auto;
@@ -142,12 +168,6 @@ margin: 2%;
   align-items: center
 }
 
-.newListBtn{
-  margin-left: 75%;
-  /* padding-bottom: 3%; */
-  margin-top: 2%
-}
-
 #deleteBtnCust {
   margin-left: 80%;
   width: 25%;
@@ -155,7 +175,7 @@ margin: 2%;
   display: inline;
 
 }
-
+/*
 #Hdg{
   margin-bottom: 0px;
   margin-top: 5%;
@@ -164,11 +184,12 @@ margin: 2%;
 
 #subHdg{
   display: block;
-  margin-top: -2%
-}
+  margin-top: -5%
+} 
 
-#tripHead{
-  margin-top: 1%;
+/* #tripHead{
+  margin-top: 2%;
+  padding: 0%
 }
 
 a{
@@ -181,11 +202,11 @@ a{
 
 #dartBtn{
   margin-left: 10%;
-}
+} */
 
-#logo{display: inline-block}
+/* #logo{display: inline-block} */
 
-div .cardShrink{
+/* div .cardShrink{
   width: 80%;
   margin-top:2%;
   margin-bottom:1%;
@@ -193,4 +214,14 @@ div .cardShrink{
 button .button .is-info .buttonShrink{
   width: 40%;
   margin: 0 auto;
-}
+} */
+
+/* img {
+  max-width: 300px;
+  max-height: 200px;
+} */
+
+/* .card-header {
+  height: 14%;
+  width: 100%;
+} */

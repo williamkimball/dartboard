@@ -34,18 +34,6 @@ export default class FindFlightForm extends Component {
           </Icon>
         </Control>
       </Field>
-      {/* <Field>
-        <Label>Return Date:</Label>
-        <Control >
-          <Input type="date" placeholder="12/13/2018" onChange={this.props.handleFieldChange} id="FindFlightEndDate"/>
-          <Icon isSize="small" isAlign="left">
-            <span className="fa fa-user" aria-hidden="true" />
-          </Icon>
-          <Icon isSize="small" isAlign="right">
-            <span className="fa fa-check" aria-hidden="true" />
-          </Icon>
-        </Control>
-      </Field> */}
       <Field isGrouped>
         <Control>
           <Button isColor="primary" onClick={this.props.FindFlight}>Submit</Button>

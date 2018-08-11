@@ -29,9 +29,9 @@ export default class FindFlightResults extends Component {
       for (let key in this.props.FindFlightResults) {
         let destination = "";
         this.props.AirportResults.map(Airport => {
-        //   console.log(Airport.term);
+          console.log(Airport);
         //   console.log(key);
-          if (Airport.term === key) {
+          if (Airport.term === key && Airport.status !== false) {
             // console.log("itsa match");
             destination = Airport.airport.full_location;
           }

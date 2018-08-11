@@ -2,25 +2,25 @@
 //This file builds each flight card
 
 import "./Trip.css";
-import React from "react";
+import React, { Component } from "react";
+import {Tab} from "bloomer";
 
-const ListTab = props => {
-// console.log("yo")
-
-  return (
-    <li className="nav-item" onClick={props.pillListener}>
-    <a
-      className="nav-link"
-      id={props.tab.listName + "-tab"}
-      data-toggle="tab"
-      role="tab"
-      aria-controls={props.tab.listName + "s"}
-      aria-selected="false"
-    >
-      {props.tab.listName}
-    </a>
-  </li>
-  );
-};
-
-export default ListTab;
+export default class ListTab extends Component {
+  // console.log("yo")
+  render() {
+    return (
+      <Tab onClick={this.props.pillListener}>
+        <a
+          className="nav-link"
+          id={this.props.tab.listName + "-tab"}
+          data-toggle="tab"
+          role="tab"
+          aria-controls={this.props.tab.listName + "s"}
+          aria-selected="false"
+        >
+          {this.props.tab.listName}
+        </a>
+      </Tab>
+    );
+  }
+}

@@ -3,9 +3,7 @@ import React, { Component } from "react";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Button } from "bloomer";
 
 export default class ItineraryForm extends Component {
-    turnInactive = () => {
-        document.querySelector(".modal").classList.remove("is-active")
-    }
+
     render() {
         return (
 <Modal >
@@ -13,7 +11,7 @@ export default class ItineraryForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>New Itinerary Item</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={this.props.turnListItemModalInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -41,7 +39,7 @@ export default class ItineraryForm extends Component {
         <Control>
           <Button isColor="primary" onClick={this.props.addNewItinerary}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
+        <Control onClick={this.props.turnInactive}>
           <Button >Cancel</Button>
         </Control>
       </Field>

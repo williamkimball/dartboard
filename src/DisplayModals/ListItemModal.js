@@ -13,7 +13,7 @@ export default class ListForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>New List Item</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={this.props.turnListItemModalInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -27,7 +27,7 @@ export default class ListForm extends Component {
         <Control>
           <Button isColor="primary" onClick={this.props.addListItem}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
+        <Control onClick={this.props.turnListItemModalInactive}>
           <Button >Cancel</Button>
         </Control>
       </Field>

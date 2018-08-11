@@ -45,10 +45,10 @@
       "id": 4
     },
     {
-      "title": "London, London, United Kingdom",
-      "startDate": "2018-08-22",
-      "endDate": "2018-08-26",
-      "tripLength": 4,
+      "title": "Kahului, HI, United States",
+      "startDate": "2018-09-04",
+      "endDate": "2018-09-11",
+      "tripLength": 7,
       "userId": 1,
       "id": 5
     }
@@ -101,13 +101,28 @@
     },
     {
       "tripId": 5,
-      "ItineraryName": "Day 3",
+      "ItineraryName": "Day 4",
       "id": 11
     },
     {
       "tripId": 5,
-      "ItineraryName": "Day 4",
+      "ItineraryName": "Day 3",
       "id": 12
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 6",
+      "id": 13
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 7",
+      "id": 14
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 5",
+      "id": 15
     }
   ],
   "itineraryItem": [
@@ -134,35 +149,35 @@
       "endTime": "18:19",
       "tripId": 2,
       "id": 6
+    },
+    {
+      "itineraryId": 1,
+      "tripId": 1,
+      "id": 7
+    },
+    {
+      "itineraryId": 3,
+      "tripId": 1,
+      "id": 8
     }
   ],
   "budget": [
     {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "1",
-      "tripId": 3,
-      "id": 5
+      "budgetItemTitle": "Flight to Croatia",
+      "budgetItemPrice": "879",
+      "tripId": 1,
+      "id": 7
     },
     {
-      "budgetItemTitle": "Flight to London, London, United Kingdom",
-      "budgetItemPrice": 1954,
+      "budgetItemTitle": "Flight to Kahului, HI, United States",
+      "budgetItemPrice": 499,
       "tripId": 5,
-      "id": 6
+      "id": 8
     }
   ],
   "flight": [
     {
-      "FlightName": "Test3",
-      "FlightStartDate": "2018-08-07",
-      "FlightEndDate": "2018-08-08",
-      "FlightNumber": "asdf",
-      "FlightOrigin": "asdf",
-      "FlightDestination": "asdf",
-      "id": 1,
-      "tripId": 1
-    },
-    {
-      "FlightName": "Trip to Florida",
+      "FlightName": "Trip to Croatia",
       "FlightStartDate": "2018-08-08",
       "FlightEndDate": "2018-08-16",
       "FlightNumber": "AA234",
@@ -172,14 +187,18 @@
       "tripId": 1
     },
     {
-      "FlightName": "Flight to London, London, United Kingdom",
-      "FlightStartDate": "2018-08-22",
-      "FlightEndDate": "2018-08-26",
-      "FlightNumber": "VS 4044",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "LON",
-      "tripId": 5,
+      "tripId": 1,
       "id": 3
+    },
+    {
+      "FlightName": "Flight to Kahului, HI, United States",
+      "FlightStartDate": "2018-09-04",
+      "FlightEndDate": "2018-09-11",
+      "FlightNumber": "UA 912",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "OGG",
+      "tripId": 5,
+      "id": 4
     }
   ],
   "list": [
@@ -192,6 +211,11 @@
       "listName": "Restaurants",
       "tripId": 1,
       "id": 2
+    },
+    {
+      "listName": "Climbing Places",
+      "tripId": 1,
+      "id": 3
     }
   ],
   "listItem": [

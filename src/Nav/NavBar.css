@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
-*{font-family: 'Montserrat', sans-serif;}
+* {
+  font-family: "Montserrat", sans-serif;
+}
 
 nav,
 form {
@@ -10,7 +12,7 @@ form {
 
 nav {
   border: 1px solid black;
-  background-color: #254E70;
+  background-color: #254e70;
   color: white;
   font-weight: 100;
 }
@@ -25,4 +27,11 @@ nav a {
 }
 nav h2 {
   margin-left: 5%;
+  display: inline;
+}
+
+#homebutton {
+  display: inline;
+ position: relative;
+ left: 0%;
 }

@@ -6,16 +6,7 @@ import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import {
   Button,
-  Card,
-  CardHeader,
-  CardHeaderTitle,
-  CardHeaderIcon,
-  Icon,
   Image,
-  CardImage,
-  CardContent,
-  Title,
-  Subtitle
 } from "bloomer";
 
 // import { Link } from "react-router-dom";
@@ -25,95 +16,104 @@ export default class Trip extends Component {
   state = {
     image: ""
   };
-  getImage = async destination => {
 
-    // const json = await fetch(
-    //   `https://api.unsplash.com/photos/random/?query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
-    // )
-    //   .then(response => response.json())
-    //   .then(image => {
-    //     this.setState({ image: image.urls.regular});
-    //   });
+  styles = {
+    marginLeft: "35%"
+  }
+  getImage = async destination => {
+    // console.log(destination)
+    var s = destination;
+    var n = s.indexOf(',');
+    s = s.substring(0, n != -1 ? n : s.length);
+    console.log(s)
+
+    const json = await fetch(
+      `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+    )
+      .then(response => response.json())
+      .then(image => {
+        this.setState({ image: image.urls.regular});
+      });
   };
 
   componentDidMount() {
     this.getImage(this.props.trip.title).then(() => {
       console.log(this.state.image);
-    });
+    }
+  );
   }
   render() {
     return (
-      <Card id={this.props.trip.id} >
-        <CardHeader>
-          <CardHeaderTitle>{this.props.trip.title}</CardHeaderTitle>
-          <CardContent>
-            <small>
-              {this.props.trip.startDate} to {this.props.trip.endDate}
-            </small>
-          </CardContent>
-
-          <CardHeaderIcon>
-            <Icon className="fa fa-angle-down" />
-          </CardHeaderIcon>
-        </CardHeader>
-        <CardImage>
-          <Image isRatio="4:3" src={this.state.image} />
-        </CardImage>
-        {this.props.editTripModal}
-        <Button
-          isColor="info"
-          onClick={this.props.goToTrip}
-          id={this.props.trip.id}
-          className="goToTripButton"
-        >
-          {" "}
-          Go to Trip
-        </Button>
-        <CardContent className="tripCardButtonColor">
-          <Image
-            src={require("./edit-solid.svg")}
-            id="edtBtn"
-            alt="edit pen"
-            onClick={this.props.editTrip}
-            className="edtBtn"
-          />
-          <Image
-            src={require("./trash-alt-solid.svg")}
-            id="deleteBtn"
-            alt="delete Trash Can"
-            onClick={this.props.deleteTrip}
-            className="deleteBtn"
-          />
-        </CardContent>
-      </Card>
-
-      // <div className="card item">
-      //   {
-      //     <div className="card-body" id={this.props.trip.id}>
-      //       <h5 className="card-title">{this.props.trip.title}</h5>
-      //       <h6 className="card-subtitle mb-2 text-muted">
+      // <Card id={this.props.trip.id}>
+      //   <CardHeader>
+      //     <CardHeaderTitle>{this.props.trip.title}
+      //     <small>
       //         {this.props.trip.startDate} to {this.props.trip.endDate}
-      //       </h6>
-      //       <img
-      //         src={require("./edit-solid.svg")}
-      //         id="edtBtn"
-      //         alt="edit pen"
-      //         onClick={this.props.editTrip}
-      //       />
-      //       <img
-      //         src={require("./trash-alt-solid.svg")}
-      //         id="deleteBtn"
-      //         alt="delete Trash Can"
-      //         onClick={this.props.deleteTrip}
-      //       />
-      //       {props.editTripModal}
-      //       <Button isColor="light" onClick={props.goToTrip}>
-      //         {" "}
-      //         Go to Trip
-      //       </Button>
-      //     </div>
-      //   }
-      // </div>
+      //       </small></CardHeaderTitle>
+
+      //     {/* <CardHeaderIcon>
+      //       <Icon className="fa fa-angle-down" />
+      //     </CardHeaderIcon> */}
+      //   </CardHeader>
+      //   <CardImage>
+      //     <Image isRatio="4:3" src={this.state.image} />
+      //   </CardImage>
+      //   {this.props.editTripModal}
+      //   <Button
+      //     isColor="info"
+      //     onClick={this.props.goToTrip}
+      //     id={this.props.trip.id}
+      //     className="goToTripButton"
+      //   >
+      //     {" "}
+      //     Go to Trip
+      //   </Button>
+      //   <CardContent className="tripCardButtonColor">
+      //     <Image
+      //       src={require("./edit-solid.svg")}
+      //       id="edtBtn"
+      //       alt="edit pen"
+      //       onClick={this.props.editTrip}
+      //       className="edtBtn"
+      //     />
+      //     <Image
+      //       src={require("./trash-alt-solid.svg")}
+      //       id="deleteBtn"
+      //       alt="delete Trash Can"
+      //       onClick={this.props.deleteTrip}
+      //       className="deleteBtn"
+      //     />
+      //   </CardContent>
+      // </Card>
+
+      <div className="card item p-3" id={this.props.trip.id}>
+        {
+          <div className="card-body" id={this.props.trip.id}>
+            <h5 className="card-title">{this.props.trip.title}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">
+              {this.props.trip.startDate} to {this.props.trip.endDate}
+            </h6>
+            <Image isRatio="4:3" src={this.state.image} />
+            <img
+              src={require("./edit-solid.svg")}
+              id="edtBtn"
+              alt="edit pen"
+              onClick={this.props.editTrip}
+            />
+            <img
+              src={require("./trash-alt-solid.svg")}
+              id="deleteBtn"
+              alt="delete Trash Can"
+              onClick={this.props.deleteTrip}
+            />
+            <Button id={this.props.trip.id} isColor="info" onClick={this.props.goToTrip} style={this.styles}>
+              
+              Go to Trip
+            </Button>
+            {this.props.editTripModal}
+          </div>
+        }
+      </div>
     );
   }
 }

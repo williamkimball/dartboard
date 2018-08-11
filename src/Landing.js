@@ -41,7 +41,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Card>
+      <Card hasTextAlign="centered">
         <Title>Welcome to DartBoard!</Title>
         <CardContent>
           
@@ -55,7 +55,7 @@ export default class Login extends Component {
                 Login
               </Button>
             </div>
-            <Image isSize="256x256" src={require('././DartBoardRed.png')}/>
+              <Image id="loginLogo" src={require('././DartBoardRed.png')}/>
             <div>
               <Button
                 isColor="info"
