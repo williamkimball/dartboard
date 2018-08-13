@@ -4,7 +4,7 @@ import "./NavBar.css";
 // import APIManager from "./../APIHandler";
 // import { Redirect } from "react-router-dom";
 // import history from './../history'
-import { Image, Nav, NavItem, Columns, Column } from "bloomer";
+import { Nav, Columns, Column, Button } from "bloomer";
 
 export default class NavBar extends Component {
   state = {
@@ -16,6 +16,10 @@ export default class NavBar extends Component {
     stateToChange[evt.target.id] = evt.target.value;
     this.setState(stateToChange);
   };
+
+  goHome = () => {
+    this.props.history.push(`/`)
+  }
 
   render() {
     return (

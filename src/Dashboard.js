@@ -10,19 +10,12 @@ import "react-datepicker/dist/react-datepicker.css";
 import {
   Button,
   Column,
-  Card,
   Hero,
-  HeroHeader,
-  Nav,
   HeroBody,
   Container,
-  HeroFooter,
   Columns,
   Title,
-  Subtitle,
-  Tabs,
-  Tab,
-  Tablist
+  Subtitle
 } from "bloomer";
 
 import TripDash from "./TripDash";
@@ -118,9 +111,7 @@ export default class Dashboard extends Component {
       .then(e => e.json())
       .then(results => {
         console.log(results.data);
-        if (
-          Object.keys(results.data).length === 0
-        ) {
+        if (Object.keys(results.data).length === 0) {
           alert(
             "No flights found for that Origin/Date please try another day or origin"
           );
@@ -608,6 +599,16 @@ export default class Dashboard extends Component {
     }
   };
 
+  goHome = () => {
+    this.props.history.push("/")
+  }
+
+  logOut = () => {
+    localStorage.clear()
+    sessionStorage.clear()
+    this.goHome()
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -625,22 +626,33 @@ export default class Dashboard extends Component {
                   </Subtitle>
                 </Column>
                 <Column isOffset="1/3" id="dashButtons">
-                  <Button
-                    isColor="info"
-                    className="dashboard-welcome-button pleaseCenter"
-                    id="newTripBtn"
-                    onClick={this.TripModal}
-                  >
-                    Add New Trip
-                  </Button>
-                  <Button
-                    isColor="info"
-                    id="dartBtn"
-                    {...this.props}
-                    onClick={this.FindFlightModal}
-                  >
-                    Throw a Dart
-                  </Button>
+                  <Column id="homeLogOut">
+                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                      Home
+                    </Button>
+                    <Button isColor="info" onClick={this.logOut}>
+                      Logout
+                    </Button>
+                  </Column>
+                  <Column>
+                    <Button
+                      isColor="info"
+                      className="dashboard-welcome-button pleaseCenter"
+                      id="newTripBtn"
+                      onClick={this.TripModal}
+                    >
+                      Add New Trip
+                    </Button>
+                    <Button
+                      isColor="info"
+                      id="dartBtn"
+                      {...this.props}
+                      onClick={this.FindFlightModal}
+                    >
+                      Throw a Dart
+                    </Button>
+                  </Column>
+                  <Column />
                 </Column>
               </Columns>
             </Container>
@@ -668,8 +680,11 @@ export default class Dashboard extends Component {
               state={this.state}
               editTripModal={this.state.editTrip}
               deleteTrip={this.deleteTrip}
+              goHome={this.goHome}
+              logOut={this.logOut}
               Image={this.state.image}
               isColor="light"
+              {...this.props}
             />
           ))}
           {/* </Column> */}

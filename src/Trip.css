@@ -32,8 +32,16 @@ body {
   margin-right: 2%; */
 }
 
-#newTripBtn {
+#newTripBtn, #homeBtn {
   margin-right: 10%;
+}
+
+#homeLogOut{
+  justify-content: space-around
+}
+
+dashButtons{
+  justify-content: space-between;
 }
 
 #loginLogo {
@@ -47,9 +55,11 @@ body {
 .subtitle.is-6.smallAttribution {
   /* font-size: .5em */
 }
-
-/* div .columns .is-centered .is-grid .is-multiline .dashboard-tripCards{
+div .columns.is-centered.is-grid.is-multiline.dashboard-tripCards{
   margin-bottom: 5%;
+  margin-top: 2%;
+}
+/* 
 } */
 /* .card .card-resize {
   align-self: center;
@@ -66,6 +76,10 @@ a {
   align-content: center;
 } 
 */
+
+button{
+  overflow-wrap: break-word;
+}
 .budget-card {
   width: 60%;
   margin: 0 auto;
@@ -150,16 +164,24 @@ div .cardShrink{
   height: 20%
 }
 
+#deleteBtnCustList {
+display: flex;
+  width: 20%;
+  height: 5%;
+}
+
+#listName{
+  display: inline;
+  /* width: 40%;
+  margin: 0 auto; */
+}
+
 /* div.modal-content.modalScroll{
   height: 700px;
   overflow-y: auto;
 
 } */
-/* .deleteBtn {
-  margin-left: 80%;
-  width: 5%;
-  height: 5%;
-}
+/* 
 .edtBtn {
   width: 6%;
   height: 6%;

@@ -15,9 +15,16 @@ const ListTabContent = props => {
       role="tabpanel"
       aria-labelledby={props.tab.listName + "-tab"}
     >
-      <div className="card budget-card" id="budgetCard">
+      <div className="card budget-card" id={props.tab.id}>
         {props.state.ListItemModal}
-        <h2>{props.tab.listName} </h2>
+        <h2 id="listName">{props.tab.listName} </h2>
+        {/* <Button
+        src={require("./trash-alt-solid.svg")}
+        id="deleteBtnCustList"
+        alt="delete Trash Can"
+        onClick={props.deleteCustomList}
+        isColor="info"
+      >Delete {props.tab.listName} Tab</Button> */}
         {props.listItemList.map(list => (
           <CustomList
           key={list.id}

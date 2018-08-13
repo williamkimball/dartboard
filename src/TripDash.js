@@ -62,10 +62,10 @@ export default class TripDash extends Component {
     return APIHandler.getTripData(tripId)
       .then(result => {
         this.setState({ tripInfo: result });
-        return result
+        return result;
       })
       .then(result => {
-        this.getImage(result.title)
+        this.getImage(result.title);
       })
       .then(() => {
         fetch("http://localhost:5002/itinerary")
@@ -97,7 +97,7 @@ export default class TripDash extends Component {
     this.getTripInfo(this.props.match.params.anumber).then(this.checkForLists);
     // .then(
     // console.log(this.state.tripInfo.title)
-    // this.getImage(this.state.tripInfo.title).then(() => {
+    // this.getImage(this.state.tripInfo.title)
     //   console.log(this.state.image);
     // })
     // );
@@ -755,7 +755,7 @@ export default class TripDash extends Component {
         this.checkForLists();
       })
       .then(() => {
-        this.turnInactive();
+        this.turnListModalInactive()
       });
   };
 
@@ -833,18 +833,18 @@ export default class TripDash extends Component {
   };
 
   getImage = async destination => {
-    // var s = destination;
-    // console.log(s);
-    // s = s.substring(0, s.indexOf(","));
-    // console.log(s);
+    var s = destination;
+    console.log(s);
+    s = s.substring(0, s.indexOf(","));
+    console.log(s);
 
-    // const json = await fetch(
-    //   `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
-    // )
-    //   .then(response => response.json())
-    //   .then(image => {
-    //     this.setState({ image: image.urls.regular });
-    //   });
+    const json = await fetch(
+      `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+    )
+      .then(response => response.json())
+      .then(image => {
+        this.setState({ image: image.urls.regular });
+      });
   };
 
   addListItem = () => {
@@ -868,7 +868,7 @@ export default class TripDash extends Component {
   };
 
   deleteListItem = event => {
-    // Add new list to the API
+    // Delete list item from the API
 
     // console.log(event.target.parentNode.id)
     fetch(`http://localhost:5002/listItem/${event.target.parentNode.id}`, {
@@ -876,6 +876,20 @@ export default class TripDash extends Component {
     }).then(() => {
       this.getMyListItems();
     });
+  };
+
+  deleteCustomList = event => {
+    // console.log(event.target.parentNode.id)
+    fetch(`http://localhost:5002/list/${event.target.parentNode.id}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        this.checkForLists();
+      })
+      .then(() => {
+        document.getElementById("itinerary").classList.add("show");
+        document.getElementById("itinerary").classList.add("active");
+      });
   };
 
   getMyListItems = () => {
@@ -890,6 +904,16 @@ export default class TripDash extends Component {
         })
       );
   };
+
+  goHome = () => {
+    this.props.history.push("/")
+  }
+
+  logOut = () => {
+    localStorage.clear()
+    sessionStorage.clear()
+    this.goHome()
+  }
 
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
@@ -921,13 +945,21 @@ export default class TripDash extends Component {
                   {this.state.listModal}
                 </Column>
 
+                <Column id="homeLogOut">
+                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                      Home
+                    </Button>
+                    <Button isColor="info" onClick={this.logOut}>
+                      Logout
+                    </Button>
+                  </Column>
                 <Column hasTextAlign="right">
                   <Button
                     isColor="info"
                     onClick={this.addNewList}
                     className="newListBtn"
                   >
-                    New List
+                    New Tab
                   </Button>
                 </Column>
               </Columns>
@@ -1095,6 +1127,7 @@ export default class TripDash extends Component {
               getMyListItems={this.getMyListItems}
               listItemList={this.state.listItemList}
               deleteListItem={this.deleteListItem}
+              deleteCustomList={this.deleteCustomList}
             />
           ))}
         </div>

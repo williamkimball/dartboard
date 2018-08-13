@@ -7,9 +7,9 @@ import NavBar from "./Nav/NavBar";
 import Dartboard from "./Dartboard";
 
 ReactDOM.render(
-  <Router>
-    <React.Fragment>
-      <NavBar />
+  <Router {...this.props}>
+    <React.Fragment {...this.props}>
+      <NavBar {...this.props}/>
       <Dartboard />
     </React.Fragment>
   </Router>,

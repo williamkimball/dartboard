@@ -5,12 +5,180 @@
       "email": "wkkimball043@gmail.com",
       "password": "p",
       "id": 1
+    },
+    {
+      "name": "mom",
+      "email": "1kbkimball@gmail.com",
+      "password": "kimball",
+      "id": 2
     }
   ],
-  "trips": [],
-  "itinerary": [],
-  "budget": [],
-  "flight": [],
-  "list": [],
-  "listItem": []
+  "trips": [
+    {
+      "title": "Istanbul, Adana, Turkey",
+      "startDate": "2018-08-14",
+      "endDate": "2018-08-22",
+      "tripLength": 8,
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "title": "Denver, CO, United States",
+      "startDate": "2018-08-30",
+      "endDate": "2018-09-04",
+      "tripLength": 5,
+      "userId": 2,
+      "id": 2
+    }
+  ],
+  "itinerary": [
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 1",
+      "id": 1
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 2",
+      "id": 2
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 3",
+      "id": 3
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 4",
+      "id": 4
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 5",
+      "id": 5
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 6",
+      "id": 6
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 7",
+      "id": 7
+    },
+    {
+      "tripId": 1,
+      "ItineraryName": "Day 8",
+      "id": 8
+    },
+    {
+      "tripId": 2,
+      "ItineraryName": "Day 1",
+      "id": 9
+    },
+    {
+      "tripId": 2,
+      "ItineraryName": "Day 2",
+      "id": 10
+    },
+    {
+      "tripId": 2,
+      "ItineraryName": "Day 3",
+      "id": 11
+    },
+    {
+      "tripId": 2,
+      "ItineraryName": "Day 4",
+      "id": 12
+    },
+    {
+      "tripId": 2,
+      "ItineraryName": "Day 5",
+      "id": 13
+    }
+  ],
+  "itineraryItem": [
+    {
+      "ItineraryName": "hike",
+      "itineraryId": 9,
+      "startTime": "06:00",
+      "tripId": 2,
+      "id": 2
+    },
+    {
+      "ItineraryName": "green day",
+      "itineraryId": 10,
+      "tripId": 2,
+      "id": 3
+    }
+  ],
+  "budget": [
+    {
+      "budgetItemTitle": "Flight to Istanbul, Adana, Turkey",
+      "budgetItemPrice": 2354,
+      "tripId": 1,
+      "id": 1
+    },
+    {
+      "budgetItemTitle": "Flight to Denver, CO, United States",
+      "budgetItemPrice": 255,
+      "tripId": 2,
+      "id": 2
+    },
+    {
+      "budgetItemTitle": "food,eno",
+      "budgetItemPrice": "500",
+      "tripId": 2,
+      "id": 3
+    }
+  ],
+  "flight": [
+    {
+      "FlightName": "Flight to Istanbul, Adana, Turkey",
+      "FlightStartDate": "2018-08-14",
+      "FlightEndDate": "2018-08-22",
+      "FlightNumber": "TK 9568",
+      "FlightOrigin": "bna",
+      "FlightDestination": "IST",
+      "tripId": 1,
+      "id": 1
+    },
+    {
+      "FlightName": "Flight to Denver, CO, United States",
+      "FlightStartDate": "2018-08-30",
+      "FlightEndDate": "2018-09-04",
+      "FlightNumber": "WN 2441",
+      "FlightOrigin": "atl",
+      "FlightDestination": "DEN",
+      "tripId": 2,
+      "id": 2
+    },
+    {
+      "FlightStartDate": "2018-09-01",
+      "FlightEndDate": "2018-09-15",
+      "FlightOrigin": "bna",
+      "tripId": 2,
+      "id": 3
+    }
+  ],
+  "list": [
+    {
+      "listName": "TEST",
+      "tripId": 2,
+      "id": 1
+    }
+  ],
+  "listItem": [
+    {
+      "listItemContent": "boots",
+      "listId": 2,
+      "id": 1
+    },
+    {
+      "listItemContent": "shirt,boots",
+      "listId": 6,
+      "id": 2
+    }
+  ]
 }
