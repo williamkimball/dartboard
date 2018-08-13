@@ -50,7 +50,7 @@ export default class FindFlightResults extends Component {
 
         // console.log(key);
         children.push(
-          <ModalContent className='cardShrink'>
+          <div className='cardShrink'>
             <h4>{destination}</h4>
             <p>Price: ${this.props.FindFlightResults[key][departureKeyNo].price}</p>{" "}
             <p>
@@ -69,11 +69,11 @@ export default class FindFlightResults extends Component {
                 >
                   Let's Go!
                 </Button>
-          </ModalContent>
+          </div>
         );
       }
       //Create the parent and add the children
-      DestinationList.push(<ModalContent>{children}</ModalContent>);
+      DestinationList.push(<ModalContent className="modalScroll">{children}</ModalContent>);
     }
     return DestinationList;
   };
@@ -98,7 +98,7 @@ export default class FindFlightResults extends Component {
             <ModalCardTitle>Search Results</ModalCardTitle>
             <Delete onClick={this.turnInactive} />
           </ModalCardHeader>
-          <ModalContent>{this.buildFindFlightList()}</ModalContent>
+          {this.buildFindFlightList()}
           <ModalCardBody />
         </ModalCard>
       </Modal>
