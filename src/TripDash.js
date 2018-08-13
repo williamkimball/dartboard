@@ -62,6 +62,10 @@ export default class TripDash extends Component {
     return APIHandler.getTripData(tripId)
       .then(result => {
         this.setState({ tripInfo: result });
+        return result
+      })
+      .then(result => {
+        this.getImage(result.title)
       })
       .then(() => {
         fetch("http://localhost:5002/itinerary")
@@ -90,12 +94,13 @@ export default class TripDash extends Component {
 
   //this function is what calls the getTripInfo function
   componentDidMount() {
-    this.getTripInfo(this.props.match.params.anumber).then(this.checkForLists)
-    .then(
-      this.getImage(this.state.tripInfo.title).then(() => {
-        console.log(this.state.image);
-      })
-    );
+    this.getTripInfo(this.props.match.params.anumber).then(this.checkForLists);
+    // .then(
+    // console.log(this.state.tripInfo.title)
+    // this.getImage(this.state.tripInfo.title).then(() => {
+    //   console.log(this.state.image);
+    // })
+    // );
   }
 
   BudgetModal = () => {
@@ -828,9 +833,10 @@ export default class TripDash extends Component {
   };
 
   getImage = async destination => {
-    // var s = this.state.tripInfo.title;
+    // var s = destination;
+    // console.log(s);
     // s = s.substring(0, s.indexOf(","));
-    // console.log(s)
+    // console.log(s);
 
     // const json = await fetch(
     //   `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`

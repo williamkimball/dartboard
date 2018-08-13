@@ -8,7 +8,6 @@ body {
 } */
 
 .dashboard-tripCards {
-
   /* justify-content: space-around */
 }
 
@@ -16,31 +15,37 @@ body {
   background: white;
 }
 .card.item {
- /* align-content: center; */
- display: flex;
- flex-wrap: wrap;
- max-width: 40%;
- margin: 0 auto;
- margin-bottom: 3%;
-} 
+  /* align-content: center; */
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40%;
+  margin: 0 auto;
+  margin-bottom: 3%;
+}
 
 .p-3 {
   padding: 0%;
   margin: 5%;
   margin-top: 2%;
   margin-bottom: 0%;
+  /* margin-left: 2%;
+  margin-right: 2%; */
 }
 
 #newTripBtn {
   margin-right: 10%;
 }
 
-#loginLogo{
+#loginLogo {
   max-width: 35%;
   max-height: 35%;
   margin: 0 auto;
   margin-top: 3%;
   margin-bottom: 3%;
+}
+
+.subtitle.is-6.smallAttribution {
+  /* font-size: .5em */
 }
 
 /* div .columns .is-centered .is-grid .is-multiline .dashboard-tripCards{
@@ -61,22 +66,22 @@ a {
   align-content: center;
 } 
 */
- .budget-card {
+.budget-card {
   width: 60%;
   margin: 0 auto;
   text-align: center;
-} 
- #budgetCard {
+}
+#budgetCard {
   background-color: #f3f3f3;
   margin-top: 5%;
   margin-bottom: 5%;
-} 
- .budget-card-content {
+}
+.budget-card-content {
   width: 60%;
   margin: 0 auto;
   max-height: 10%;
   background-color: #f3f3f3;
-} 
+}
 
 .itinerary-card-content {
   width: 80%;
@@ -85,22 +90,22 @@ a {
   background-color: #ffffff;
   border: solid 2px #d5d5d5;
   border-radius: 4px;
-} 
+}
 
 #itineraryButton {
-max-width: 40%;
-align-self: center;
-margin: 2%;
-} 
+  max-width: 40%;
+  align-self: center;
+  margin: 2%;
+}
 
- #budgetTotal {
+#budgetTotal {
   margin-top: 2%;
   margin-bottom: 2%;
-} 
- .itinerary-card-body{
+}
+.itinerary-card-body {
   max-height: 30px;
   margin-bottom: 2%;
- }
+}
 
 #edtBtn {
   width: 6%;
@@ -156,16 +161,16 @@ margin: 2%;
 
 /*
 */
-   .card-body {
-    min-width: 35%;
-  }
-.customCard{
+.card-body {
+  min-width: 35%;
+}
+.customCard {
   width: 60%;
   margin: 0 auto;
   margin-top: 3%;
   height: 4em;
   background-color: #f3f3f3;
-  align-items: center
+  align-items: center;
 }
 
 #deleteBtnCust {
@@ -173,7 +178,6 @@ margin: 2%;
   width: 25%;
   height: 25%;
   display: inline;
-
 }
 /*
 #Hdg{

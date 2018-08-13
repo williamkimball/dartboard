@@ -19,13 +19,13 @@ export default class FindFlightForm extends Component {
       <Field>
         <Label>Flight Origin:</Label>
         <Control>
-          <Input type="text" placeholder="BNA" onChange={this.props.handleFieldChange} id="FindFlightOrigin"/>
+          <Input type="text" required placeholder="BNA" onChange={this.props.handleFieldChange} id="FindFlightOrigin"/>
         </Control>
       </Field>
       <Field>
         <Label>Depart Date:</Label>
         <Control >
-          <Input type="date" placeholder="7/4/2018" onChange={this.props.handleFieldChange} id="FindFlightStartDate"/>
+          <Input type="date" required placeholder="7/4/2018" onChange={this.props.handleFieldChange} id="FindFlightStartDate"/>
           <Icon isSize="small" isAlign="left">
             <span className="fa fa-user" aria-hidden="true" />
           </Icon>
@@ -36,7 +36,7 @@ export default class FindFlightForm extends Component {
       </Field>
       <Field isGrouped>
         <Control>
-          <Button isColor="primary" onClick={this.props.FindFlight}>Submit</Button>
+          <Button isColor="primary" type="submit" onClick={this.props.FindFlight}>Submit</Button>
         </Control>
         <Control onClick={this.turnInactive}>
           <Button>Cancel</Button>

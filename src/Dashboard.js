@@ -106,7 +106,7 @@ export default class Dashboard extends Component {
     // console.log(endDate)
     // endDate = endDate.slice(0, -3);
     // console.log(endDate)
-    let origin = this.state.FindFlightOrigin;
+    let origin = this.state.FindFlightOrigin.toUpperCase();
     let destination = this.state.FindFlightDestination;
 
     fetch(
