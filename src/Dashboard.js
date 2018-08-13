@@ -118,6 +118,13 @@ export default class Dashboard extends Component {
       .then(e => e.json())
       .then(results => {
         console.log(results.data);
+        if (
+          Object.keys(results.data).length === 0
+        ) {
+          alert(
+            "No flights found for that Origin/Date please try another day or origin"
+          );
+        }
         this.setState({
           FindFlightResults: results.data,
           FindFlightModal: ""
@@ -125,7 +132,7 @@ export default class Dashboard extends Component {
         return results;
       })
       .then(results => {
-        // console.log(results.data)
+        console.log(results);
         let AirportList = this.state.AirportResults;
         for (let result in results.data) {
           // console.log(result)
@@ -361,7 +368,7 @@ export default class Dashboard extends Component {
                   tripId: trip.id
                 })
               });
-              return trip
+              return trip;
             })
             .then(function(trip) {
               console.log(tripLength);

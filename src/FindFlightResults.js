@@ -14,7 +14,7 @@ import {
   ModalContent,
   Button
 } from "bloomer";
-import DestinationBox from "./DestinationBox";
+
 
 export default class FindFlightResults extends Component {
   turnInactive = () => {
