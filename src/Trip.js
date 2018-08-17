@@ -5,6 +5,7 @@ import "./Trip.css";
 import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import { Button, Image, Subtitle } from "bloomer";
+import apiKeys from "./APIKeys"
 
 // import { Link } from "react-router-dom";
 // import EditTripForm from "./EditTripForm";
@@ -26,10 +27,11 @@ export default class Trip extends Component {
     console.log(s);
 
     const json = await fetch(
-      `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+      `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`
     )
       .then(response => response.json())
       .then(image => {
+        if (image.urls){
         this.setState({
           image: image,
           imagePic: image.urls.regular,
@@ -38,6 +40,7 @@ export default class Trip extends Component {
           imageLink: image.links.html,
           imageAlt: image.description
         });
+      }
       });
   };
 
@@ -55,7 +58,7 @@ export default class Trip extends Component {
             <h6 className="card-subtitle mb-2 text-muted">
               {this.props.trip.startDate} to {this.props.trip.endDate}
             </h6>
-            <Image isRatio="4:3" src={this.state.imagePic} alt={this.state.imageAlt}/>
+            <Image isRatio="4:3" src={this.state.imagePic} alt={this.state.imageAlt} className="tripImage"/>
             <Subtitle isSize={6} className="smallAttribution">
               Photo by{" "}
               <a href={this.state.imageUserLink} target="_blank">
@@ -90,48 +93,6 @@ export default class Trip extends Component {
           </div>
         }
       </div>
-
-      // <Card id={this.props.trip.id}>
-      //   <CardHeader>
-      //     <CardHeaderTitle>{this.props.trip.title}
-      //     <small>
-      //         {this.props.trip.startDate} to {this.props.trip.endDate}
-      //       </small></CardHeaderTitle>
-
-      //     {/* <CardHeaderIcon>
-      //       <Icon className="fa fa-angle-down" />
-      //     </CardHeaderIcon> */}
-      //   </CardHeader>
-      //   <CardImage>
-      //     <Image isRatio="4:3" src={this.state.image} />
-      //   </CardImage>
-      //   {this.props.editTripModal}
-      //   <Button
-      //     isColor="info"
-      //     onClick={this.props.goToTrip}
-      //     id={this.props.trip.id}
-      //     className="goToTripButton"
-      //   >
-      //     {" "}
-      //     Go to Trip
-      //   </Button>
-      //   <CardContent className="tripCardButtonColor">
-      //     <Image
-      //       src={require("./edit-solid.svg")}
-      //       id="edtBtn"
-      //       alt="edit pen"
-      //       onClick={this.props.editTrip}
-      //       className="edtBtn"
-      //     />
-      //     <Image
-      //       src={require("./trash-alt-solid.svg")}
-      //       id="deleteBtn"
-      //       alt="delete Trash Can"
-      //       onClick={this.props.deleteTrip}
-      //       className="deleteBtn"
-      //     />
-      //   </CardContent>
-      // </Card>
     );
   }
 }

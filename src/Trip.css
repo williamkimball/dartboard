@@ -36,6 +36,10 @@ body {
   margin-right: 10%;
 }
 
+#homeBtn{
+  margin-right: 28%
+}
+
 #homeLogOut{
   justify-content: space-around
 }
@@ -236,6 +240,10 @@ display: flex;
   width: 25%;
   height: 25%;
   display: inline;
+}
+
+figure.tripImage > img{
+  object-fit: cover;
 }
 /*
 #Hdg{

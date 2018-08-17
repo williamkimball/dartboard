@@ -20,6 +20,7 @@ import {
 
 import TripDash from "./TripDash";
 import EditTripModal from "./editTripModal";
+import apiKeys from "./APIKeys";
 
 export default class Dashboard extends Component {
   state = {
@@ -92,18 +93,12 @@ export default class Dashboard extends Component {
 
   FindFlight = () => {
     let startDate = this.state.FindFlightStartDate;
-    // console.log(startDate)
-    // startDate = startDate.slice(0, -3);
-    // console.log(startDate)
     let endDate = this.state.FindFlightEndDate;
-    // console.log(endDate)
-    // endDate = endDate.slice(0, -3);
-    // console.log(endDate)
     let origin = this.state.FindFlightOrigin.toUpperCase();
     let destination = this.state.FindFlightDestination;
 
     fetch(
-      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd`,
+      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=${apiKeys.TravelPayoutKey()}&currency=usd`,
       {
         method: "GET"
       }
@@ -130,7 +125,7 @@ export default class Dashboard extends Component {
           fetch(`https://www.air-port-codes.com/api/v1/single?iata=${result}`, {
             headers: {
               // Accept: "application/json",
-              "Apc-Auth": "3d57d73c4b"
+              "Apc-Auth": apiKeys.airportSearch()
             },
             method: "POST"
           })
@@ -159,28 +154,6 @@ export default class Dashboard extends Component {
             });
         }
       });
-  };
-
-  // .then(
-
-  getImage = async destination => {
-    // const response = await  fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`, {
-    //   headers: {
-    //     "Cache-Control": "no-cache",
-    //     "Postman-Token": "d73fa50b-25c2-455b-861f-89c874d1aa02"
-    //   }
-    // })
-    // const json = await response.json();
-    // return await json
-
-    const json = await fetch(
-      `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
-    )
-      .then(response => response.json())
-      .then(response => {
-        return response;
-      });
-    return json;
   };
 
   TripModal = () => {
@@ -600,14 +573,14 @@ export default class Dashboard extends Component {
   };
 
   goHome = () => {
-    this.props.history.push("/")
-  }
+    this.props.history.push("/");
+  };
 
   logOut = () => {
-    localStorage.clear()
-    sessionStorage.clear()
-    this.goHome()
-  }
+    localStorage.clear();
+    sessionStorage.clear();
+    this.goHome();
+  };
 
   render() {
     return (

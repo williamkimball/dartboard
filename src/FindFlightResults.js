@@ -78,13 +78,6 @@ export default class FindFlightResults extends Component {
     return DestinationList;
   };
 
-  // for (let key in this.props.FindFlightResults) {
-  //     DestinationList.push(<Box>${key}</Box>)
-  // }
-  // this.setState({
-  //     DestinationList: DestinationList
-  // })
-
   componentDidMount() {
     // console.log(this.props.FindFlightResults);
     this.buildFindFlightList();

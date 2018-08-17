@@ -33,6 +33,7 @@ import ListModal from "./DisplayModals/ListModal";
 import ListTab from "./ListTab";
 import ListTabContent from "./ListTabContent";
 import ListItemModal from "./DisplayModals/ListItemModal";
+import apiKeys from "./APIKeys"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -45,7 +46,6 @@ export default class TripDash extends Component {
     listModal: "",
     BudgetModal: "",
     FlightModal: "",
-    // ItineraryModal: "",
     budgetTotal: 0,
     editFlightModal: "",
     listTabs: [],
@@ -95,12 +95,6 @@ export default class TripDash extends Component {
   //this function is what calls the getTripInfo function
   componentDidMount() {
     this.getTripInfo(this.props.match.params.anumber).then(this.checkForLists);
-    // .then(
-    // console.log(this.state.tripInfo.title)
-    // this.getImage(this.state.tripInfo.title)
-    //   console.log(this.state.image);
-    // })
-    // );
   }
 
   BudgetModal = () => {
@@ -839,7 +833,7 @@ export default class TripDash extends Component {
     console.log(s);
 
     const json = await fetch(
-      `https://api.unsplash.com/photos/random/?query=${s}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
+      `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`
     )
       .then(response => response.json())
       .then(image => {
