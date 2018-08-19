@@ -3,10 +3,8 @@
 
 import "./Trip.css";
 import React, { Component } from "react";
-import { Button, Column, Card, CardContent } from "bloomer";
+import { Button, Card, CardContent } from "bloomer";
 import ItineraryModal from "./DisplayModals/ItineraryModal";
-// import APIHandler from "./APIHandler";
-// import EditItineraryModal from "./EditItineraryItemModal"
 
 //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
 

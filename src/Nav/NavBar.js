@@ -4,7 +4,7 @@ import "./NavBar.css";
 // import APIManager from "./../APIHandler";
 // import { Redirect } from "react-router-dom";
 // import history from './../history'
-import { Nav, Columns, Column, Button } from "bloomer";
+import { Nav, Columns, Column } from "bloomer";
 
 export default class NavBar extends Component {
   state = {
@@ -24,14 +24,10 @@ export default class NavBar extends Component {
   render() {
     return (
       <Nav isVCentered>
-        {/* <Image isSize="128x128" src={require('../DartBoardRed.png')}/> */}
         <Columns isVCentered>
           <Column>
             <h2>DartBoard</h2>
           </Column>
-          {/* <Column hasTextAlign="right">
-            <p id="homebutton">Home</p>
-          </Column> */}
         </Columns>
       </Nav>
     );

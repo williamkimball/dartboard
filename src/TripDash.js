@@ -9,16 +9,13 @@ import {
   Card,
   Hero,
   HeroHeader,
-  Nav,
   HeroBody,
   Container,
-  HeroFooter,
   Columns,
   Title,
   Subtitle,
   Tabs,
-  Tab,
-  Tablist
+  Tab
 } from "bloomer";
 import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
@@ -579,9 +576,7 @@ export default class TripDash extends Component {
     let total = this.state.budgetTotal;
     let targetPrice = 0;
     let targetId = event.target.parentNode.id;
-    // this.setState({
-    //   budgetTotal: parseInt(total) - parseInt(event.target)
-    // });
+
     return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
       method: "GET"
     })
@@ -703,9 +698,7 @@ export default class TripDash extends Component {
 
       default:
         let tabcont3 = document.getElementsByClassName("show");
-        // console.log(event.target.parentNode.textContent);
         for (let item of tabcont3) {
-          // console.log(item)
           item.classList.remove("show");
           item.classList.remove("active");
         }
@@ -864,7 +857,6 @@ export default class TripDash extends Component {
   deleteListItem = event => {
     // Delete list item from the API
 
-    // console.log(event.target.parentNode.id)
     fetch(`http://localhost:5002/listItem/${event.target.parentNode.id}`, {
       method: "DELETE"
     }).then(() => {
@@ -873,7 +865,6 @@ export default class TripDash extends Component {
   };
 
   deleteCustomList = event => {
-    // console.log(event.target.parentNode.id)
     fetch(`http://localhost:5002/list/${event.target.parentNode.id}`, {
       method: "DELETE"
     })
@@ -890,7 +881,6 @@ export default class TripDash extends Component {
     fetch(`http://localhost:5002/listItem`)
       .then(e => e.json())
       .then(listItemList =>
-        // console.log(listItemList)
         this.setState({
           listItemList: listItemList.filter(
             listItemList => this.state.name[0].id === listItemList.listId
@@ -1042,7 +1032,6 @@ export default class TripDash extends Component {
                   editFlight={this.editFlightModal}
                   editFlightModal={this.state.editFlight}
                   FlightModalState={this.state.FlightModal}
-                  // FindFlightModal={this.state.FindFlightModal}
                 />
               ))}
             </div>
@@ -1064,12 +1053,10 @@ export default class TripDash extends Component {
                   editItinerary={this.editItinerary}
                   editItineraryModal={this.editItineraryModal}
                   editItineraryModalState={this.state.editItineraryModal}
-                  // editItineraryModalState={this.state.ItineraryModal}
                   ItineraryModal={this.ItineraryModal}
                   {...this.props}
                   tripInfo={this.state.tripInfo}
                   getTripInfo={this.getTripInfo}
-                  // ItineraryModalState={this.state.ItineraryModal}
                 />
               ))}
             </div>

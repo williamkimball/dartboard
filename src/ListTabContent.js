@@ -18,19 +18,12 @@ const ListTabContent = props => {
       <div className="card budget-card" id={props.tab.id}>
         {props.state.ListItemModal}
         <h2 id="listName">{props.tab.listName} </h2>
-        {/* <Button
-        src={require("./trash-alt-solid.svg")}
-        id="deleteBtnCustList"
-        alt="delete Trash Can"
-        onClick={props.deleteCustomList}
-        isColor="info"
-      >Delete {props.tab.listName} Tab</Button> */}
+
         {props.listItemList.map(list => (
           <CustomList
           key={list.id}
           list={list}
           user={props.state.user}
-          // state={this.state}
           tripInfo={props.state.tripInfo}
           deleteListItem={props.deleteListItem}
           />

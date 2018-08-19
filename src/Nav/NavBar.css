@@ -7,7 +7,6 @@
 nav,
 form {
   display: inline;
-  /* margin-left: 3%; */
 }
 
 nav {
@@ -40,6 +39,4 @@ nav h2 {
   background-color: #254e70;
   color: white;
   border-style: none;
-  /* margin-left: 5%;
-  margin-bottom: 0%; */
 }

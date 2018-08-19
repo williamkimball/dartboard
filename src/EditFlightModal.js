@@ -3,11 +3,8 @@ import React, { Component } from "react";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Button } from "bloomer";
 
 export default class EditFlightForm extends Component {
-    // turnInactive = () => {
-    //     document.querySelector(".modal").classList.remove("is-active")
-    // }
+
     render() {
-      // console.log(this.props.targInfo)
         return (
 <Modal >
   <ModalBackground />

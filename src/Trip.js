@@ -3,12 +3,8 @@
 
 import "./Trip.css";
 import React, { Component } from "react";
-// import APIHandler from "./APIHandler";
 import { Button, Image, Subtitle } from "bloomer";
 import apiKeys from "./APIKeys"
-
-// import { Link } from "react-router-dom";
-// import EditTripForm from "./EditTripForm";
 
 export default class Trip extends Component {
   state = {
@@ -20,11 +16,10 @@ export default class Trip extends Component {
     marginLeft: "35%"
   };
   getImage = async destination => {
-    // console.log(destination)
     var s = destination;
     var n = s.indexOf(",");
     s = s.substring(0, n != -1 ? n : s.length);
-    console.log(s);
+    // console.log(s);
 
     const json = await fetch(
       `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`

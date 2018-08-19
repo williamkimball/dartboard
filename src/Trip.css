@@ -1,21 +1,19 @@
 /* William Kimball 2018
-This file styles the news component */
-
-/* 
-
-body {
-  background: #d3d3d3;
-} */
+This file styles the most components */
 
 .dashboard-tripCards {
-  /* justify-content: space-around */
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+}
+.custCard{
+  width: 90%
 }
 
 .card-cont {
   background: white;
 }
 .card.item {
-  /* align-content: center; */
   display: flex;
   flex-wrap: wrap;
   max-width: 40%;
@@ -28,23 +26,22 @@ body {
   margin: 5%;
   margin-top: 2%;
   margin-bottom: 0%;
-  /* margin-left: 2%;
-  margin-right: 2%; */
 }
 
-#newTripBtn, #homeBtn {
+#newTripBtn,
+#homeBtn {
   margin-right: 10%;
 }
 
-#homeBtn{
-  margin-right: 28%
+#homeBtn {
+  margin-right: 28%;
 }
 
-#homeLogOut{
-  justify-content: space-around
+#homeLogOut {
+  justify-content: space-around;
 }
 
-dashButtons{
+dashButtons {
   justify-content: space-between;
 }
 
@@ -56,32 +53,12 @@ dashButtons{
   margin-bottom: 3%;
 }
 
-.subtitle.is-6.smallAttribution {
-  /* font-size: .5em */
-}
-div .columns.is-centered.is-grid.is-multiline.dashboard-tripCards{
+div .columns.is-centered.is-grid.is-multiline.dashboard-tripCards {
   margin-bottom: 5%;
   margin-top: 2%;
 }
-/* 
-} */
-/* .card .card-resize {
-  align-self: center;
-}  
-a {
-  margin-left: 3%;
-} 
-/*
-.tripCard {
-  background-color: #f3f3f3;
-}
-.card {
-  max-width: 60%;
-  align-content: center;
-} 
-*/
 
-button{
+button {
   overflow-wrap: break-word;
 }
 .budget-card {
@@ -136,15 +113,15 @@ button{
   width: 5%;
   height: 5%;
 }
-.modal-content.cardShrink{
+.modal-content.cardShrink {
   width: 80%;
   /* height: 200px; */
-  margin-top:2%;
-  margin-bottom:1%;
+  margin-top: 2%;
+  margin-bottom: 1%;
   /* display: block; */
 }
 
-div .cardShrink{
+div .cardShrink {
   position: relative;
   display: -ms-flexbox;
   /* display: flex; */
@@ -154,75 +131,30 @@ div .cardShrink{
   pointer-events: auto;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: .3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
   outline: 0;
   width: 80%;
   height: 200px;
   margin: 0 auto;
-  margin-top:2%;
-  margin-bottom:2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
   text-align: center;
   padding-bottom: 2%;
   padding-top: 2%;
-  height: 20%
+  height: 20%;
 }
 
 #deleteBtnCustList {
-display: flex;
+  display: flex;
   width: 20%;
   height: 5%;
 }
 
-#listName{
+#listName {
   display: inline;
-  /* width: 40%;
-  margin: 0 auto; */
 }
 
-/* div.modal-content.modalScroll{
-  height: 700px;
-  overflow-y: auto;
-
-} */
-/* 
-.edtBtn {
-  width: 6%;
-  height: 6%;
-} */
-
-/* .tripCardButtonColor {
-  background-color: #f3f3f3;
-}
-
-.card-image {
-  background-color: #f3f3f3;
-}
-
-.goToTripButton {
-  max-width: 60%;
-  background-color: #f3f3f3;
-  margin: 0 auto;
-}
-
-#budgetButton {
-  margin-top: -2%;
-} */
-
-/* #header {
-  background: #d3d3d3;
-  height: 100px;
-  padding: 0%;
-}
-
-#hero-body-header{
-  padding: 0%;
-  height: 2em;
-  margin-bottom: 3%;
-} */
-
-/*
-*/
 .card-body {
   min-width: 35%;
 }
@@ -240,54 +172,9 @@ display: flex;
   width: 25%;
   height: 25%;
   display: inline;
+  margin-top: -2%;
 }
 
-figure.tripImage > img{
+figure.tripImage > img {
   object-fit: cover;
 }
-/*
-#Hdg{
-  margin-bottom: 0px;
-  margin-top: 5%;
-  display: inline;
-}
-
-#subHdg{
-  display: block;
-  margin-top: -5%
-} 
-
-/* #tripHead{
-  margin-top: 2%;
-  padding: 0%
-}
-
-a{
-  color: #ffffff
-}
-
-#main-head{
-  margin-top:-2%;
-}
-
-#dartBtn{
-  margin-left: 10%;
-} */
-
-/* #logo{display: inline-block} */
-
-/* }
-button .button .is-info .buttonShrink{
-  width: 40%;
-  margin: 0 auto;
-} */
-
-/* img {
-  max-width: 300px;
-  max-height: 200px;
-} */
-
-/* .card-header {
-  height: 14%;
-  width: 100%;
-} */

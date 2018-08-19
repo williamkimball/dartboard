@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import APIHandler from "./APIHandler";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Button } from "bloomer";
 
 export default class ListForm extends Component {

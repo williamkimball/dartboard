@@ -30,9 +30,7 @@ export default class FindFlightResults extends Component {
         let destination = "";
         this.props.AirportResults.map(Airport => {
           console.log(Airport);
-        //   console.log(key);
           if (Airport.term === key && Airport.status !== false) {
-            // console.log("itsa match");
             destination = Airport.airport.full_location;
           }
         });
@@ -79,7 +77,6 @@ export default class FindFlightResults extends Component {
   };
 
   componentDidMount() {
-    // console.log(this.props.FindFlightResults);
     this.buildFindFlightList();
   }
   render() {

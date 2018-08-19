@@ -121,10 +121,8 @@ export default class Dashboard extends Component {
         console.log(results);
         let AirportList = this.state.AirportResults;
         for (let result in results.data) {
-          // console.log(result)
           fetch(`https://www.air-port-codes.com/api/v1/single?iata=${result}`, {
             headers: {
-              // Accept: "application/json",
               "Apc-Auth": apiKeys.airportSearch()
             },
             method: "POST"
@@ -270,10 +268,7 @@ export default class Dashboard extends Component {
       } else {
         let title = "";
         this.state.AirportResults.map(Airport => {
-          console.log(Airport);
-          //   console.log(key);
           if (Airport.term === key && Airport.status !== false) {
-            // console.log("itsa match");
             title = Airport.airport.full_location;
           }
         });
@@ -370,7 +365,7 @@ export default class Dashboard extends Component {
                         trips: trip.filter(
                           user => user.userId === this.state.user
                         ),
-                        dashHead: `Welcome to Dartboard, ${
+                        dashHead: `Welcome to DartBoard, ${
                           this.state.userName
                         }!`
                       })
@@ -410,7 +405,7 @@ export default class Dashboard extends Component {
           .then(trip =>
             this.setState({
               trips: trip.filter(user => user.userId === this.state.user),
-              dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+              dashHead: `Welcome to DartBoard, ${this.state.userName}!`
             })
           );
       });
@@ -556,7 +551,6 @@ export default class Dashboard extends Component {
     } else if (event.target.id === "deleteBtn") {
     } else {
       var id1 = event.target.id;
-      // console.log(id1);
       APIHandler.getData("trips", id1)
         .then(trip => {
           this.setState({
@@ -590,7 +584,6 @@ export default class Dashboard extends Component {
             <Container>
               <Columns is-vcentered>
                 <Column>
-                  {/* <Image isSize="48x48" src={require('././DartBoardRed.png')} id="logo"/> */}
                   <Title id="main-head" hasTextColor="white">
                     {this.state.dashHead}
                   </Title>
@@ -641,7 +634,6 @@ export default class Dashboard extends Component {
           {this.state.tripForm}
           {this.state.FindFlightModal}
           {this.state.FindFlightResultsModal}
-          {/* <Column isSize="1/4"> */}
           {this.state.trips.map(trip => (
             <Trip
               key={trip.id}
@@ -660,7 +652,6 @@ export default class Dashboard extends Component {
               {...this.props}
             />
           ))}
-          {/* </Column> */}
         </Columns>
       </React.Fragment>
     );
