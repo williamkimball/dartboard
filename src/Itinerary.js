@@ -179,7 +179,7 @@ export default class Itinerary extends Component {
         {this.state.ItineraryModal}
         {this.props.editItineraryModalState}
         <Button
-        id="itineraryButton"
+        className="itineraryButton"
           isColor="info"
           render={props => (
               <p {...props} onClick={this.ItineraryModal}>

@@ -10,7 +10,7 @@ export default class ItineraryForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>New Itinerary Item</ModalCardTitle>
-      <Delete onClick={this.props.turnListItemModalInactive}/>
+      <Delete onClick={this.props.turnInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>

@@ -87,10 +87,16 @@ button {
   border-radius: 4px;
 }
 
-#itineraryButton {
+.itineraryButton {
   max-width: 40%;
   align-self: center;
   margin: 2%;
+  padding: 3%
+}
+
+.button.is-info.itineraryButton{
+  padding-left: 30%;
+  padding-right: 30%
 }
 
 #budgetTotal {

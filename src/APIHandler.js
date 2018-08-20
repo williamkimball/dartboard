@@ -1,3 +1,7 @@
+const port = process.env.PORT || 4000;
+
+console.log(port)
+
 class apiCalls {
   static getData = section => {
     return fetch(`http://localhost:5002/${section}`).then(e => e.json());
