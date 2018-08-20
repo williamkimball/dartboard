@@ -18,7 +18,10 @@ DartBoard is a travel planning app that users can use as a central repository fo
 To run this project on your own machine, do the following (requires npm):
 
 1.  Fork/download this GitHub repository
-1.  Run `$ npm install` in your terminal from the project directory (found at `/dartboard`)
-1.  Run `$ npm start` from the project directory to open the React App
-1.  In a separate terminal, run `$ json-server -p 5002 -w src/Database/database.json` to activate the JSON Server
+1.  Run `npm install` in your terminal from the project directory (found at `/dartboard`)
+1.  Run `npm start` from the project directory to open the React App
+1.  In a separate terminal, run `json-server -p 5002 -w src/Database/database.json` to activate the JSON Server
+1.  Fork/download the proxy server located here: https://github.com/williamkimball/proxy-server
+1.  In a separate terminal, Run `npm install` in your terminal from the proxy server directory
+1.  Run `node server.js` in your terminal from the proxy server directory
 1.  Plan Away!
