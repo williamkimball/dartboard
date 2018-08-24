@@ -24,7 +24,7 @@ To run this project on your own machine, do the following (requires npm):
 1.  Fork/download the proxy server located here: https://github.com/williamkimball/proxy-server
 1.  In a separate terminal, Run `npm install` in your terminal from the proxy server directory
 1.  Run `node server.js` in your terminal from the proxy server directory
-1.  Obtain API key from TravelPayouts and paste on line 8
-1.  Obtain API key from Unsplash and paste on line 4
-1.  Obtain API key from Airport Codes and paste on line 12
+1.  Obtain API key from Unsplash (https://unsplash.com/developers) and paste on line 4
+1.  Obtain API key from TravelPayouts (https://www.travelpayouts.com/developers/api) and paste on line 8
+1.  Obtain API key from Airport Codes (https://www.air-port-codes.com/airport-codes-api) and paste on line 12
 1.  Plan Away!
