@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Icon, Button } from "bloomer";
 
 export default class FlightForm extends Component {
-    turnInactive = () => {
-        document.querySelector(".modal").classList.remove("is-active")
-    }
     render() {
         return (
 <Modal >

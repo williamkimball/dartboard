@@ -164,6 +164,7 @@ export default class Dashboard extends Component {
                 {...this.props}
                 addNewTrip={this.addNewTrip}
                 handleFieldChange={this.handleFieldChange}
+                turnAddFlightModalInactive={this.turnAddFlightModalInactive}
               />
             )
           },
@@ -180,6 +181,7 @@ export default class Dashboard extends Component {
               addNewTrip={this.addNewTrip}
               {...this.props}
               handleFieldChange={this.handleFieldChange}
+              turnAddFlightModalInactive={this.turnAddFlightModalInactive}
             />
           )
         },
@@ -376,6 +378,12 @@ export default class Dashboard extends Component {
         }
       }
     }
+  };
+
+  turnAddFlightModalInactive = () => {
+    this.setState({
+      tripForm: ""
+    });
   };
 
   // Update state whenever an input field is edited

@@ -16,27 +16,27 @@ export default class Trip extends Component {
     marginLeft: "35%"
   };
   getImage = async destination => {
-    var s = destination;
-    var n = s.indexOf(",");
-    s = s.substring(0, n != -1 ? n : s.length);
-    // console.log(s);
+    // var s = destination;
+    // var n = s.indexOf(",");
+    // s = s.substring(0, n != -1 ? n : s.length);
+    // // console.log(s);
 
-    const json = await fetch(
-      `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`
-    )
-      .then(response => response.json())
-      .then(image => {
-        if (image.urls){
-        this.setState({
-          image: image,
-          imagePic: image.urls.regular,
-          imageUser: image.user.name,
-          imageUserLink: image.user.links.html,
-          imageLink: image.links.html,
-          imageAlt: image.description
-        });
-      }
-      });
+    // const json = await fetch(
+    //   `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`
+    // )
+    //   .then(response => response.json())
+    //   .then(image => {
+    //     if (image.urls){
+    //     this.setState({
+    //       image: image,
+    //       imagePic: image.urls.regular,
+    //       imageUser: image.user.name,
+    //       imageUserLink: image.user.links.html,
+    //       imageLink: image.links.html,
+    //       imageAlt: image.description
+    //     });
+    //   }
+    //   });
   };
 
   componentDidMount() {

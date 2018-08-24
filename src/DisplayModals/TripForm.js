@@ -17,11 +17,9 @@ import {
   Icon,
   Button
 } from "bloomer";
+import turnInactive from "./turnInactive.js";
 
 export default class TripForm extends Component {
-  turnInactive = () => {
-    document.querySelector(".modal").classList.remove("is-active");
-  };
 
   render() {
     return (
@@ -30,7 +28,7 @@ export default class TripForm extends Component {
         <ModalCard>
           <ModalCardHeader>
             <ModalCardTitle>New Trip</ModalCardTitle>
-            <Delete onClick={this.turnInactive} />
+            <Delete onClick={this.props.turnAddFlightModalInactive} />
           </ModalCardHeader>
           <ModalCardBody>
             <Field>
@@ -81,7 +79,7 @@ export default class TripForm extends Component {
                   Submit
                 </Button>
               </Control>
-              <Control onClick={this.turnInactive}>
+              <Control onClick={this.props.turnAddFlightModalInactive}>
                 <Button>Cancel</Button>
               </Control>
             </Field>

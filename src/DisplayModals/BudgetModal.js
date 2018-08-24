@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Icon, Button } from "bloomer";
+import turnInactive from "./turnInactive.js";
 
 export default class BudgetForm extends Component {
-    turnInactive = () => {
-        console.log(this.props)
-        document.querySelector(".modal").classList.remove("is-active")
-    }
     render() {
         return (
 <Modal >
@@ -14,7 +11,7 @@ export default class BudgetForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>New Budget Item</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={turnInactive.turnInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -41,7 +38,7 @@ export default class BudgetForm extends Component {
         <Control>
           <Button isColor="primary" onClick={this.props.addNewBudgetItem}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
+        <Control onClick={turnInactive.turnInactive}>
           <Button >Cancel</Button>
         </Control>
       </Field>
