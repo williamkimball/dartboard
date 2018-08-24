@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
-import TripForm from "./TripForm";
-import Trip from "./Trip";
+import TripForm from "./DisplayModals/TripForm";
+import Trip from "./Tabs/Trip";
 // import Unsplash from "unsplash-js";
-import FindFlightModal from "./APITripForm";
-import FindFlightResults from "./FindFlightResults";
+import FindFlightModal from "./DisplayModals/APITripForm";
+import FindFlightResults from "./Tabs/FindFlightResults";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -19,8 +19,8 @@ import {
 } from "bloomer";
 
 import TripDash from "./TripDash";
-import EditTripModal from "./editTripModal";
-import apiKeys from "./APIKeys";
+import EditTripModal from "./editModals/editTripModal";
+import apiKeys from "./apiItems/APIKeys";
 
 export default class Dashboard extends Component {
   state = {

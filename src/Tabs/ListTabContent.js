@@ -1,7 +1,7 @@
 //William Kimball 2018
 //This file builds each flight card
 
-import "./Trip.css";
+import "./../Trip.css";
 import React from "react";
 import { Button, Column } from "bloomer";
 import CustomList from "./CustomList"
