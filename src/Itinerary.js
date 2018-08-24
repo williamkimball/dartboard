@@ -3,10 +3,8 @@
 
 import "./Trip.css";
 import React, { Component } from "react";
-import { Button, Column, Card, CardContent } from "bloomer";
+import { Button, Card, CardContent } from "bloomer";
 import ItineraryModal from "./DisplayModals/ItineraryModal";
-// import APIHandler from "./APIHandler";
-// import EditItineraryModal from "./EditItineraryItemModal"
 
 //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
 
@@ -114,6 +112,7 @@ export default class Itinerary extends Component {
                   {...this.props}
                   addNewItinerary={this.addNewItinerary}
                   handleFieldChange={this.handleFieldChange}
+                  turnInactive={this.turnInactive}
                 />
               )
             },
@@ -131,6 +130,7 @@ export default class Itinerary extends Component {
               {...this.props}
               addNewItinerary={this.addNewItinerary}
               handleFieldChange={this.handleFieldChange}
+              turnInactive={this.turnInactive}
             />
           )
         },
@@ -141,9 +141,17 @@ export default class Itinerary extends Component {
     }
   };
 
+  turnInactive = () => {
+    this.setState({
+      ItineraryModal: ""
+    })
+    
+    
+}
+
   render() {
     return (
-      <Card >
+      <Card className="item">
         {
           <div className="card-body itinerary-card-body">
             <h5 className="card-title">{this.props.itinerary.ItineraryName}</h5>
@@ -171,7 +179,7 @@ export default class Itinerary extends Component {
         {this.state.ItineraryModal}
         {this.props.editItineraryModalState}
         <Button
-        id="itineraryButton"
+        className="itineraryButton"
           isColor="info"
           render={props => (
               <p {...props} onClick={this.ItineraryModal}>

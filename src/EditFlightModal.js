@@ -3,18 +3,15 @@ import React, { Component } from "react";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Button } from "bloomer";
 
 export default class EditFlightForm extends Component {
-    turnInactive = () => {
-        document.querySelector(".modal").classList.remove("is-active")
-    }
+
     render() {
-      // console.log(this.props.targInfo)
         return (
 <Modal >
   <ModalBackground />
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>Edit Flight</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={this.props.turnEditFlightInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -57,8 +54,8 @@ export default class EditFlightForm extends Component {
         <Control>
           <Button isColor="primary" onClick={this.props.editFlight}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
-          <Button>Cancel</Button>
+        <Control >
+          <Button onClick={this.props.turnEditFlightInactive}>Cancel</Button>
         </Control>
       </Field>
     </ModalCardBody>

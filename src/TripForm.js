@@ -22,13 +22,6 @@ export default class TripForm extends Component {
   turnInactive = () => {
     document.querySelector(".modal").classList.remove("is-active");
   };
-  // handleFieldChange = event => {
-  //   const stateToChange = {};
-  //   stateToChange[event.target.id] = event.target.value;
-  //   this.setState(stateToChange);
-  // };
-
-  
 
   render() {
     return (
@@ -58,11 +51,9 @@ export default class TripForm extends Component {
               <Label>Start Date</Label>
               <Control>
                 <Input
-                  // placeholder="Password"
                   onChange={this.props.handleFieldChange}
                   type="date"
                   id="startDate"
-                  // placeholder="Password"
                   required
                 />
                 <Icon isSize="small" isAlign="left">
@@ -74,11 +65,9 @@ export default class TripForm extends Component {
               <Label>End Date</Label>
               <Control>
                 <Input
-                  // placeholder="Password"
                   onChange={this.props.handleFieldChange}
                   type="date"
                   id="endDate"
-                  // placeholder="Password"
                   required
                 />
                 <Icon isSize="small" isAlign="left">
@@ -99,27 +88,6 @@ export default class TripForm extends Component {
           </ModalCardBody>
         </ModalCard>
       </Modal>
-      // <form onSubmit={props.addNewTrip} className="pleaseCenterForm">
-      //   <input
-      //     type="text"
-      //     placeholder="Trip Name"
-      //     id="title"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <input
-      //     type="date"
-      //     placeholder="Trip Start Date"
-      //     id="startDate"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <input
-      //     type="date"
-      //     placeholder="Trip End Date"
-      //     id="endDate"
-      //     onChange={props.handleFieldChange}
-      //   />
-      //   <button type="submit">Save Trip</button>
-      // </form>
     );
   }
 }

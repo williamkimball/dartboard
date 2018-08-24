@@ -3,7 +3,20 @@
 
 import React, { Component } from "react";
 import APIHandler from "./APIHandler";
-import { Button, Column, Card } from "bloomer";
+import {
+  Button,
+  Column,
+  Card,
+  Hero,
+  HeroHeader,
+  HeroBody,
+  Container,
+  Columns,
+  Title,
+  Subtitle,
+  Tabs,
+  Tab
+} from "bloomer";
 import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
 import FlightModal from "./DisplayModals/FlightModal";
@@ -17,6 +30,7 @@ import ListModal from "./DisplayModals/ListModal";
 import ListTab from "./ListTab";
 import ListTabContent from "./ListTabContent";
 import ListItemModal from "./DisplayModals/ListItemModal";
+import apiKeys from "./APIKeys"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -37,8 +51,7 @@ export default class TripDash extends Component {
     listItemList: [],
     FindFlightResultsModal: "",
     AirportMatches: [],
-    FindFlightResults: "",
-
+    FindFlightResults: ""
   };
 
   //this function gets the information related to the trip
@@ -46,6 +59,10 @@ export default class TripDash extends Component {
     return APIHandler.getTripData(tripId)
       .then(result => {
         this.setState({ tripInfo: result });
+        return result;
+      })
+      .then(result => {
+        this.getImage(result.title);
       })
       .then(() => {
         fetch("http://localhost:5002/itinerary")
@@ -128,6 +145,8 @@ export default class TripDash extends Component {
                   {...this.props}
                   addNewFlight={this.addNewFlight}
                   handleFieldChange={this.handleFieldChange}
+                  FlightModalState={this.state.FlightModal}
+                  turnFlightInactive={this.turnFlightInactive}
                 />
               )
             },
@@ -145,6 +164,8 @@ export default class TripDash extends Component {
               {...this.props}
               addNewFlight={this.addNewFlight}
               handleFieldChange={this.handleFieldChange}
+              FlightModalState={this.state.FlightModal}
+              turnFlightInactive={this.turnFlightInactive}
             />
           )
         },
@@ -280,6 +301,7 @@ export default class TripDash extends Component {
                         handleFieldChange={this.handleFieldChange}
                         targId={this.state.targId}
                         targInfo={this.state.targInfo.response}
+                        turnEditFlightInactive={this.turnEditFlightInactive}
                       />
                     )
                   },
@@ -315,6 +337,7 @@ export default class TripDash extends Component {
                         handleFieldChange={this.handleFieldChange}
                         targId={this.state.targId}
                         targInfo={this.state.targInfo.response}
+                        turnEditFlightInactive={this.turnEditFlightInactive}
                       />
                     )
                   },
@@ -330,7 +353,11 @@ export default class TripDash extends Component {
     }
   };
 
-  
+  turnEditFlightInactive = () => {
+    this.setState({
+      editFlight: ""
+    });
+  };
 
   deleteFlightItem = event => {
     console.log(event.target.parentNode.id);
@@ -381,6 +408,10 @@ export default class TripDash extends Component {
                         handleFieldChange={this.handleFieldChange}
                         targId={this.state.targId}
                         targInfo={this.state.targInfo.response}
+                        editItineraryModal={this.state.editItineraryModal}
+                        turnEditItineraryInactive={
+                          this.turnEditItineraryInactive
+                        }
                       />
                     )
                   },
@@ -417,6 +448,9 @@ export default class TripDash extends Component {
                         handleFieldChange={this.handleFieldChange}
                         targId={this.state.targId}
                         targInfo={this.state.targInfo.response}
+                        turnEditItineraryInactive={
+                          this.turnEditItineraryInactive
+                        }
                       />
                     )
                   },
@@ -430,6 +464,12 @@ export default class TripDash extends Component {
         }
       );
     }
+  };
+
+  turnEditItineraryInactive = () => {
+    this.setState({
+      editItineraryModal: ""
+    });
   };
 
   editItinerary = event => {
@@ -536,9 +576,7 @@ export default class TripDash extends Component {
     let total = this.state.budgetTotal;
     let targetPrice = 0;
     let targetId = event.target.parentNode.id;
-    // this.setState({
-    //   budgetTotal: parseInt(total) - parseInt(event.target)
-    // });
+
     return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
       method: "GET"
     })
@@ -660,9 +698,7 @@ export default class TripDash extends Component {
 
       default:
         let tabcont3 = document.getElementsByClassName("show");
-        // console.log(event.target.parentNode.textContent);
         for (let item of tabcont3) {
-          // console.log(item)
           item.classList.remove("show");
           item.classList.remove("active");
         }
@@ -706,12 +742,18 @@ export default class TripDash extends Component {
         this.checkForLists();
       })
       .then(() => {
-        this.turnInactive();
+        this.turnListModalInactive()
       });
   };
 
   turnInactive = () => {
     document.querySelector(".modal").classList.remove("is-active");
+  };
+
+  turnFlightInactive = () => {
+    this.setState({
+      FlightModal: ""
+    });
   };
 
   addNewList = () => {
@@ -723,6 +765,7 @@ export default class TripDash extends Component {
             handleFieldChange={this.handleFieldChange}
             targId={this.state.targId}
             addList={this.addList}
+            turnListModalInactive={this.turnListModalInactive}
           />
         )
       },
@@ -730,6 +773,12 @@ export default class TripDash extends Component {
         document.querySelector(".modal").classList.add("is-active");
       }
     );
+  };
+
+  turnListModalInactive = () => {
+    this.setState({
+      listModal: ""
+    });
   };
 
   checkForLists = () => {
@@ -754,6 +803,7 @@ export default class TripDash extends Component {
             handleFieldChange={this.handleFieldChange}
             targId={this.state.targId}
             addList={this.addList}
+            turnListItemModalInactive={this.turnListItemModalInactive}
           />
         )
       },
@@ -761,6 +811,27 @@ export default class TripDash extends Component {
         document.querySelector(".modal").classList.add("is-active");
       }
     );
+  };
+
+  turnListItemModalInactive = () => {
+    this.setState({
+      ListItemModal: ""
+    });
+  };
+
+  getImage = async destination => {
+    var s = destination;
+    console.log(s);
+    s = s.substring(0, s.indexOf(","));
+    console.log(s);
+
+    const json = await fetch(
+      `https://api.unsplash.com/photos/random/?query=${s}&client_id=${apiKeys.UnsplashKey()}`
+    )
+      .then(response => response.json())
+      .then(image => {
+        this.setState({ image: image.urls.regular });
+      });
   };
 
   addListItem = () => {
@@ -784,9 +855,8 @@ export default class TripDash extends Component {
   };
 
   deleteListItem = event => {
-    // Add new list to the API
+    // Delete list item from the API
 
-    // console.log(event.target.parentNode.id)
     fetch(`http://localhost:5002/listItem/${event.target.parentNode.id}`, {
       method: "DELETE"
     }).then(() => {
@@ -794,8 +864,20 @@ export default class TripDash extends Component {
     });
   };
 
+  deleteCustomList = event => {
+    fetch(`http://localhost:5002/list/${event.target.parentNode.id}`, {
+      method: "DELETE"
+    })
+      .then(() => {
+        this.checkForLists();
+      })
+      .then(() => {
+        document.getElementById("itinerary").classList.add("show");
+        document.getElementById("itinerary").classList.add("active");
+      });
+  };
+
   getMyListItems = () => {
-    // console.log("yo")
     fetch(`http://localhost:5002/listItem`)
       .then(e => e.json())
       .then(listItemList =>
@@ -807,70 +889,106 @@ export default class TripDash extends Component {
       );
   };
 
+  goHome = () => {
+    this.props.history.push("/")
+  }
+
+  logOut = () => {
+    localStorage.clear()
+    sessionStorage.clear()
+    this.goHome()
+  }
+
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
     return (
-      <div id="header">
-        <section className="hero is-primary" id="header">
-          <div className="hero-body" id="hero-body-header">
-            <div className="container">
-              <div className="columns is-vcentered">
-                <div className="column">
-                  <h1 className="title">{this.state.tripInfo.title}</h1>
-                  <h2 className="subtitle">
+      <Hero isSize="small">
+        <HeroHeader>
+          <HeroBody
+            style={{
+              backgroundImage: `url(${this.state.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat"
+            }}
+          >
+            <Container>
+              <Columns isVCentered>
+                <Column id="tripHead">
+                  <Title className="title" id="Hdg" hasTextColor="white">
+                    {this.state.tripInfo.title}
+                  </Title>
+                  <Subtitle
+                    className="subtitle"
+                    id="subHdg"
+                    hasTextColor="white"
+                  >
                     {this.state.tripInfo.startDate} to{" "}
                     {this.state.tripInfo.endDate}
-                  </h2>
-                  <Button isColor="info" onClick={this.addNewList}>
-                    New List
-                  </Button>
+                  </Subtitle>
                   {this.state.listModal}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                </Column>
 
-        <ul className="nav nav-tabs" id="myTab" role="tablist">
-          <li className="nav-item" onClick={this.pillListener}>
+                <Column id="homeLogOut">
+                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                      Home
+                    </Button>
+                    <Button isColor="info" onClick={this.logOut}>
+                      Logout
+                    </Button>
+                  </Column>
+                <Column hasTextAlign="right">
+                  <Button
+                    isColor="info"
+                    onClick={this.addNewList}
+                    className="newListBtn"
+                  >
+                    New Tab
+                  </Button>
+                </Column>
+              </Columns>
+            </Container>
+          </HeroBody>
+        </HeroHeader>
+
+        {/* className="nav nav-tabs" id="myTab" role="tablist" */}
+        <Tabs isBoxed isFullWidth>
+          <Tab onClick={this.pillListener}>
             <a
               className="nav-link"
               id="flights-tab"
               data-toggle="tab"
-              href="#flight"
               role="tab"
               aria-controls="flights"
               aria-selected="false"
             >
               Flights
             </a>
-          </li>
-          <li className="nav-item" onClick={this.pillListener}>
+          </Tab>
+          <Tab onClick={this.pillListener}>
             <a
               className="nav-link active"
               id="itinerary-tab"
               data-toggle="tab"
-              href="#itinerary"
               role="tab"
               aria-controls="itinerary"
               aria-selected="true"
             >
               Itinerary
             </a>
-          </li>
-          <li className="nav-item" onClick={this.pillListener}>
+          </Tab>
+          <Tab onClick={this.pillListener}>
             <a
               className="nav-link"
               id="budget-tab"
               data-toggle="tab"
-              href="#budget"
               role="tab"
               aria-controls="budget"
               aria-selected="false"
             >
               Budget
             </a>
-          </li>
+          </Tab>
           {this.state.list.map(tab => (
             <ListTab
               key={tab.id}
@@ -881,7 +999,7 @@ export default class TripDash extends Component {
               tab={tab}
             />
           ))}
-        </ul>
+        </Tabs>
         <div className="tab-content" id="myTabContent">
           <div
             className="tab-pane fade"
@@ -913,7 +1031,7 @@ export default class TripDash extends Component {
                   deleteFlightItem={this.deleteFlightItem}
                   editFlight={this.editFlightModal}
                   editFlightModal={this.state.editFlight}
-                  // FindFlightModal={this.state.FindFlightModal}
+                  FlightModalState={this.state.FlightModal}
                 />
               ))}
             </div>
@@ -935,7 +1053,6 @@ export default class TripDash extends Component {
                   editItinerary={this.editItinerary}
                   editItineraryModal={this.editItineraryModal}
                   editItineraryModalState={this.state.editItineraryModal}
-                  // editItineraryModalState={this.state.ItineraryModal}
                   ItineraryModal={this.ItineraryModal}
                   {...this.props}
                   tripInfo={this.state.tripInfo}
@@ -950,7 +1067,6 @@ export default class TripDash extends Component {
             role="tabpanel"
             aria-labelledby="contact-tab"
           >
-
             <Card className="card budget-card" id="budgetCard">
               {this.state.BudgetModal}
               <h2 id="budgetTotal">Budget</h2>
@@ -962,20 +1078,21 @@ export default class TripDash extends Component {
                   state={this.state}
                   tripInfo={this.state.tripInfo}
                   deleteBudgetItem={this.deleteBudgetItem}
+                  BudgetModal={this.state.BudgetModal}
                 />
               ))}
               <h5 id="budgetTotal">Total: ${this.state.budgetTotal}</h5>
               <Button
-              isColor="info"
-              id="budgetButton"
-              render={props => (
-                <Column hasTextAlign="centered">
-                  <p {...props} onClick={this.BudgetModal}>
-                    New Budget Item
-                  </p>
-                </Column>
-              )}
-            />
+                isColor="info"
+                id="budgetButton"
+                render={props => (
+                  <Column hasTextAlign="centered">
+                    <p {...props} onClick={this.BudgetModal}>
+                      New Budget Item
+                    </p>
+                  </Column>
+                )}
+              />
             </Card>
           </div>
           {this.state.name.map(tab => (
@@ -991,10 +1108,11 @@ export default class TripDash extends Component {
               getMyListItems={this.getMyListItems}
               listItemList={this.state.listItemList}
               deleteListItem={this.deleteListItem}
+              deleteCustomList={this.deleteCustomList}
             />
           ))}
         </div>
-      </div>
+      </Hero>
     );
   }
 }

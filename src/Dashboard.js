@@ -7,10 +7,20 @@ import FindFlightModal from "./APITripForm";
 import FindFlightResults from "./FindFlightResults";
 import "./Dashboard.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from "bloomer";
+import {
+  Button,
+  Column,
+  Hero,
+  HeroBody,
+  Container,
+  Columns,
+  Title,
+  Subtitle
+} from "bloomer";
 
 import TripDash from "./TripDash";
 import EditTripModal from "./editTripModal";
+import apiKeys from "./APIKeys";
 
 export default class Dashboard extends Component {
   state = {
@@ -25,7 +35,8 @@ export default class Dashboard extends Component {
     targInfo: "",
     FindFlightModal: "",
     FindFlightResults: {},
-    AirportResults: []
+    AirportResults: [],
+    departureKeyNo: 0
   };
 
   handleFieldChange = event => {
@@ -82,18 +93,12 @@ export default class Dashboard extends Component {
 
   FindFlight = () => {
     let startDate = this.state.FindFlightStartDate;
-    // console.log(startDate)
-    // startDate = startDate.slice(0, -3);
-    // console.log(startDate)
     let endDate = this.state.FindFlightEndDate;
-    // console.log(endDate)
-    // endDate = endDate.slice(0, -3);
-    // console.log(endDate)
-    let origin = this.state.FindFlightOrigin;
+    let origin = this.state.FindFlightOrigin.toUpperCase();
     let destination = this.state.FindFlightDestination;
 
     fetch(
-      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=7fe8a6850404e8611035f004e2a6bc3f&currency=usd`,
+      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=${apiKeys.TravelPayoutKey()}&currency=usd`,
       {
         method: "GET"
       }
@@ -101,6 +106,11 @@ export default class Dashboard extends Component {
       .then(e => e.json())
       .then(results => {
         console.log(results.data);
+        if (Object.keys(results.data).length === 0) {
+          alert(
+            "No flights found for that Origin/Date please try another day or origin"
+          );
+        }
         this.setState({
           FindFlightResults: results.data,
           FindFlightModal: ""
@@ -108,14 +118,12 @@ export default class Dashboard extends Component {
         return results;
       })
       .then(results => {
-        // console.log(results.data)
+        console.log(results);
         let AirportList = this.state.AirportResults;
         for (let result in results.data) {
-          // console.log(result)
           fetch(`https://www.air-port-codes.com/api/v1/single?iata=${result}`, {
             headers: {
-              // Accept: "application/json",
-              "Apc-Auth": "3d57d73c4b"
+              "Apc-Auth": apiKeys.airportSearch()
             },
             method: "POST"
           })
@@ -143,28 +151,8 @@ export default class Dashboard extends Component {
               );
             });
         }
-      })
-    }
-
-  // .then(
-
-  getImage = async destination => {
-    // const response = await  fetch(`https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`, {
-    //   headers: {
-    //     "Cache-Control": "no-cache",
-    //     "Postman-Token": "d73fa50b-25c2-455b-861f-89c874d1aa02"
-    //   }
-    // })
-    // const json = await response.json();
-    // return await json
-
-    const json = await fetch(
-      `https://api.unsplash.com/search/photos/?page=1&per_page=1&query=${destination}&client_id=38b469e4ae6b45d6f859a5ce65ad4a6a0b06fc792cab0d16cc7bf052a396384c`
-    ).then(response => response.json()).then(response => {return response});
-    return json
+      });
   };
-
-
 
   TripModal = () => {
     if (document.querySelector(".modal") !== null) {
@@ -259,7 +247,7 @@ export default class Dashboard extends Component {
               .then(trip =>
                 this.setState({
                   trips: trip.filter(user => user.userId === this.state.user),
-                  dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+                  dashHead: `Welcome to DartBoard, ${this.state.userName}!`
                 })
               );
           });
@@ -272,112 +260,120 @@ export default class Dashboard extends Component {
 
     let destination = event.target.id;
     for (let key in this.state.FindFlightResults) {
-      let title = "";
-      this.state.AirportResults.map(Airport => {
-        //   console.log(Airport.term);
-        //   console.log(key);
-        if (Airport.term === key) {
-          // console.log("itsa match");
-          title = Airport.airport.full_location;
-        }
-      });
-      let Dest = this.state.FindFlightResults[key][0];
-      if (key === destination) {
-        let tripEnd = Date.parse(Dest.return_at.slice(0, -10));
-        let tripStart = Date.parse(Dest.departure_at.slice(0, -10));
-        let tripLength = (tripEnd - tripStart) / 86400000;
-        console.log(tripLength);
-        // Add new trips to the API
-        fetch(`http://localhost:5002/trips?_expand=user`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json; charset=utf-8"
-          },
-          body: JSON.stringify({
-            title: title,
-            startDate: Dest.departure_at.slice(0, -10),
-            endDate: Dest.return_at.slice(0, -10),
-            tripLength: tripLength,
-            userId: this.state.user
+      if (
+        this.state.FindFlightResults[key][this.state.departureKeyNo] ===
+        undefined
+      ) {
+        this.setState({ departureKeyNo: (this.state.departureKeyNo += 1) });
+      } else {
+        let title = "";
+        this.state.AirportResults.map(Airport => {
+          if (Airport.term === key && Airport.status !== false) {
+            title = Airport.airport.full_location;
+          }
+        });
+        let Dest = this.state.FindFlightResults[key][this.state.departureKeyNo];
+        if (key === destination) {
+          let tripEnd = Date.parse(Dest.return_at.slice(0, -10));
+          let tripStart = Date.parse(Dest.departure_at.slice(0, -10));
+          let tripLength = (tripEnd - tripStart) / 86400000;
+          console.log(tripLength);
+          // Add new trips to the API
+          fetch(`http://localhost:5002/trips?_expand=user`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify({
+              title: title,
+              startDate: Dest.departure_at.slice(0, -10),
+              endDate: Dest.return_at.slice(0, -10),
+              tripLength: tripLength,
+              userId: this.state.user
+            })
           })
-        })
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(trip) {
-            console.log(tripLength);
-            for (let i = 0; i < tripLength; i++) {
-              fetch(`http://localhost:5002/itinerary`, {
+            .then(function(response) {
+              return response.json();
+            })
+            .then(trip => {
+              console.log("budget");
+              // Add new budget to the API
+              fetch(`http://localhost:5002/budget`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json; charset=utf-8"
                 },
                 body: JSON.stringify({
-                  tripId: trip.id,
-                  ItineraryName: `Day ${i + 1}`
+                  budgetItemTitle: `Flight to ${trip.title}`,
+                  budgetItemPrice: Dest.price,
+                  tripId: trip.id
                 })
               });
-            }
-            return trip;
-          })
-          .then(trip => {
-            console.log("budget");
-            // Add new budget to the API
-            fetch(`http://localhost:5002/budget`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8"
-              },
-              body: JSON.stringify({
-                budgetItemTitle: `Flight to ${trip.title}`,
-                budgetItemPrice: Dest.price,
-                tripId: trip.id
-              })
-            });
-            return trip;
-          })
-          .then(trip => {
-            fetch(`http://localhost:5002/flight?_expand=user`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json; charset=utf-8"
-              },
-              body: JSON.stringify({
-                FlightName: `Flight to ${trip.title}`,
-                FlightStartDate: Dest.departure_at.slice(0, -10),
-                FlightEndDate: Dest.return_at.slice(0, -10),
-                FlightNumber: `${Dest.airline} ${Dest.flight_number}`,
-                FlightOrigin: this.state.FindFlightOrigin,
-                FlightDestination: destination,
-                tripId: trip.id
-              })
-            });
-          })
-          // When POST is finished, retrieve the new list of trips
-          .then(() => {
-            // Remember you HAVE TO return this fetch to the subsequent `then()`
-            this.setState({
-              FindFlightResultsModal: ""
-            });
-            alert("Added New Trip Sucessfully");
-            return fetch("http://localhost:5002/trips?_expand=user");
-          })
-          .then(
-            APIHandler.getUserName(this.state.user).then(username => {
-              this.setState({ userName: username }, () => {
-                fetch("http://localhost:5002/trips?_expand=user")
-                  .then(e => e.json())
-                  .then(trip =>
-                    this.setState({
-                      trips: trip.filter(
-                        user => user.userId === this.state.user
-                      ),
-                      dashHead: `Welcome to Dartboard, ${this.state.userName}!`
-                    })
-                  );
-              });
+              return trip;
             })
-          );
+            .then(trip => {
+              fetch(`http://localhost:5002/flight?_expand=user`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify({
+                  FlightName: `Flight to ${trip.title}`,
+                  FlightStartDate: Dest.departure_at.slice(0, -10),
+                  FlightEndDate: Dest.return_at.slice(0, -10),
+                  FlightNumber: `${Dest.airline} ${Dest.flight_number}`,
+                  FlightOrigin: this.state.FindFlightOrigin,
+                  FlightDestination: destination,
+                  tripId: trip.id
+                })
+              });
+              return trip;
+            })
+            .then(function(trip) {
+              console.log(tripLength);
+              for (let i = 0; i < tripLength; i++) {
+                fetch(`http://localhost:5002/itinerary`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                  },
+                  body: JSON.stringify({
+                    tripId: trip.id,
+                    ItineraryName: `Day ${i + 1}`
+                  })
+                });
+              }
+              return trip;
+            })
+
+            // When POST is finished, retrieve the new list of trips
+            .then(() => {
+              // Remember you HAVE TO return this fetch to the subsequent `then()`
+              this.setState({
+                FindFlightResultsModal: ""
+              });
+              alert("Added New Trip Sucessfully");
+              return fetch("http://localhost:5002/trips?_expand=user");
+            })
+            .then(
+              APIHandler.getUserName(this.state.user).then(username => {
+                this.setState({ userName: username }, () => {
+                  fetch("http://localhost:5002/trips?_expand=user")
+                    .then(e => e.json())
+                    .then(trip =>
+                      this.setState({
+                        trips: trip.filter(
+                          user => user.userId === this.state.user
+                        ),
+                        dashHead: `Welcome to DartBoard, ${
+                          this.state.userName
+                        }!`
+                      })
+                    );
+                });
+              })
+            );
+        }
       }
     }
   };
@@ -409,7 +405,7 @@ export default class Dashboard extends Component {
           .then(trip =>
             this.setState({
               trips: trip.filter(user => user.userId === this.state.user),
-              dashHead: `Welcome to Dartboard, ${this.state.userName}!`
+              dashHead: `Welcome to DartBoard, ${this.state.userName}!`
             })
           );
       });
@@ -555,7 +551,6 @@ export default class Dashboard extends Component {
     } else if (event.target.id === "deleteBtn") {
     } else {
       var id1 = event.target.id;
-      // console.log(id1);
       APIHandler.getData("trips", id1)
         .then(trip => {
           this.setState({
@@ -571,37 +566,71 @@ export default class Dashboard extends Component {
     }
   };
 
+  goHome = () => {
+    this.props.history.push("/");
+  };
+
+  logOut = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    this.goHome();
+  };
+
   render() {
     return (
       <React.Fragment>
-        <section className="hero is-primary">
-          <div className="hero-body">
-            <div className="container">
-              <div className="columns is-vcentered">
-                <div className="column">
-                  <h1 className="title">{this.state.dashHead}</h1>
-                  <h2 className="subtitle">{this.state.dashHeadDates}</h2>
-                </div>
-                <Button
-                  isColor="info"
-                  className="dashboard-welcome-button pleaseCenter"
-                  onClick={this.TripModal}
-                >
-                  Add New Trip
-                </Button>
-                <Button
-                  isColor="info"
-                  {...this.props}
-                  onClick={this.FindFlightModal}
-                >
-                  Throw a Dart
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Hero isSize="small">
+          <HeroBody>
+            <Container>
+              <Columns is-vcentered>
+                <Column>
+                  <Title id="main-head" hasTextColor="white">
+                    {this.state.dashHead}
+                  </Title>
+                  <Subtitle hasTextColor="white">
+                    {this.state.dashHeadDates}
+                  </Subtitle>
+                </Column>
+                <Column isOffset="1/3" id="dashButtons">
+                  <Column id="homeLogOut">
+                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                      Home
+                    </Button>
+                    <Button isColor="info" onClick={this.logOut}>
+                      Logout
+                    </Button>
+                  </Column>
+                  <Column>
+                    <Button
+                      isColor="info"
+                      className="dashboard-welcome-button pleaseCenter"
+                      id="newTripBtn"
+                      onClick={this.TripModal}
+                    >
+                      Add New Trip
+                    </Button>
+                    <Button
+                      isColor="info"
+                      id="dartBtn"
+                      {...this.props}
+                      onClick={this.FindFlightModal}
+                    >
+                      Throw a Dart
+                    </Button>
+                  </Column>
+                  <Column />
+                </Column>
+              </Columns>
+            </Container>
+          </HeroBody>
+        </Hero>
 
-        <div className="dashboard-tripCards">
+        <Columns
+          className="dashboard-tripCards"
+          isCentered="true"
+          isMultiline="true"
+          isGrid="true"
+        >
           {this.state.tripForm}
           {this.state.FindFlightModal}
           {this.state.FindFlightResultsModal}
@@ -616,11 +645,14 @@ export default class Dashboard extends Component {
               state={this.state}
               editTripModal={this.state.editTrip}
               deleteTrip={this.deleteTrip}
-              getImage={this.getImage}
+              goHome={this.goHome}
+              logOut={this.logOut}
+              Image={this.state.image}
               isColor="light"
+              {...this.props}
             />
           ))}
-        </div>
+        </Columns>
       </React.Fragment>
     );
   }

@@ -5,525 +5,301 @@
       "email": "wkkimball043@gmail.com",
       "password": "p",
       "id": 1
-    },
-    {
-      "name": "Katherine",
-      "email": "k@k.com",
-      "password": "p",
-      "id": 2
-    },
-    {
-      "name": "Kimberly",
-      "email": "kim@k.com",
-      "password": "p",
-      "id": 3
     }
   ],
   "trips": [
     {
-      "title": "Croatia",
-      "startDate": "2018-08-03",
-      "endDate": "2018-08-08",
+      "title": "Tel Aviv, Central District , Israel",
+      "startDate": "2018-09-12",
+      "endDate": "2018-09-19",
+      "tripLength": 7,
       "userId": 1,
-      "tripLength": 3,
-      "id": 1
-    },
-    {
-      "title": "New Zealand",
-      "startDate": "2018-08-30",
-      "endDate": "2018-09-06",
-      "userId": 1,
-      "tripLength": 2,
       "id": 2
     },
     {
-      "title": "NewBraska",
-      "startDate": "2018-08-30",
-      "endDate": "2018-09-06",
-      "userId": 2,
-      "tripLength": 4,
+      "title": "Kathmandu,  Central , Nepal",
+      "startDate": "2018-10-15",
+      "endDate": "2018-10-29",
+      "tripLength": 14,
+      "userId": 1,
       "id": 3
     },
     {
-      "title": "Greece",
-      "startDate": "2019-03-11",
-      "endDate": "2019-03-18",
-      "tripLength": 7,
-      "userId": 3,
+      "title": "Venice, Rome, Italy",
+      "startDate": "2018-11-20",
+      "endDate": "2018-11-29",
+      "tripLength": 9,
+      "userId": 1,
       "id": 4
-    },
-    {
-      "title": "Guadalajara, JA, Mexico",
-      "startDate": "2018-08-25",
-      "endDate": "2018-08-28",
-      "tripLength": 3,
-      "userId": 1,
-      "id": 5
-    },
-    {
-      "title": "Cancun, QR, Mexico",
-      "startDate": "2018-08-27",
-      "endDate": "2018-08-28",
-      "tripLength": 1,
-      "userId": 1,
-      "id": 6
-    },
-    {
-      "title": "Cleveland, OH, United States",
-      "startDate": "2018-08-27",
-      "endDate": "2018-08-31",
-      "tripLength": 4,
-      "userId": 1,
-      "id": 7
-    },
-    {
-      "title": "Philadelphia, PA, United States",
-      "startDate": "2018-08-29",
-      "endDate": "2018-08-31",
-      "tripLength": 2,
-      "userId": 1,
-      "id": 8
-    },
-    {
-      "title": "Baltimore, MD, United States",
-      "startDate": "2018-08-22",
-      "endDate": "2018-08-26",
-      "tripLength": 4,
-      "userId": 1,
-      "id": 9
-    },
-    {
-      "title": "Fort Lauderdale, FL, United States",
-      "startDate": "2018-08-14",
-      "endDate": "2018-08-15",
-      "tripLength": 1,
-      "userId": 1,
-      "id": 10
-    },
-    {
-      "title": "Philadelphia, PA, United States",
-      "startDate": "2018-08-29",
-      "endDate": "2018-08-31",
-      "tripLength": 2,
-      "userId": 1,
-      "id": 11
     }
   ],
   "itinerary": [
     {
-      "ItineraryName": "Day 1",
-      "tripId": 1,
-      "id": 1
-    },
-    {
-      "ItineraryName": "Day 2",
-      "tripId": 1,
-      "id": 2
-    },
-    {
-      "ItineraryName": "Day 3",
-      "tripId": 1,
-      "id": 3
-    },
-    {
-      "ItineraryName": "Day 1",
       "tripId": 2,
+      "ItineraryName": "Day 1",
       "id": 5
     },
     {
-      "ItineraryName": "Day 2",
       "tripId": 2,
+      "ItineraryName": "Day 2",
       "id": 6
     },
     {
-      "ItineraryName": "Day 3",
       "tripId": 2,
+      "ItineraryName": "Day 3",
       "id": 7
     },
     {
-      "ItineraryName": "Day 4",
       "tripId": 2,
+      "ItineraryName": "Day 4",
       "id": 8
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 1",
       "id": 9
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 2",
       "id": 10
     },
     {
-      "tripId": 4,
-      "ItineraryName": "Day 4",
+      "tripId": 3,
+      "ItineraryName": "Day 3",
       "id": 11
     },
     {
-      "tripId": 4,
-      "ItineraryName": "Day 3",
+      "tripId": 3,
+      "ItineraryName": "Day 4",
       "id": 12
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 5",
       "id": 13
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 6",
       "id": 14
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 7",
       "id": 15
     },
     {
-      "tripId": 4,
+      "tripId": 3,
       "ItineraryName": "Day 8",
       "id": 16
     },
     {
-      "tripId": 9,
-      "ItineraryName": "Day 1",
+      "tripId": 3,
+      "ItineraryName": "Day 9",
       "id": 17
     },
     {
-      "tripId": 9,
-      "ItineraryName": "Day 2",
+      "tripId": 3,
+      "ItineraryName": "Day 10",
       "id": 18
     },
     {
-      "tripId": 9,
-      "ItineraryName": "Day 3",
+      "tripId": 3,
+      "ItineraryName": "Day 11",
       "id": 19
     },
     {
-      "tripId": 9,
-      "ItineraryName": "Day 4",
+      "tripId": 3,
+      "ItineraryName": "Day 12",
       "id": 20
     },
     {
-      "tripId": 10,
-      "ItineraryName": "Day 1",
+      "tripId": 3,
+      "ItineraryName": "Day 13",
       "id": 21
     },
     {
-      "tripId": 11,
-      "ItineraryName": "Day 1",
+      "tripId": 3,
+      "ItineraryName": "Day 14",
       "id": 22
     },
     {
-      "tripId": 11,
-      "ItineraryName": "Day 2",
+      "tripId": 4,
+      "ItineraryName": "Day 1",
       "id": 23
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 2",
+      "id": 24
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 3",
+      "id": 25
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 4",
+      "id": 26
+    },
+    {
+      "tripId": 4,
+      "ItineraryName": "Day 5",
+      "id": 27
     }
   ],
   "itineraryItem": [
     {
-      "ItineraryName": "Train trip to the other City",
-      "itineraryId": 1,
-      "startTime": "01:03",
-      "endTime": "14:04",
-      "tripId": 1,
+      "ItineraryName": "Check into hotel and crash",
+      "itineraryId": 23,
+      "startTime": "19:15",
+      "endTime": "19:20",
+      "tripId": 4,
+      "id": 1
+    },
+    {
+      "ItineraryName": "Visit the Dolomite Mountains",
+      "itineraryId": 25,
+      "startTime": "09:00",
+      "endTime": "16:00",
+      "tripId": 4,
+      "id": 2
+    },
+    {
+      "ItineraryName": "Take a gondola ride through the canals",
+      "itineraryId": 24,
+      "startTime": "07:00",
+      "endTime": "22:00",
+      "tripId": 4,
       "id": 3
     },
     {
-      "ItineraryName": "See the Castle",
-      "itineraryId": 2,
-      "startTime": "02:22",
-      "endTime": "16:30",
-      "tripId": 1,
+      "ItineraryName": "Visit the Basilica di San Marco",
+      "itineraryId": 24,
+      "startTime": "10:15",
+      "endTime": "11:45",
+      "tripId": 4,
+      "id": 4
+    },
+    {
+      "ItineraryName": "Eat at Cocaeta",
+      "itineraryId": 25,
+      "startTime": "19:00",
+      "endTime": "20:30",
+      "tripId": 4,
       "id": 5
     },
     {
-      "ItineraryName": "adfasfd",
-      "itineraryId": 5,
-      "startTime": "15:03",
-      "endTime": "18:19",
-      "tripId": 2,
+      "ItineraryName": "Leonardo da Vinci Museum ",
+      "itineraryId": 26,
+      "startTime": "11:00",
+      "endTime": "12:30",
+      "tripId": 4,
       "id": 6
     },
     {
-      "ItineraryName": "Flight to greece",
-      "itineraryId": 9,
-      "startTime": "08:00",
+      "ItineraryName": "Wander the City",
+      "itineraryId": 26,
+      "startTime": "13:00",
       "endTime": "16:00",
       "tripId": 4,
       "id": 7
     },
     {
-      "ItineraryName": "Eat at the good good restaurant",
-      "itineraryId": 1,
-      "startTime": "17:00",
-      "endTime": "18:30",
-      "tripId": 1,
+      "ItineraryName": "Pack for Flight",
+      "itineraryId": 27,
+      "startTime": "06:00",
+      "endTime": "07:30",
+      "tripId": 4,
       "id": 8
     },
     {
-      "ItineraryName": "Mreersasd",
-      "itineraryId": 1,
-      "tripId": 1,
+      "ItineraryName": "Head out for flight",
+      "itineraryId": 27,
+      "startTime": "12:00",
+      "endTime": "12:15",
+      "tripId": 4,
       "id": 9
-    },
-    {
-      "ItineraryName": "asdf",
-      "itineraryId": 2,
-      "tripId": 1,
-      "id": 10
-    },
-    {
-      "ItineraryName": "afd",
-      "itineraryId": 2,
-      "tripId": 1,
-      "id": 11
-    },
-    {
-      "ItineraryName": "adf",
-      "itineraryId": 2,
-      "tripId": 1,
-      "id": 12
-    },
-    {
-      "ItineraryName": "asdf",
-      "itineraryId": 3,
-      "tripId": 1,
-      "id": 13
-    },
-    {
-      "ItineraryName": "Visit the Rocky steps",
-      "itineraryId": 22,
-      "startTime": "01:02",
-      "endTime": "15:20",
-      "tripId": 11,
-      "id": 14
     }
   ],
   "budget": [
     {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "1",
+      "budgetItemTitle": "Flight to Tel Aviv, Central District , Israel",
+      "budgetItemPrice": 1385,
+      "tripId": 2,
+      "id": 2
+    },
+    {
+      "budgetItemTitle": "Flight to Kathmandu,  Central , Nepal",
+      "budgetItemPrice": 1109,
       "tripId": 3,
+      "id": 3
+    },
+    {
+      "budgetItemTitle": "Flight to Venice, Rome, Italy",
+      "budgetItemPrice": 524,
+      "tripId": 4,
+      "id": 4
+    },
+    {
+      "budgetItemTitle": "Hostels",
+      "budgetItemPrice": "150",
+      "tripId": 4,
       "id": 5
     },
     {
-      "budgetItemTitle": "Flight",
-      "budgetItemPrice": "1400",
+      "budgetItemTitle": "Food",
+      "budgetItemPrice": "200",
       "tripId": 4,
-      "id": 7
+      "id": 6
     },
     {
-      "budgetItemTitle": "Hotels",
-      "budgetItemPrice": "400",
+      "budgetItemTitle": "Museums",
+      "budgetItemPrice": "75",
       "tripId": 4,
       "id": 8
     },
     {
-      "budgetItemTitle": "saf",
-      "budgetItemPrice": "1",
+      "budgetItemTitle": "Souvenirs",
+      "budgetItemPrice": "100",
       "tripId": 4,
       "id": 9
-    },
-    {
-      "budgetItemTitle": "asdf",
-      "budgetItemPrice": "1",
-      "tripId": 4,
-      "id": 10
-    },
-    {
-      "budgetItemTitle": "sfd",
-      "budgetItemPrice": "1",
-      "tripId": 4,
-      "id": 11
-    },
-    {
-      "budgetItemPrice": "2421",
-      "tripId": 4,
-      "id": 12
-    },
-    {
-      "budgetItemTitle": "Trio",
-      "budgetItemPrice": "2222",
-      "tripId": 1,
-      "id": 18
-    },
-    {
-      "budgetItemTitle": "Food",
-      "budgetItemPrice": "324",
-      "tripId": 1,
-      "id": 19
-    },
-    {
-      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
-      "budgetItemPrice": 205,
-      "tripId": 5,
-      "id": 20
-    },
-    {
-      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
-      "budgetItemPrice": 205,
-      "tripId": 6,
-      "id": 21
-    },
-    {
-      "budgetItemTitle": "Flight to Guadalajara, JA, Mexico",
-      "budgetItemPrice": 733,
-      "tripId": 5,
-      "id": 22
-    },
-    {
-      "budgetItemTitle": "Flight to Cancun, QR, Mexico",
-      "budgetItemPrice": 512,
-      "tripId": 6,
-      "id": 23
-    },
-    {
-      "budgetItemTitle": "Flight to Cleveland, OH, United States",
-      "budgetItemPrice": 162,
-      "tripId": 7,
-      "id": 24
-    },
-    {
-      "budgetItemTitle": "Flight to Philadelphia, PA, United States",
-      "budgetItemPrice": 181,
-      "tripId": 8,
-      "id": 25
-    },
-    {
-      "budgetItemTitle": "Flight to Baltimore, MD, United States",
-      "budgetItemPrice": 117,
-      "tripId": 9,
-      "id": 26
-    },
-    {
-      "budgetItemTitle": "Flight to Fort Lauderdale, FL, United States",
-      "budgetItemPrice": 201,
-      "tripId": 10,
-      "id": 27
-    },
-    {
-      "budgetItemTitle": "Flight to Philadelphia, PA, United States",
-      "budgetItemPrice": 181,
-      "tripId": 11,
-      "id": 28
     }
   ],
   "flight": [
     {
-      "FlightName": "Test3",
-      "FlightStartDate": "2018-08-07",
-      "FlightEndDate": "2018-08-08",
-      "FlightNumber": "asdf",
-      "FlightOrigin": "asdf",
-      "FlightDestination": "asdf",
-      "id": 1,
-      "tripId": 1
+      "FlightName": "Flight to Tel Aviv, Central District , Israel",
+      "FlightStartDate": "2018-09-12",
+      "FlightEndDate": "2018-09-19",
+      "FlightNumber": "LY 6",
+      "FlightOrigin": "LAX",
+      "FlightDestination": "TLV",
+      "tripId": 2,
+      "id": 2
     },
     {
-      "FlightName": "Trip to Florida",
-      "FlightStartDate": "2018-08-08",
-      "FlightEndDate": "2018-08-16",
-      "FlightNumber": "AA234",
-      "FlightOrigin": "BNA",
-      "FlightDestination": "LAX",
-      "id": 2,
-      "tripId": 1
+      "FlightName": "Flight to Kathmandu,  Central , Nepal",
+      "FlightStartDate": "2018-10-15",
+      "FlightEndDate": "2018-10-29",
+      "FlightNumber": "QR 704",
+      "FlightOrigin": "JFK",
+      "FlightDestination": "KTM",
+      "tripId": 3,
+      "id": 3
     },
     {
-      "FlightName": "Flight to Greece",
-      "FlightStartDate": "2019-03-11",
-      "FlightEndDate": "2019-03-18",
-      "FlightNumber": "AA56874",
-      "FlightOrigin": "BNA",
-      "FlightDestination": "GRE",
+      "FlightName": "Flight to Venice, Rome, Italy",
+      "FlightStartDate": "2018-11-20",
+      "FlightEndDate": "2018-11-29",
+      "FlightNumber": "LH 8830",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "VCE",
       "tripId": 4,
-      "id": 3
-    },
-    {
-      "FlightName": "Flight to Cleveland, OH, United States",
-      "FlightStartDate": "2018-08-27",
-      "FlightEndDate": "2018-08-31",
-      "FlightNumber": "XX 1",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "CLE",
-      "tripId": 7,
-      "id": 6
-    },
-    {
-      "FlightName": "Flight to Philadelphia, PA, United States",
-      "FlightStartDate": "2018-08-29",
-      "FlightEndDate": "2018-08-31",
-      "FlightNumber": "AA 1828",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "PHL",
-      "tripId": 8,
-      "id": 7
-    },
-    {
-      "FlightName": "Flight to Baltimore, MD, United States",
-      "FlightStartDate": "2018-08-22",
-      "FlightEndDate": "2018-08-26",
-      "FlightNumber": "NK 556",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "BWI",
-      "tripId": 9,
-      "id": 8
-    },
-    {
-      "FlightName": "Flight to Fort Lauderdale, FL, United States",
-      "FlightStartDate": "2018-08-14",
-      "FlightEndDate": "2018-08-15",
-      "FlightNumber": "NK 808",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "FLL",
-      "tripId": 10,
-      "id": 9
-    },
-    {
-      "FlightName": "Flight to Philadelphia, PA, United States",
-      "FlightStartDate": "2018-08-29",
-      "FlightEndDate": "2018-08-31",
-      "FlightNumber": "AA 1828",
-      "FlightOrigin": "ATL",
-      "FlightDestination": "PHL",
-      "tripId": 11,
-      "id": 10
+      "id": 4
     }
   ],
-  "list": [
-    {
-      "listName": "Vocabulary",
-      "tripId": 1,
-      "id": 1
-    },
-    {
-      "listName": "Restaurants",
-      "tripId": 1,
-      "id": 2
-    },
-    {
-      "listName": "Hotels",
-      "tripId": 11,
-      "id": 3
-    }
-  ],
-  "listItem": [
-    {
-      "listItemContent": "Baño means bathroom",
-      "listId": 1,
-      "id": 2
-    },
-    {
-      "listItemContent": "Names",
-      "listId": 2,
-      "id": 3
-    },
-    {
-      "listItemContent": "Fourth try's the charm?",
-      "listId": 1,
-      "id": 6
-    }
-  ]
+  "list": [],
+  "listItem": []
 }

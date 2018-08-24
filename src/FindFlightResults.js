@@ -14,7 +14,7 @@ import {
   ModalContent,
   Button
 } from "bloomer";
-import DestinationBox from "./DestinationBox";
+
 
 export default class FindFlightResults extends Component {
   turnInactive = () => {
@@ -29,10 +29,8 @@ export default class FindFlightResults extends Component {
       for (let key in this.props.FindFlightResults) {
         let destination = "";
         this.props.AirportResults.map(Airport => {
-        //   console.log(Airport.term);
-        //   console.log(key);
-          if (Airport.term === key) {
-            // console.log("itsa match");
+          console.log(Airport);
+          if (Airport.term === key && Airport.status !== false) {
             destination = Airport.airport.full_location;
           }
         });
@@ -50,7 +48,7 @@ export default class FindFlightResults extends Component {
 
         // console.log(key);
         children.push(
-          <ModalContent className='cardShrink'>
+          <div className='cardShrink'>
             <h4>{destination}</h4>
             <p>Price: ${this.props.FindFlightResults[key][departureKeyNo].price}</p>{" "}
             <p>
@@ -69,24 +67,16 @@ export default class FindFlightResults extends Component {
                 >
                   Let's Go!
                 </Button>
-          </ModalContent>
+          </div>
         );
       }
       //Create the parent and add the children
-      DestinationList.push(<ModalContent>{children}</ModalContent>);
+      DestinationList.push(<ModalContent className="modalScroll">{children}</ModalContent>);
     }
     return DestinationList;
   };
 
-  // for (let key in this.props.FindFlightResults) {
-  //     DestinationList.push(<Box>${key}</Box>)
-  // }
-  // this.setState({
-  //     DestinationList: DestinationList
-  // })
-
   componentDidMount() {
-    // console.log(this.props.FindFlightResults);
     this.buildFindFlightList();
   }
   render() {
@@ -98,7 +88,7 @@ export default class FindFlightResults extends Component {
             <ModalCardTitle>Search Results</ModalCardTitle>
             <Delete onClick={this.turnInactive} />
           </ModalCardHeader>
-          <ModalContent>{this.buildFindFlightList()}</ModalContent>
+          {this.buildFindFlightList()}
           <ModalCardBody />
         </ModalCard>
       </Modal>

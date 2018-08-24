@@ -13,7 +13,7 @@ export default class FlightForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>New Flight</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={this.props.turnFlightInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -68,7 +68,7 @@ export default class FlightForm extends Component {
         <Control>
           <Button isColor="primary" onClick={this.props.addNewFlight}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
+        <Control onClick={this.props.turnFlightInactive}>
           <Button>Cancel</Button>
         </Control>
       </Field>

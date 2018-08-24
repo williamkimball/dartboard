@@ -1,66 +1,14 @@
-.dashboard-welcome {
-  display: inline;
-  text-align: right;
-}
-.dashboard-nav {
-  min-height: 6em;
-  color: black;
-  text-align: center;
-  align-content: center;
-}
-
-.dashboard-tripCards {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 5%;
-  flex-wrap: wrap;
-  background-color: #fff;
-}
-
-.tripDash {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 5%;
-  flex-wrap: wrap;
-}
-
-.nav-tabs {
-  justify-content: space-around;
-  background: #7ebdc2;
-}
-
 .hero-body {
-  background: #7ebdc2;
+  background: #1881be;
+  color: #fff;
 }
 
 .nav-link {
   color: white;
-  /* background-color: #fff */
+  margin-top: 5%;
 }
 
-.nav-link:active {
-  background-color: #fff;
+a.nav-link.active {
+  background: #d3d3d3;
+  color: black;
 }
-
-.content {
-  display: flex;
-  justify-content: space-around;
-}
-
-.content a {
-  color: #fff;
-}
-
-.dashboard-tripCards .card {
-  background-color: #f3f3f3;
-  margin-bottom: 20%;
-}
-
-#deleteBtn {
-  display: inline-block
-}
-
-#edtBtn {
-  display: inline-block
-}
-

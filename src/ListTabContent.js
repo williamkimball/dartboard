@@ -15,15 +15,15 @@ const ListTabContent = props => {
       role="tabpanel"
       aria-labelledby={props.tab.listName + "-tab"}
     >
-      <div className="card budget-card" id="budgetCard">
+      <div className="card budget-card" id={props.tab.id}>
         {props.state.ListItemModal}
-        <h2>{props.tab.listName} </h2>
+        <h2 id="listName">{props.tab.listName} </h2>
+
         {props.listItemList.map(list => (
           <CustomList
           key={list.id}
           list={list}
           user={props.state.user}
-          // state={this.state}
           tripInfo={props.state.tripInfo}
           deleteListItem={props.deleteListItem}
           />
