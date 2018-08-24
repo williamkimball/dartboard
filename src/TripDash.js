@@ -21,16 +21,16 @@ import "bulma/css/bulma.css";
 import BudgetModal from "./DisplayModals/BudgetModal";
 import FlightModal from "./DisplayModals/FlightModal";
 
-import Flight from "./Flight";
-import Itinerary from "./Itinerary";
-import Budget from "./Budget";
-import EditFlightModal from "./EditFlightModal";
-import EditItineraryModal from "./EditItineraryItemModal";
+import Flight from "./Tabs/Flight";
+import Itinerary from "./Tabs/Itinerary";
+import Budget from "./Tabs/Budget";
+import EditFlightModal from "./editModals/EditFlightModal";
+import EditItineraryModal from "./editModals/EditItineraryItemModal";
 import ListModal from "./DisplayModals/ListModal";
-import ListTab from "./ListTab";
-import ListTabContent from "./ListTabContent";
+import ListTab from "./Tabs/ListTab";
+import ListTabContent from "./Tabs/ListTabContent";
 import ListItemModal from "./DisplayModals/ListItemModal";
-import apiKeys from "./APIKeys"
+import apiKeys from "./apiItems/APIKeys"
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.

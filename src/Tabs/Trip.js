@@ -1,10 +1,10 @@
 //William Kimball 2018
 //This file builds each trip card
 
-import "./Trip.css";
+import "./../Trip.css";
 import React, { Component } from "react";
 import { Button, Image, Subtitle } from "bloomer";
-import apiKeys from "./APIKeys"
+import apiKeys from "../apiItems/APIKeys"
 
 export default class Trip extends Component {
   state = {
@@ -65,13 +65,13 @@ export default class Trip extends Component {
               </a>
             </Subtitle>
             <img
-              src={require("./edit-solid.svg")}
+              src={require("./../edit-solid.svg")}
               id="edtBtn"
               alt="edit pen"
               onClick={this.props.editTrip}
             />
             <img
-              src={require("./trash-alt-solid.svg")}
+              src={require("./../trash-alt-solid.svg")}
               id="deleteBtn"
               alt="delete Trash Can"
               onClick={this.props.deleteTrip}

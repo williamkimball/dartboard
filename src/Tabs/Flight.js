@@ -1,7 +1,7 @@
 //William Kimball 2018
 //This file builds each flight card
 
-import "./Trip.css";
+import "./../Trip.css";
 import React, { Component } from "react";
 
 export default class Flight extends Component {
@@ -34,13 +34,13 @@ export default class Flight extends Component {
               Return Date: {this.props.flight.FlightEndDate}
             </p>
             <img
-              src={require("./edit-solid.svg")}
+              src={require("./../edit-solid.svg")}
               id="edtBtn"
               onClick={this.props.editFlight}
               alt="edit pen"
             />
             <img
-              src={require("./trash-alt-solid.svg")}
+              src={require("./../trash-alt-solid.svg")}
               id="deleteBtn"
               alt="delete Trash Can"
               onClick={this.props.deleteFlightItem}

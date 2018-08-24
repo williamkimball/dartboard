@@ -1,10 +1,10 @@
 //William Kimball 2018
 //This file builds each itinerary card
 
-import "./Trip.css";
+import "./../Trip.css";
 import React, { Component } from "react";
 import { Button, Card, CardContent } from "bloomer";
-import ItineraryModal from "./DisplayModals/ItineraryModal";
+import ItineraryModal from "../DisplayModals/ItineraryModal";
 
 //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
 
@@ -166,9 +166,9 @@ export default class Itinerary extends Component {
                   {" "}
                   {itinerary.startTime} to {itinerary.endTime}
                 </h6>
-                <img src={require("./edit-solid.svg")} id="edtBtn" alt="edit pen" onClick={this.props.editItineraryModal}/>
+                <img src={require("./../edit-solid.svg")} id="edtBtn" alt="edit pen" onClick={this.props.editItineraryModal}/>
                 <img
-                  src={require("./trash-alt-solid.svg")}
+                  src={require("./../trash-alt-solid.svg")}
                   id="deleteBtn"
                   alt="delete Trash Can"
                   onClick={this.deleteItineraryItem}

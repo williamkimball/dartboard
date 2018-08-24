@@ -31,6 +31,14 @@
       "tripLength": 9,
       "userId": 1,
       "id": 4
+    },
+    {
+      "title": "Mumbai, MH, India",
+      "startDate": "2018-08-22",
+      "endDate": "2018-09-24",
+      "tripLength": 33,
+      "userId": 1,
+      "id": 5
     }
   ],
   "itinerary": [
@@ -148,6 +156,41 @@
       "tripId": 4,
       "ItineraryName": "Day 5",
       "id": 27
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 1",
+      "id": 28
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 2",
+      "id": 29
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 3",
+      "id": 30
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 4",
+      "id": 31
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 5",
+      "id": 32
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 6",
+      "id": 33
+    },
+    {
+      "tripId": 5,
+      "ItineraryName": "Day 7",
+      "id": 34
     }
   ],
   "itineraryItem": [
@@ -166,14 +209,6 @@
       "endTime": "16:00",
       "tripId": 4,
       "id": 2
-    },
-    {
-      "ItineraryName": "Take a gondola ride through the canals",
-      "itineraryId": 24,
-      "startTime": "07:00",
-      "endTime": "22:00",
-      "tripId": 4,
-      "id": 3
     },
     {
       "ItineraryName": "Visit the Basilica di San Marco",
@@ -266,6 +301,12 @@
       "budgetItemPrice": "100",
       "tripId": 4,
       "id": 9
+    },
+    {
+      "budgetItemTitle": "Flight to Mumbai, MH, India",
+      "budgetItemPrice": 903,
+      "tripId": 5,
+      "id": 10
     }
   ],
   "flight": [
@@ -298,8 +339,30 @@
       "FlightDestination": "VCE",
       "tripId": 4,
       "id": 4
+    },
+    {
+      "FlightName": "Flight to Mumbai, MH, India",
+      "FlightStartDate": "2018-08-22",
+      "FlightEndDate": "2018-09-24",
+      "FlightNumber": "VS 4010",
+      "FlightOrigin": "ATL",
+      "FlightDestination": "BOM",
+      "tripId": 5,
+      "id": 5
     }
   ],
-  "list": [],
-  "listItem": []
+  "list": [
+    {
+      "listName": "Vocabulary",
+      "tripId": 4,
+      "id": 1
+    }
+  ],
+  "listItem": [
+    {
+      "listItemContent": "Ciao means hello",
+      "listId": 1,
+      "id": 1
+    }
+  ]
 }
