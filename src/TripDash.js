@@ -500,7 +500,7 @@ export default class TripDash extends Component {
     };
 
     // Add new budget to the API
-    APIHandler.addData("budget".newBudgetItemBody)
+    APIHandler.addData("budget", newBudgetItemBody)
       // When POST is finished, retrieve the new list of trips
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`

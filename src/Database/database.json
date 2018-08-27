@@ -173,6 +173,12 @@
       "budgetItemPrice": 903,
       "tripId": 5,
       "id": 10
+    },
+    {
+      "budgetItemTitle": "asdf",
+      "budgetItemPrice": "333",
+      "tripId": 4,
+      "id": 11
     }
   ],
   "flight": [
