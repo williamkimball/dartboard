@@ -17,6 +17,7 @@ import {
   Checkbox
 } from "bloomer";
 
+
 export default class Register extends Component {
   //Initially declare state, to be modified as the user types presses the register button.
   state = {

@@ -139,6 +139,14 @@
       "endTime": "11:45",
       "tripId": 4,
       "id": 4
+    },
+    {
+      "ItineraryName": "test",
+      "itineraryId": 26,
+      "startTime": "00:03",
+      "endTime": "15:45",
+      "tripId": 4,
+      "id": 5
     }
   ],
   "budget": [
@@ -159,24 +167,6 @@
       "budgetItemPrice": "150",
       "tripId": 4,
       "id": 5
-    },
-    {
-      "budgetItemTitle": "Food",
-      "budgetItemPrice": "200",
-      "tripId": 4,
-      "id": 6
-    },
-    {
-      "budgetItemTitle": "Museums",
-      "budgetItemPrice": "75",
-      "tripId": 4,
-      "id": 8
-    },
-    {
-      "budgetItemTitle": "Souvenirs",
-      "budgetItemPrice": "100",
-      "tripId": 4,
-      "id": 9
     },
     {
       "budgetItemTitle": "Flight to Mumbai, MH, India",
@@ -215,6 +205,10 @@
       "FlightDestination": "BOM",
       "tripId": 5,
       "id": 5
+    },
+    {
+      "tripId": 4,
+      "id": 6
     }
   ],
   "list": [

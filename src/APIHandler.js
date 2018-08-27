@@ -1,4 +1,3 @@
-
 class apiCalls {
   static getData = section => {
     return fetch(`http://localhost:5002/${section}`).then(e => e.json());
@@ -10,12 +9,6 @@ class apiCalls {
     );
   };
 
-  static getFlightData = id => {
-    return fetch(`http://localhost:5002/flight/${id}`).then(e =>
-      e.json()
-    );
-  };
-
   static getItineraryItemData = id => {
     return fetch(`http://localhost:5002/itineraryItem/${id}`).then(e =>
       e.json()
@@ -23,17 +16,17 @@ class apiCalls {
   };
 
   static getItineraryItemsData = id => {
-    return fetch(`http://localhost:5002/itineraryItem`).then(e =>
-      e.json()
-    );
+    return fetch(`http://localhost:5002/itineraryItem`).then(e => e.json());
   };
 
- static deleteItineraryItem = event => {
-  return fetch(`http://localhost:5002/itineraryItem/${event.target.parentNode.id}`, {
-      method: "DELETE"
-    })
- };
-
+  static deleteItineraryItem = event => {
+    return fetch(
+      `http://localhost:5002/itineraryItem/${event.target.parentNode.id}`,
+      {
+        method: "DELETE"
+      }
+    );
+  };
 
   static addData = (section, body) => {
     return fetch(`http://localhost:5002/${section}`, {
@@ -44,10 +37,26 @@ class apiCalls {
       body: JSON.stringify(body)
     });
   };
-  
+
+  static getBudgetItem = event => {
+    return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
+      method: "GET"
+    }).then(e => e.json());
+  };
+
   static deleteData = (section, id) => {
     return fetch(`http://localhost:5002/${section}/${id}`, {
       method: "DELETE"
+    });
+  };
+
+  static editData = (section, id, body) => {
+    return fetch(`http://localhost:5002/${section}/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8"
+      },
+      body: JSON.stringify(body)
     });
   };
 
@@ -61,4 +70,3 @@ class apiCalls {
 }
 
 module.exports = apiCalls;
-
