@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
     let destination = this.state.FindFlightDestination;
 
     fetch(
-      `http://localhost:6060/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=${apiKeys.TravelPayoutKey()}&currency=usd`,
+      `https://dartboard-server.herokuapp.com/api/prices/cheap?origin=${origin}&destination=-&depart_date=${startDate}&token=${apiKeys.TravelPayoutKey()}&currency=usd`,
       {
         method: "GET"
       }
