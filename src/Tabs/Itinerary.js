@@ -18,14 +18,17 @@ export default class Itinerary extends Component {
   };
 
   deleteItineraryItem = event => {
-    APIHandler.deleteItineraryItem(event).then(APIHandler.getItineraryItemsData().then(itinerary =>
-      this.setState({
-        itineraryItem: itinerary.filter(
-          itinerary =>
-            itinerary.tripId === this.props.state.tripInfo.id &&
-            itinerary.itineraryId === this.props.itinerary.id
-        )
-      })))
+    APIHandler.deleteItineraryItem(event).then(
+      APIHandler.getItineraryItemsData().then(itinerary =>
+        this.setState({
+          itineraryItem: itinerary.filter(
+            itinerary =>
+              itinerary.tripId === this.props.state.tripInfo.id &&
+              itinerary.itineraryId === this.props.itinerary.id
+          )
+        })
+      )
+    );
   };
 
   // Update state whenever an input field is edited
@@ -35,23 +38,22 @@ export default class Itinerary extends Component {
     this.setState(stateToChange);
   };
   componentDidMount() {
-    APIHandler.getItineraryItemsData()
-      .then(itinerary =>
-        this.setState({
-          itineraryItem: itinerary.filter(
-            itinerary =>
-              itinerary.tripId === this.props.state.tripInfo.id &&
-              itinerary.itineraryId === this.props.itinerary.id
-          )
-        })
-      );
+    APIHandler.getItineraryItemsData().then(itinerary =>
+      this.setState({
+        itineraryItem: itinerary.filter(
+          itinerary =>
+            itinerary.tripId === this.props.state.tripInfo.id &&
+            itinerary.itineraryId === this.props.itinerary.id
+        )
+      })
+    );
   }
   //this function handles all of the functionality related to adding a new itinerary to the database and then redrawing the page to create a card for it.
   addNewItinerary = event => {
     event.preventDefault();
 
     // Add new itinerary item to the API
-    fetch(`http://localhost:5002/itineraryItem`, {
+    fetch(`https://dartboard-database.herokuapp.com/itineraryItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -71,7 +73,7 @@ export default class Itinerary extends Component {
           ItineraryModal: ""
         });
         alert("Added New Itinerary Item Sucessfully");
-        return fetch("http://localhost:5002/itineraryItem")
+        return fetch("https://dartboard-database.herokuapp.com/itineraryItem")
           .then(e => e.json())
           .then(itinerary =>
             this.setState({

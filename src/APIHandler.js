@@ -1,27 +1,27 @@
 class apiCalls {
   static getData = section => {
-    return fetch(`http://localhost:5002/${section}`).then(e => e.json());
+    return fetch(`https://dartboard-database.herokuapp.com/${section}`).then(e => e.json());
   };
 
   static getTripData = id => {
-    return fetch(`http://localhost:5002/trips/${id}?_expand=user`).then(e =>
+    return fetch(`https://dartboard-database.herokuapp.com/trips/${id}?_expand=user`).then(e =>
       e.json()
     );
   };
 
   static getItineraryItemData = id => {
-    return fetch(`http://localhost:5002/itineraryItem/${id}`).then(e =>
+    return fetch(`https://dartboard-database.herokuapp.com/itineraryItem/${id}`).then(e =>
       e.json()
     );
   };
 
   static getItineraryItemsData = id => {
-    return fetch(`http://localhost:5002/itineraryItem`).then(e => e.json());
+    return fetch(`https://dartboard-database.herokuapp.com/itineraryItem`).then(e => e.json());
   };
 
   static deleteItineraryItem = event => {
     return fetch(
-      `http://localhost:5002/itineraryItem/${event.target.parentNode.id}`,
+      `https://dartboard-database.herokuapp.com/itineraryItem/${event.target.parentNode.id}`,
       {
         method: "DELETE"
       }
@@ -29,7 +29,7 @@ class apiCalls {
   };
 
   static addData = (section, body) => {
-    return fetch(`http://localhost:5002/${section}`, {
+    return fetch(`https://dartboard-database.herokuapp.com/${section}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -39,19 +39,19 @@ class apiCalls {
   };
 
   static getBudgetItem = event => {
-    return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
+    return fetch(`https://dartboard-database.herokuapp.com/budget/${event.target.parentNode.id}`, {
       method: "GET"
     }).then(e => e.json());
   };
 
   static deleteData = (section, id) => {
-    return fetch(`http://localhost:5002/${section}/${id}`, {
+    return fetch(`https://dartboard-database.herokuapp.com/${section}/${id}`, {
       method: "DELETE"
     });
   };
 
   static editData = (section, id, body) => {
-    return fetch(`http://localhost:5002/${section}/${id}`, {
+    return fetch(`https://dartboard-database.herokuapp.com/${section}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -61,7 +61,7 @@ class apiCalls {
   };
 
   static getUserName = id => {
-    return fetch(`http://localhost:5002/users/${id}`)
+    return fetch(`https://dartboard-database.herokuapp.com/users/${id}`)
       .then(e => e.json())
       .then(user => {
         return user.name;
