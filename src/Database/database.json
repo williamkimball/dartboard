@@ -17,14 +17,6 @@
       "id": 2
     },
     {
-      "title": "Kathmandu,  Central , Nepal",
-      "startDate": "2018-10-15",
-      "endDate": "2018-10-29",
-      "tripLength": 14,
-      "userId": 1,
-      "id": 3
-    },
-    {
       "title": "Venice, Rome, Italy",
       "startDate": "2018-11-20",
       "endDate": "2018-11-29",
@@ -61,76 +53,6 @@
       "tripId": 2,
       "ItineraryName": "Day 4",
       "id": 8
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 1",
-      "id": 9
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 2",
-      "id": 10
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 3",
-      "id": 11
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 4",
-      "id": 12
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 5",
-      "id": 13
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 6",
-      "id": 14
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 7",
-      "id": 15
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 8",
-      "id": 16
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 9",
-      "id": 17
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 10",
-      "id": 18
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 11",
-      "id": 19
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 12",
-      "id": 20
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 13",
-      "id": 21
-    },
-    {
-      "tripId": 3,
-      "ItineraryName": "Day 14",
-      "id": 22
     },
     {
       "tripId": 4,
@@ -217,46 +139,6 @@
       "endTime": "11:45",
       "tripId": 4,
       "id": 4
-    },
-    {
-      "ItineraryName": "Eat at Cocaeta",
-      "itineraryId": 25,
-      "startTime": "19:00",
-      "endTime": "20:30",
-      "tripId": 4,
-      "id": 5
-    },
-    {
-      "ItineraryName": "Leonardo da Vinci Museum ",
-      "itineraryId": 26,
-      "startTime": "11:00",
-      "endTime": "12:30",
-      "tripId": 4,
-      "id": 6
-    },
-    {
-      "ItineraryName": "Wander the City",
-      "itineraryId": 26,
-      "startTime": "13:00",
-      "endTime": "16:00",
-      "tripId": 4,
-      "id": 7
-    },
-    {
-      "ItineraryName": "Pack for Flight",
-      "itineraryId": 27,
-      "startTime": "06:00",
-      "endTime": "07:30",
-      "tripId": 4,
-      "id": 8
-    },
-    {
-      "ItineraryName": "Head out for flight",
-      "itineraryId": 27,
-      "startTime": "12:00",
-      "endTime": "12:15",
-      "tripId": 4,
-      "id": 9
     }
   ],
   "budget": [
@@ -265,12 +147,6 @@
       "budgetItemPrice": 1385,
       "tripId": 2,
       "id": 2
-    },
-    {
-      "budgetItemTitle": "Flight to Kathmandu,  Central , Nepal",
-      "budgetItemPrice": 1109,
-      "tripId": 3,
-      "id": 3
     },
     {
       "budgetItemTitle": "Flight to Venice, Rome, Italy",
@@ -319,16 +195,6 @@
       "FlightDestination": "TLV",
       "tripId": 2,
       "id": 2
-    },
-    {
-      "FlightName": "Flight to Kathmandu,  Central , Nepal",
-      "FlightStartDate": "2018-10-15",
-      "FlightEndDate": "2018-10-29",
-      "FlightNumber": "QR 704",
-      "FlightOrigin": "JFK",
-      "FlightDestination": "KTM",
-      "tripId": 3,
-      "id": 3
     },
     {
       "FlightName": "Flight to Venice, Rome, Italy",

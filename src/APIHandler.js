@@ -22,6 +22,19 @@ class apiCalls {
     );
   };
 
+  static getItineraryItemsData = id => {
+    return fetch(`http://localhost:5002/itineraryItem`).then(e =>
+      e.json()
+    );
+  };
+
+ static deleteItineraryItem = event => {
+  return fetch(`http://localhost:5002/itineraryItem/${event.target.parentNode.id}`, {
+      method: "DELETE"
+    })
+ };
+
+
   static addData = (section, body) => {
     return fetch(`http://localhost:5002/${section}`, {
       method: "POST",

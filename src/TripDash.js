@@ -30,7 +30,7 @@ import ListModal from "./DisplayModals/ListModal";
 import ListTab from "./Tabs/ListTab";
 import ListTabContent from "./Tabs/ListTabContent";
 import ListItemModal from "./DisplayModals/ListItemModal";
-import apiKeys from "./apiItems/APIKeys"
+import apiKeys from "./apiItems/APIKeys";
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -697,6 +697,7 @@ export default class TripDash extends Component {
         break;
 
       default:
+        // if
         let tabcont3 = document.getElementsByClassName("show");
         for (let item of tabcont3) {
           item.classList.remove("show");
@@ -717,12 +718,14 @@ export default class TripDash extends Component {
                 )
               },
               () => {
-                document.getElementById(`${name}`).classList.add("show");
-                document.getElementById(`${name}`).classList.add("active");
+                if (document.getElementById(`${name}`) !== null) {
+                  document.getElementById(`${name}`).classList.add("show");
+                  document.getElementById(`${name}`).classList.add("active");
+                }
               }
             )
           )
-          .then(this.getMyListItems());
+          .then( this.getMyListItems());
     }
   };
 
@@ -742,7 +745,7 @@ export default class TripDash extends Component {
         this.checkForLists();
       })
       .then(() => {
-        this.turnListModalInactive()
+        this.turnListModalInactive();
       });
   };
 
@@ -878,26 +881,29 @@ export default class TripDash extends Component {
   };
 
   getMyListItems = () => {
+    if (this.state.id !== undefined){
     fetch(`http://localhost:5002/listItem`)
       .then(e => e.json())
       .then(listItemList =>
+        
         this.setState({
           listItemList: listItemList.filter(
             listItemList => this.state.name[0].id === listItemList.listId
           )
         })
       );
+    }
   };
 
   goHome = () => {
-    this.props.history.push("/")
-  }
+    this.props.history.push("/");
+  };
 
   logOut = () => {
-    localStorage.clear()
-    sessionStorage.clear()
-    this.goHome()
-  }
+    localStorage.clear();
+    sessionStorage.clear();
+    this.goHome();
+  };
 
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
@@ -930,13 +936,13 @@ export default class TripDash extends Component {
                 </Column>
 
                 <Column id="homeLogOut">
-                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
-                      Home
-                    </Button>
-                    <Button isColor="info" onClick={this.logOut}>
-                      Logout
-                    </Button>
-                  </Column>
+                  <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                    Home
+                  </Button>
+                  <Button isColor="info" onClick={this.logOut}>
+                    Logout
+                  </Button>
+                </Column>
                 <Column hasTextAlign="right">
                   <Button
                     isColor="info"
