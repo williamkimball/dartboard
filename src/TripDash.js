@@ -30,7 +30,7 @@ import ListModal from "./DisplayModals/ListModal";
 import ListTab from "./Tabs/ListTab";
 import ListTabContent from "./Tabs/ListTabContent";
 import ListItemModal from "./DisplayModals/ListItemModal";
-import apiKeys from "./apiItems/APIKeys"
+import apiKeys from "./apiItems/APIKeys";
 
 export default class TripDash extends Component {
   //this is the state for this component. Turns out state is pretty important in react.
@@ -65,20 +65,18 @@ export default class TripDash extends Component {
         this.getImage(result.title);
       })
       .then(() => {
-        fetch("http://localhost:5002/itinerary")
-          .then(e => e.json())
-          .then(itinerary =>
-            this.setState(
-              {
-                itinerary: itinerary.filter(
-                  itinerary => itinerary.tripId === this.state.tripInfo.id
-                )
-              },
-              () => {
-                this.checkForLists();
-              }
-            )
-          );
+        APIHandler.getData("itinerary").then(itinerary =>
+          this.setState(
+            {
+              itinerary: itinerary.filter(
+                itinerary => itinerary.tripId === this.state.tripInfo.id
+              )
+            },
+            () => {
+              this.checkForLists();
+            }
+          )
+        );
       });
   };
 
@@ -180,44 +178,38 @@ export default class TripDash extends Component {
   addNewFlight = event => {
     event.preventDefault();
 
+    let newFlightBody = {
+      FlightName: this.state.FlightName,
+      FlightStartDate: this.state.FlightStartDate,
+      FlightEndDate: this.state.FlightEndDate,
+      FlightNumber: this.state.FlightNumber,
+      FlightOrigin: this.state.FlightOrigin,
+      FlightDestination: this.state.FlightDestination,
+      tripId: this.state.tripInfo.id
+    };
+
     // Add new flight to the API
-    fetch(`http://localhost:5002/flight?_expand=user`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        FlightName: this.state.FlightName,
-        FlightStartDate: this.state.FlightStartDate,
-        FlightEndDate: this.state.FlightEndDate,
-        FlightNumber: this.state.FlightNumber,
-        FlightOrigin: this.state.FlightOrigin,
-        FlightDestination: this.state.FlightDestination,
-        tripId: this.state.tripInfo.id
-      })
-    })
+    APIHandler.addData("flight", newFlightBody)
       // When POST is finished, retrieve the new list of trips
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`
         this.setState({
           FlightModal: ""
         });
-        alert("Added New Article Sucessfully");
-        return fetch("http://localhost:5002/flight");
+        alert("Added New Flight Sucessfully");
+        return APIHandler.getData("flight");
       })
       .then(
         //this the username, and then sets the state of flight to be equal to a list of flights that is filtered by the trip number
         APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://localhost:5002/flight")
-              .then(e => e.json())
-              .then(flight =>
-                this.setState({
-                  flight: flight.filter(
-                    flight => flight.tripId === this.state.tripInfo.id
-                  )
-                })
-              );
+            APIHandler.getData("flight").then(flight =>
+              this.setState({
+                flight: flight.filter(
+                  flight => flight.tripId === this.state.tripInfo.id
+                )
+              })
+            );
           });
         })
       );
@@ -225,22 +217,18 @@ export default class TripDash extends Component {
 
   editFlight = event => {
     let targId = this.state.targId;
-    console.log(targId);
-    fetch(`http://localhost:5002/flight/${targId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        FlightName: this.state.FlightName,
-        FlightStartDate: this.state.FlightStartDate,
-        FlightEndDate: this.state.FlightEndDate,
-        FlightNumber: this.state.FlightNumber,
-        FlightOrigin: this.state.FlightOrigin,
-        FlightDestination: this.state.FlightDestination,
-        endDate: this.state.endDate
-      })
-    }) // When POST is finished, retrieve the new list of flights
+
+    const editFlightBody = {
+      FlightName: this.state.FlightName,
+      FlightStartDate: this.state.FlightStartDate,
+      FlightEndDate: this.state.FlightEndDate,
+      FlightNumber: this.state.FlightNumber,
+      FlightOrigin: this.state.FlightOrigin,
+      FlightDestination: this.state.FlightDestination,
+      endDate: this.state.endDate
+    };
+
+    APIHandler.editData("flight", targId, editFlightBody) // When POST is finished, retrieve the new list of flights
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`
         this.setState({
@@ -248,20 +236,18 @@ export default class TripDash extends Component {
           editFlightModal: ""
         });
         alert("Edited Flight Sucessfully");
-        return fetch("http://localhost:5002/flight");
+        return APIHandler.getData("flight");
       })
       .then(
         APIHandler.getUserName(this.state.user).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://localhost:5002/flight")
-              .then(e => e.json())
-              .then(flight =>
-                this.setState({
-                  flight: flight.filter(
-                    flight => flight.tripId === this.state.tripInfo.id
-                  )
-                })
-              );
+            APIHandler.getData("flight").then(flight =>
+              this.setState({
+                flight: flight.filter(
+                  flight => flight.tripId === this.state.tripInfo.id
+                )
+              })
+            );
           });
         })
       )
@@ -270,8 +256,8 @@ export default class TripDash extends Component {
       });
   };
 
-  getFlightInfoForEdit = () => {
-    return APIHandler.getFlightData(this.state.targId);
+  getFlightInfoForEdit = targId => {
+    return APIHandler.getData("flight", targId);
   };
 
   editFlightModal = event => {
@@ -286,7 +272,6 @@ export default class TripDash extends Component {
         },
         () => {
           this.getFlightInfoForEdit(this.state.targId).then(response => {
-            console.log(response);
             this.setState(
               {
                 targInfo: { response }
@@ -360,19 +345,14 @@ export default class TripDash extends Component {
   };
 
   deleteFlightItem = event => {
-    console.log(event.target.parentNode.id);
-    fetch(`http://localhost:5002/flight/${event.target.parentNode.id}`, {
-      method: "DELETE"
-    }).then(() => {
-      fetch("http://localhost:5002/flight")
-        .then(e => e.json())
-        .then(flight =>
-          this.setState({
-            flight: flight.filter(
-              flight => flight.tripId === this.state.tripInfo.id
-            )
-          })
-        );
+    APIHandler.deleteData("flight", event.target.parentNode.id).then(() => {
+      APIHandler.getData("flight").then(flight =>
+        this.setState({
+          flight: flight.filter(
+            flight => flight.tripId === this.state.tripInfo.id
+          )
+        })
+      );
     });
   };
 
@@ -474,41 +454,32 @@ export default class TripDash extends Component {
 
   editItinerary = event => {
     let targId = this.state.targId;
-    console.log(targId);
-    fetch(`http://localhost:5002/itineraryItem/${targId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        ItineraryName: this.state.ItineraryName,
-        // itineraryId: this.props.itinerary.id,
-        startTime: this.state.startTime,
-        endTime: this.state.endTime
-      })
-    }) // When POST is finished, retrieve the new list of flights
+    const editItineraryBody = {
+      ItineraryName: this.state.ItineraryName,
+      startTime: this.state.startTime,
+      endTime: this.state.endTime
+    };
+
+    APIHandler.editData("itineraryItem", targId, editItineraryBody) // When POST is finished, retrieve the new list of flights
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`
         this.setState({
           ItineraryModal: "",
           editItineraryModal: "",
           ItineraryName: "",
-          // itineraryId: this.props.itinerary.id,
           startTime: "",
           endTime: ""
         });
         alert("Edited Itinerary Item Sucessfully");
-        return fetch("http://localhost:5002/itineraryItem")
-          .then(e => e.json())
-          .then(itinerary =>
-            this.setState({
-              itinerary: itinerary.filter(
-                itinerary =>
-                  itinerary.tripId === this.state.tripInfo.id &&
-                  itinerary.itineraryId === this.state.targInfo.itineraryId
-              )
-            })
-          );
+        APIHandler.getData("itineraryItem").then(itinerary =>
+          this.setState({
+            itinerary: itinerary.filter(
+              itinerary =>
+                itinerary.tripId === this.state.tripInfo.id &&
+                itinerary.itineraryId === this.state.targInfo.itineraryId
+            )
+          })
+        );
       })
       .then(
         //this the username, and then sets the state of itinerary to be equal to a list of itineraries that is filtered by the trip number
@@ -522,18 +493,14 @@ export default class TripDash extends Component {
   addNewBudgetItem = event => {
     event.preventDefault();
 
+    const newBudgetItemBody = {
+      budgetItemTitle: this.state.budgetItemTitle,
+      budgetItemPrice: this.state.budgetItemPrice,
+      tripId: this.state.tripInfo.id
+    };
+
     // Add new budget to the API
-    fetch(`http://localhost:5002/budget`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        budgetItemTitle: this.state.budgetItemTitle,
-        budgetItemPrice: this.state.budgetItemPrice,
-        tripId: this.state.tripInfo.id
-      })
-    })
+    APIHandler.addData("budget", newBudgetItemBody)
       // When POST is finished, retrieve the new list of trips
       .then(() => {
         // Remember you HAVE TO return this fetch to the subsequent `then()`
@@ -541,32 +508,30 @@ export default class TripDash extends Component {
           BudgetModal: ""
         });
         alert("Added New Budget Item Sucessfully");
-        return fetch("http://localhost:5002/budget");
+        APIHandler.getData("budget");
       })
       .then(
         //this the username, and then sets the state of budget to be equal to a list of budgets that is filtered by the trip number
         APIHandler.getUserName(this.state.tripInfo.userId).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://localhost:5002/budget")
-              .then(e => e.json())
-              .then(budget =>
-                this.setState(
-                  {
-                    budget: budget.filter(
-                      budget => budget.tripId === this.state.tripInfo.id
-                    )
-                  },
-                  () => {
-                    this.state.budget.map(budget => {
-                      this.setState({
-                        budgetTotal:
-                          parseInt(this.state.budgetTotal) +
-                          parseInt(budget.budgetItemPrice)
-                      });
+            APIHandler.getData("budget").then(budget =>
+              this.setState(
+                {
+                  budget: budget.filter(
+                    budget => budget.tripId === this.state.tripInfo.id
+                  )
+                },
+                () => {
+                  this.state.budget.map(budget => {
+                    this.setState({
+                      budgetTotal:
+                        parseInt(this.state.budgetTotal) +
+                        parseInt(budget.budgetItemPrice)
                     });
-                  }
-                )
-              );
+                  });
+                }
+              )
+            );
           });
         })
       );
@@ -577,10 +542,7 @@ export default class TripDash extends Component {
     let targetPrice = 0;
     let targetId = event.target.parentNode.id;
 
-    return fetch(`http://localhost:5002/budget/${event.target.parentNode.id}`, {
-      method: "GET"
-    })
-      .then(e => e.json())
+    APIHandler.getBudgetItem(event)
       .then(response => {
         targetPrice = response.budgetItemPrice;
       })
@@ -590,18 +552,14 @@ export default class TripDash extends Component {
         });
       })
       .then(() => {
-        fetch(`http://localhost:5002/budget/${targetId}`, {
-          method: "DELETE"
-        }).then(() => {
-          fetch("http://localhost:5002/budget")
-            .then(e => e.json())
-            .then(budget =>
-              this.setState({
-                budget: budget.filter(
-                  budget => budget.tripId === this.state.tripInfo.id
-                )
-              })
-            );
+        APIHandler.deleteData("budget", targetId).then(() => {
+          APIHandler.getData("budget").then(budget =>
+            this.setState({
+              budget: budget.filter(
+                budget => budget.tripId === this.state.tripInfo.id
+              )
+            })
+          );
         });
       });
   };
@@ -630,15 +588,13 @@ export default class TripDash extends Component {
         }
         document.getElementById("itinerary").classList.add("show");
         document.getElementById("itinerary").classList.add("active");
-        fetch("http://localhost:5002/itinerary")
-          .then(e => e.json())
-          .then(itinerary =>
-            this.setState({
-              itinerary: itinerary.filter(
-                itinerary => itinerary.tripId === this.state.tripInfo.id
-              )
-            })
-          );
+        APIHandler.getData("itinerary").then(itinerary =>
+          this.setState({
+            itinerary: itinerary.filter(
+              itinerary => itinerary.tripId === this.state.tripInfo.id
+            )
+          })
+        );
         this.currentInfo = "";
 
         break;
@@ -651,15 +607,13 @@ export default class TripDash extends Component {
         document.getElementById("flights").classList.add("show");
         document.getElementById("flights").classList.add("active");
 
-        fetch("http://localhost:5002/flight")
-          .then(e => e.json())
-          .then(flight =>
-            this.setState({
-              flight: flight.filter(
-                flight => flight.tripId === this.state.tripInfo.id
-              )
-            })
-          );
+        APIHandler.getData("flight").then(flight =>
+          this.setState({
+            flight: flight.filter(
+              flight => flight.tripId === this.state.tripInfo.id
+            )
+          })
+        );
 
         break;
       case "Budget":
@@ -672,8 +626,7 @@ export default class TripDash extends Component {
         document.getElementById("budget").classList.add("active");
 
         let total = 0;
-        fetch("http://localhost:5002/budget")
-          .then(e => e.json())
+        APIHandler.getData("budget")
           .then(budget =>
             this.setState(
               {
@@ -697,6 +650,7 @@ export default class TripDash extends Component {
         break;
 
       default:
+        // if
         let tabcont3 = document.getElementsByClassName("show");
         for (let item of tabcont3) {
           item.classList.remove("show");
@@ -705,8 +659,7 @@ export default class TripDash extends Component {
 
         let name = event.target.parentNode.textContent;
 
-        fetch(`http://localhost:5002/list`)
-          .then(e => e.json())
+        APIHandler.getData("list")
           .then(custList =>
             this.setState(
               {
@@ -717,8 +670,10 @@ export default class TripDash extends Component {
                 )
               },
               () => {
-                document.getElementById(`${name}`).classList.add("show");
-                document.getElementById(`${name}`).classList.add("active");
+                if (document.getElementById(`${name}`) !== null) {
+                  document.getElementById(`${name}`).classList.add("show");
+                  document.getElementById(`${name}`).classList.add("active");
+                }
               }
             )
           )
@@ -728,21 +683,16 @@ export default class TripDash extends Component {
 
   addList = () => {
     // Add new list to the API
-    fetch(`http://localhost:5002/list`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        listName: this.state.ListName,
-        tripId: this.state.tripInfo.id
-      })
-    })
+    const newListData = {
+      listName: this.state.ListName,
+      tripId: this.state.tripInfo.id
+    };
+    APIHandler.addData("list", newListData)
       .then(() => {
         this.checkForLists();
       })
       .then(() => {
-        this.turnListModalInactive()
+        this.turnListModalInactive();
       });
   };
 
@@ -782,15 +732,13 @@ export default class TripDash extends Component {
   };
 
   checkForLists = () => {
-    fetch("http://localhost:5002/list")
-      .then(e => e.json())
-      .then(list =>
-        this.setState(function(prevState) {
-          return {
-            list: list.filter(list => list.tripId === prevState.tripInfo.id)
-          };
-        })
-      );
+    APIHandler.getData("list").then(list =>
+      this.setState(function(prevState) {
+        return {
+          list: list.filter(list => list.tripId === prevState.tripInfo.id)
+        };
+      })
+    );
   };
 
   NewListItem = () => {
@@ -835,17 +783,12 @@ export default class TripDash extends Component {
   };
 
   addListItem = () => {
+    const newListItemBody = {
+      listItemContent: this.state.ListItemContent,
+      listId: this.state.name[0].id
+    };
     // Add new list to the API
-    fetch(`http://localhost:5002/listItem`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8"
-      },
-      body: JSON.stringify({
-        listItemContent: this.state.ListItemContent,
-        listId: this.state.name[0].id
-      })
-    })
+    APIHandler.addData("listItem", newListItemBody)
       .then(() => {
         this.getMyListItems();
       })
@@ -856,18 +799,13 @@ export default class TripDash extends Component {
 
   deleteListItem = event => {
     // Delete list item from the API
-
-    fetch(`http://localhost:5002/listItem/${event.target.parentNode.id}`, {
-      method: "DELETE"
-    }).then(() => {
+    APIHandler.deleteData("listItem", event.target.parentNode.id).then(() => {
       this.getMyListItems();
     });
   };
 
   deleteCustomList = event => {
-    fetch(`http://localhost:5002/list/${event.target.parentNode.id}`, {
-      method: "DELETE"
-    })
+    APIHandler.deleteData("list", event.target.parentNode.id)
       .then(() => {
         this.checkForLists();
       })
@@ -878,26 +816,26 @@ export default class TripDash extends Component {
   };
 
   getMyListItems = () => {
-    fetch(`http://localhost:5002/listItem`)
-      .then(e => e.json())
-      .then(listItemList =>
+    if (this.state.id !== undefined) {
+      APIHandler.getData(`listItem`).then(listItemList =>
         this.setState({
           listItemList: listItemList.filter(
             listItemList => this.state.name[0].id === listItemList.listId
           )
         })
       );
+    }
   };
 
   goHome = () => {
-    this.props.history.push("/")
-  }
+    this.props.history.push("/");
+  };
 
   logOut = () => {
-    localStorage.clear()
-    sessionStorage.clear()
-    this.goHome()
-  }
+    localStorage.clear();
+    sessionStorage.clear();
+    this.goHome();
+  };
 
   render() {
     //this is the main body of the TripDash component. there is a main skeleton, and then the content of each tab is dynamically generated through the use of the PillListener function.
@@ -930,13 +868,13 @@ export default class TripDash extends Component {
                 </Column>
 
                 <Column id="homeLogOut">
-                    <Button isColor="info" id="homeBtn" onClick={this.goHome}>
-                      Home
-                    </Button>
-                    <Button isColor="info" onClick={this.logOut}>
-                      Logout
-                    </Button>
-                  </Column>
+                  <Button isColor="info" id="homeBtn" onClick={this.goHome}>
+                    Home
+                  </Button>
+                  <Button isColor="info" onClick={this.logOut}>
+                    Logout
+                  </Button>
+                </Column>
                 <Column hasTextAlign="right">
                   <Button
                     isColor="info"

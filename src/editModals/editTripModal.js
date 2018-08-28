@@ -18,10 +18,10 @@ import {
   Button
 } from "bloomer";
 
+import turnInactive from "./../DisplayModals/turnInactive";
+
 export default class editTripModal extends Component {
-  turnInactive = () => {
-    document.querySelector(".modal").classList.remove("is-active");
-  };
+
 
   render() {
     return (
@@ -30,7 +30,7 @@ export default class editTripModal extends Component {
         <ModalCard>
           <ModalCardHeader>
             <ModalCardTitle>Edit Trip</ModalCardTitle>
-            <Delete onClick={this.turnInactive} />
+            <Delete onClick={turnInactive.turnInactive} />
           </ModalCardHeader>
           <ModalCardBody>
             <Field>
@@ -79,7 +79,7 @@ export default class editTripModal extends Component {
                   Submit
                 </Button>
               </Control>
-              <Control onClick={this.turnInactive}>
+              <Control onClick={turnInactive.turnInactive}>
                 <Button>Cancel</Button>
               </Control>
             </Field>

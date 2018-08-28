@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 // import APIHandler from "./APIHandler";
 import {Modal, ModalBackground, ModalCardBody, Delete, ModalCard, ModalCardHeader, ModalCardTitle, Field, Label, Control, Input, Icon, Button } from "bloomer";
+import turnInactive from "./turnInactive.js";
 
 export default class FindFlightForm extends Component {
-    turnInactive = () => {
-        document.querySelector(".modal").classList.remove("is-active")
-    }
+
     render() {
         return (
 <Modal >
@@ -13,7 +12,7 @@ export default class FindFlightForm extends Component {
   <ModalCard>
     <ModalCardHeader>
       <ModalCardTitle>Find Flight</ModalCardTitle>
-      <Delete onClick={this.turnInactive}/>
+      <Delete onClick={turnInactive.turnInactive}/>
     </ModalCardHeader>
     <ModalCardBody>
       <Field>
@@ -38,7 +37,7 @@ export default class FindFlightForm extends Component {
         <Control>
           <Button isColor="primary" type="submit" onClick={this.props.FindFlight}>Submit</Button>
         </Control>
-        <Control onClick={this.turnInactive}>
+        <Control onClick={turnInactive.turnInactive}>
           <Button>Cancel</Button>
         </Control>
       </Field>

@@ -5,6 +5,7 @@ import "./../Trip.css";
 import React, { Component } from "react";
 import { Button, Card, CardContent } from "bloomer";
 import ItineraryModal from "../DisplayModals/ItineraryModal";
+import APIHandler from "../APIHandler";
 
 //This function creates the Itinerary Modal that pops up when the "add new Itinerary item" button is pressed.
 
@@ -17,22 +18,17 @@ export default class Itinerary extends Component {
   };
 
   deleteItineraryItem = event => {
-    console.log(event.target.parentNode.id);
-    fetch(`http://localhost:5002/itineraryItem/${event.target.parentNode.id}`, {
-      method: "DELETE"
-    }).then(() => {
-      fetch("http://localhost:5002/itineraryItem")
-        .then(e => e.json())
-        .then(itinerary =>
-          this.setState({
-            itineraryItem: itinerary.filter(
-              itinerary =>
-                itinerary.tripId === this.props.state.tripInfo.id &&
-                itinerary.itineraryId === this.props.itinerary.id
-            )
-          })
-        );
-    });
+    APIHandler.deleteItineraryItem(event).then(
+      APIHandler.getItineraryItemsData().then(itinerary =>
+        this.setState({
+          itineraryItem: itinerary.filter(
+            itinerary =>
+              itinerary.tripId === this.props.state.tripInfo.id &&
+              itinerary.itineraryId === this.props.itinerary.id
+          )
+        })
+      )
+    );
   };
 
   // Update state whenever an input field is edited
@@ -42,24 +38,22 @@ export default class Itinerary extends Component {
     this.setState(stateToChange);
   };
   componentDidMount() {
-    fetch("http://localhost:5002/itineraryItem")
-      .then(e => e.json())
-      .then(itinerary =>
-        this.setState({
-          itineraryItem: itinerary.filter(
-            itinerary =>
-              itinerary.tripId === this.props.state.tripInfo.id &&
-              itinerary.itineraryId === this.props.itinerary.id
-          )
-        })
-      );
+    APIHandler.getItineraryItemsData().then(itinerary =>
+      this.setState({
+        itineraryItem: itinerary.filter(
+          itinerary =>
+            itinerary.tripId === this.props.state.tripInfo.id &&
+            itinerary.itineraryId === this.props.itinerary.id
+        )
+      })
+    );
   }
   //this function handles all of the functionality related to adding a new itinerary to the database and then redrawing the page to create a card for it.
   addNewItinerary = event => {
     event.preventDefault();
 
     // Add new itinerary item to the API
-    fetch(`http://localhost:5002/itineraryItem`, {
+    fetch(`https://dartboard-database.herokuapp.com/itineraryItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -79,7 +73,7 @@ export default class Itinerary extends Component {
           ItineraryModal: ""
         });
         alert("Added New Itinerary Item Sucessfully");
-        return fetch("http://localhost:5002/itineraryItem")
+        return fetch("https://dartboard-database.herokuapp.com/itineraryItem")
           .then(e => e.json())
           .then(itinerary =>
             this.setState({
@@ -144,10 +138,8 @@ export default class Itinerary extends Component {
   turnInactive = () => {
     this.setState({
       ItineraryModal: ""
-    })
-    
-    
-}
+    });
+  };
 
   render() {
     return (
@@ -161,30 +153,35 @@ export default class Itinerary extends Component {
         {this.state.itineraryItem.map(itinerary => {
           return (
             <CardContent id={itinerary.id} className="itinerary-card-content">
-                <h5 className="card-title ">{itinerary.ItineraryName}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">
-                  {" "}
-                  {itinerary.startTime} to {itinerary.endTime}
-                </h6>
-                <img src={require("./../edit-solid.svg")} id="edtBtn" alt="edit pen" onClick={this.props.editItineraryModal}/>
-                <img
-                  src={require("./../trash-alt-solid.svg")}
-                  id="deleteBtn"
-                  alt="delete Trash Can"
-                  onClick={this.deleteItineraryItem}
-                />
+              <h5 className="card-title ">{itinerary.ItineraryName}</h5>
+              <h6 className="card-subtitle mb-2 text-muted">
+                {" "}
+                {itinerary.startTime} to {itinerary.endTime}
+              </h6>
+              <img
+                src={require("./../edit-solid.svg")}
+                id="edtBtn"
+                alt="edit pen"
+                onClick={this.props.editItineraryModal}
+              />
+              <img
+                src={require("./../trash-alt-solid.svg")}
+                id="deleteBtn"
+                alt="delete Trash Can"
+                onClick={this.deleteItineraryItem}
+              />
             </CardContent>
           );
         })}
         {this.state.ItineraryModal}
         {this.props.editItineraryModalState}
         <Button
-        className="itineraryButton"
+          className="itineraryButton"
           isColor="info"
           render={props => (
-              <p {...props} onClick={this.ItineraryModal}>
-                New Itinerary Item
-              </p>
+            <p {...props} onClick={this.ItineraryModal}>
+              New Itinerary Item
+            </p>
           )}
         />
       </Card>

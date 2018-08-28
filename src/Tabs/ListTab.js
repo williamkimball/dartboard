@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import {Tab} from "bloomer";
 
 export default class ListTab extends Component {
-  // console.log("yo")
+
   render() {
     return (
       <Tab onClick={this.props.pillListener}>

@@ -17,6 +17,8 @@ import {
   Checkbox
 } from "bloomer";
 
+import TurnInactive from "./turnInactive"
+
 export default class Register extends Component {
   //Initially declare state, to be modified as the user types presses the register button.
   state = {
@@ -74,9 +76,6 @@ export default class Register extends Component {
     }
   };
 
-  turnInactive = () => {
-    document.querySelector(".modal").classList.remove("is-active");
-  };
   render() {
     return (
       <Modal>
@@ -84,7 +83,7 @@ export default class Register extends Component {
         <ModalCard>
           <ModalCardHeader>
             <ModalCardTitle>Register</ModalCardTitle>
-            <Delete onClick={this.turnInactive} />
+            <Delete onClick={TurnInactive.turnInactive} />
           </ModalCardHeader>
           <ModalCardBody>
             <Field>
@@ -141,7 +140,7 @@ export default class Register extends Component {
                   Submit
                 </Button>
               </Control>
-              <Control onClick={this.turnInactive}>
+              <Control onClick={TurnInactive.turnInactive}>
                 <Button>Cancel</Button>
               </Control>
             </Field>

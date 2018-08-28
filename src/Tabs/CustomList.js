@@ -6,7 +6,7 @@ import React from "react";
 import { Card } from "bloomer";
 
 const List = props => {
-  // console.log(props)
+
   return (
     <Card id={props.list.id} className="customCard">
       {<div id={props.list.listName} class="custCard">{props.list.listItemContent}</div>}

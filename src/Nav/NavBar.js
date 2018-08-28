@@ -11,12 +11,6 @@ export default class NavBar extends Component {
     search: ""
   };
 
-  handleFieldChange = evt => {
-    const stateToChange = {};
-    stateToChange[evt.target.id] = evt.target.value;
-    this.setState(stateToChange);
-  };
-
   goHome = () => {
     this.props.history.push(`/`)
   }
