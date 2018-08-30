@@ -816,7 +816,8 @@ export default class TripDash extends Component {
   };
 
   getMyListItems = () => {
-    if (this.state.id !== undefined) {
+    
+    if (this.state.name !== undefined) {
       APIHandler.getData(`listItem`).then(listItemList =>
         this.setState({
           listItemList: listItemList.filter(

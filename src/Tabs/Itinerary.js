@@ -53,7 +53,7 @@ export default class Itinerary extends Component {
     event.preventDefault();
 
     // Add new itinerary item to the API
-    fetch(`https://dartboard-database.herokuapp.com/itineraryItem`, {
+    fetch(`http://localhost:3000/itineraryItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -73,7 +73,7 @@ export default class Itinerary extends Component {
           ItineraryModal: ""
         });
         alert("Added New Itinerary Item Sucessfully");
-        return fetch("https://dartboard-database.herokuapp.com/itineraryItem")
+        return fetch("http://localhost:3000/itineraryItem")
           .then(e => e.json())
           .then(itinerary =>
             this.setState({
@@ -180,7 +180,7 @@ export default class Itinerary extends Component {
           isColor="info"
           render={props => (
             <p {...props} onClick={this.ItineraryModal}>
-              New Itinerary Item
+              Add Item
             </p>
           )}
         />
