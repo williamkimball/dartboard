@@ -201,7 +201,7 @@ export default class Dashboard extends Component {
     // console.log(tripLength);
 
     // Add new trips to the API
-    fetch(`https://dartboard-database.herokuapp.com/trips?_expand=user`, {
+    fetch(`http://localhost:3000/trips?_expand=user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -220,7 +220,7 @@ export default class Dashboard extends Component {
       .then(function(trip) {
         console.log(trip);
         for (let i = 0; i < tripLength; i++) {
-          fetch(`https://dartboard-database.herokuapp.com/itinerary`, {
+          fetch(`http://localhost:3000/itinerary`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json; charset=utf-8"
@@ -239,14 +239,12 @@ export default class Dashboard extends Component {
           tripForm: ""
         });
         alert("Added New Article Sucessfully");
-        return fetch(
-          "https://dartboard-database.herokuapp.com/trips?_expand=user"
-        );
+        return fetch("http://localhost:3000/trips?_expand=user");
       })
       .then(
         APIHandler.getUserName(this.state.user).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("https://dartboard-database.herokuapp.com/trips?_expand=user")
+            fetch("http://localhost:3000/trips?_expand=user")
               .then(e => e.json())
               .then(trip =>
                 this.setState({
@@ -283,7 +281,7 @@ export default class Dashboard extends Component {
           let tripLength = (tripEnd - tripStart) / 86400000;
           console.log(tripLength);
           // Add new trips to the API
-          fetch(`https://dartboard-database.herokuapp.com/trips?_expand=user`, {
+          fetch(`http://localhost:3000/trips?_expand=user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json; charset=utf-8"
@@ -302,7 +300,7 @@ export default class Dashboard extends Component {
             .then(trip => {
               console.log("budget");
               // Add new budget to the API
-              fetch(`https://dartboard-database.herokuapp.com/budget`, {
+              fetch(`http://localhost:3000/budget`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json; charset=utf-8"
@@ -316,30 +314,27 @@ export default class Dashboard extends Component {
               return trip;
             })
             .then(trip => {
-              fetch(
-                `https://dartboard-database.herokuapp.com/flight?_expand=user`,
-                {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json; charset=utf-8"
-                  },
-                  body: JSON.stringify({
-                    FlightName: `Flight to ${trip.title}`,
-                    FlightStartDate: Dest.departure_at.slice(0, -10),
-                    FlightEndDate: Dest.return_at.slice(0, -10),
-                    FlightNumber: `${Dest.airline} ${Dest.flight_number}`,
-                    FlightOrigin: this.state.FindFlightOrigin,
-                    FlightDestination: destination,
-                    tripId: trip.id
-                  })
-                }
-              );
+              fetch(`http://localhost:3000/flight?_expand=user`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify({
+                  FlightName: `Flight to ${trip.title}`,
+                  FlightStartDate: Dest.departure_at.slice(0, -10),
+                  FlightEndDate: Dest.return_at.slice(0, -10),
+                  FlightNumber: `${Dest.airline} ${Dest.flight_number}`,
+                  FlightOrigin: this.state.FindFlightOrigin,
+                  FlightDestination: destination,
+                  tripId: trip.id
+                })
+              });
               return trip;
             })
             .then(function(trip) {
               console.log(tripLength);
               for (let i = 0; i < tripLength; i++) {
-                fetch(`https://dartboard-database.herokuapp.com/itinerary`, {
+                fetch(`http://localhost:3000/itinerary`, {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json; charset=utf-8"
@@ -360,16 +355,12 @@ export default class Dashboard extends Component {
                 FindFlightResultsModal: ""
               });
               alert("Added New Trip Sucessfully");
-              return fetch(
-                "https://dartboard-database.herokuapp.com/trips?_expand=user"
-              );
+              return fetch("http://localhost:3000/trips?_expand=user");
             })
             .then(
               APIHandler.getUserName(this.state.user).then(username => {
                 this.setState({ userName: username }, () => {
-                  fetch(
-                    "https://dartboard-database.herokuapp.com/trips?_expand=user"
-                  )
+                  fetch("http://localhost:3000/trips?_expand=user")
                     .then(e => e.json())
                     .then(trip =>
                       this.setState({
@@ -417,7 +408,7 @@ export default class Dashboard extends Component {
     this.setState({ user: currentUser });
     APIHandler.getUserName(currentUser).then(username => {
       this.setState({ userName: username }, () => {
-        fetch("https://dartboard-database.herokuapp.com/trips?_expand=user")
+        fetch("http://localhost:3000/trips?_expand=user")
           .then(e => e.json())
           .then(trip =>
             this.setState({
@@ -432,13 +423,11 @@ export default class Dashboard extends Component {
   deleteTrip = event => {
     var id3 = event.target.closest("div").id;
     // console.log(id3)
-    return fetch(`https://dartboard-database.herokuapp.com/trips/${id3}`, {
+    return fetch(`http://localhost:3000/trips/${id3}`, {
       method: "DELETE"
     })
       .then(() => {
-        return fetch(
-          "https://dartboard-database.herokuapp.com/trips?_expand=user"
-        );
+        return fetch("http://localhost:3000/trips?_expand=user");
       })
       .then(e => e.json())
       .then(trip =>
@@ -451,7 +440,7 @@ export default class Dashboard extends Component {
   editTrip = event => {
     let targId = this.state.targId;
     // console.log(targId);
-    fetch(`https://dartboard-database.herokuapp.com/trips/${targId}`, {
+    fetch(`http://localhost:3000/trips/${targId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -469,14 +458,12 @@ export default class Dashboard extends Component {
           editTripModal: ""
         });
         alert("Edited Trip Sucessfully");
-        return fetch(
-          "https://dartboard-database.herokuapp.com/trips?_expand=user"
-        );
+        return fetch("http://localhost:3000/trips?_expand=user");
       })
       .then(
         APIHandler.getUserName(this.state.user).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("https://dartboard-database.herokuapp.com/trips?_expand=user")
+            fetch("http://localhost:3000/trips?_expand=user")
               .then(e => e.json())
               .then(trip =>
                 this.setState({
