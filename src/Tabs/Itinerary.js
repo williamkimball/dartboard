@@ -53,7 +53,7 @@ export default class Itinerary extends Component {
     event.preventDefault();
 
     // Add new itinerary item to the API
-    fetch(`http://localhost:3000/itineraryItem`, {
+    fetch(`http://www.dartboardtravel.com/itineraryItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -73,7 +73,7 @@ export default class Itinerary extends Component {
           ItineraryModal: ""
         });
         alert("Added New Itinerary Item Sucessfully");
-        return fetch("http://localhost:3000/itineraryItem")
+        return fetch("http://www.dartboardtravel.com/itineraryItem")
           .then(e => e.json())
           .then(itinerary =>
             this.setState({
