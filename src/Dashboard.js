@@ -201,7 +201,7 @@ export default class Dashboard extends Component {
     // console.log(tripLength);
 
     // Add new trips to the API
-    fetch(`http://www.dartboardtravel.com/trips?_expand=user`, {
+    fetch(`https://www.dartboardtravel.com/trips?_expand=user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -239,12 +239,12 @@ export default class Dashboard extends Component {
           tripForm: ""
         });
         alert("Added New Article Sucessfully");
-        return fetch("http://www.dartboardtravel.com/trips?_expand=user");
+        return fetch("https://www.dartboardtravel.com/trips?_expand=user");
       })
       .then(
         APIHandler.getUserName(this.state.user).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://www.dartboardtravel.com/trips?_expand=user")
+            fetch("https://www.dartboardtravel.com/trips?_expand=user")
               .then(e => e.json())
               .then(trip =>
                 this.setState({
@@ -281,7 +281,7 @@ export default class Dashboard extends Component {
           let tripLength = (tripEnd - tripStart) / 86400000;
           console.log(tripLength);
           // Add new trips to the API
-          fetch(`http://www.dartboardtravel.com/trips?_expand=user`, {
+          fetch(`https://www.dartboardtravel.com/trips?_expand=user`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json; charset=utf-8"
@@ -355,12 +355,14 @@ export default class Dashboard extends Component {
                 FindFlightResultsModal: ""
               });
               alert("Added New Trip Sucessfully");
-              return fetch("http://www.dartboardtravel.com/trips?_expand=user");
+              return fetch(
+                "https://www.dartboardtravel.com/trips?_expand=user"
+              );
             })
             .then(
               APIHandler.getUserName(this.state.user).then(username => {
                 this.setState({ userName: username }, () => {
-                  fetch("http://www.dartboardtravel.com/trips?_expand=user")
+                  fetch("https://www.dartboardtravel.com/trips?_expand=user")
                     .then(e => e.json())
                     .then(trip =>
                       this.setState({
@@ -408,7 +410,7 @@ export default class Dashboard extends Component {
     this.setState({ user: currentUser });
     APIHandler.getUserName(currentUser).then(username => {
       this.setState({ userName: username }, () => {
-        fetch("http://www.dartboardtravel.com/trips?_expand=user")
+        fetch("https://www.dartboardtravel.com/trips?_expand=user")
           .then(e => e.json())
           .then(trip =>
             this.setState({
@@ -427,7 +429,7 @@ export default class Dashboard extends Component {
       method: "DELETE"
     })
       .then(() => {
-        return fetch("http://www.dartboardtravel.com/trips?_expand=user");
+        return fetch("https://www.dartboardtravel.com/trips?_expand=user");
       })
       .then(e => e.json())
       .then(trip =>
@@ -458,12 +460,12 @@ export default class Dashboard extends Component {
           editTripModal: ""
         });
         alert("Edited Trip Sucessfully");
-        return fetch("http://www.dartboardtravel.com/trips?_expand=user");
+        return fetch("https://www.dartboardtravel.com/trips?_expand=user");
       })
       .then(
         APIHandler.getUserName(this.state.user).then(username => {
           this.setState({ userName: username }, () => {
-            fetch("http://www.dartboardtravel.com/trips?_expand=user")
+            fetch("https://www.dartboardtravel.com/trips?_expand=user")
               .then(e => e.json())
               .then(trip =>
                 this.setState({
