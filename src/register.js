@@ -16,7 +16,8 @@ import {
   Button,
   Checkbox
 } from "bloomer";
-
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
 
 export default class Register extends Component {
   //Initially declare state, to be modified as the user types presses the register button.
@@ -40,7 +41,7 @@ export default class Register extends Component {
     let registerData = {
       name: this.state.name,
       email: this.state.email,
-      password: this.state.password
+      password: bcrypt.hashSync("this.state.password", salt)
     };
 
     //checks to make sure fields are not empty
