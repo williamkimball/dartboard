@@ -16,6 +16,8 @@ import {
   Button,
   Checkbox
 } from "bloomer";
+var bcrypt = require('bcryptjs');
+
 export default class loginForm extends Component {
   state = {
     email: "",
@@ -35,7 +37,7 @@ export default class loginForm extends Component {
     APIHandler.getData(`users?email=${this.state.email}`)
       .then(user => {
         console.log(user);
-        if (user.length > 0 && bcrypt.compareSync(`${this.state.password}`, hash)) {
+        if (user.length > 0 && bcrypt.compareSync(`${this.state.password}`, user[0].password)) {
           this.setState({ userId: user[0].id });
         } else {
           alert(

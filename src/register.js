@@ -41,7 +41,7 @@ export default class Register extends Component {
     let registerData = {
       name: this.state.name,
       email: this.state.email,
-      password: bcrypt.hashSync("this.state.password", salt)
+      password: bcrypt.hashSync(`${this.state.password}`, salt)
     };
 
     //checks to make sure fields are not empty
