@@ -1,27 +1,33 @@
 class apiCalls {
   static getData = section => {
-    return fetch(`http://localhost:3000/${section}`).then(e => e.json());
-  };
-
-  static getTripData = id => {
-    return fetch(`http://localhost:3000/trips/${id}?_expand=user`).then(e =>
+    return fetch(`http://www.dartboardtravel.com/${section}`).then(e =>
       e.json()
     );
   };
 
+  static getTripData = id => {
+    return fetch(
+      `http://www.dartboardtravel.com/trips/${id}?_expand=user`
+    ).then(e => e.json());
+  };
+
   static getItineraryItemData = id => {
-    return fetch(`http://localhost:3000/itineraryItem/${id}`).then(e =>
+    return fetch(`http://www.dartboardtravel.com/itineraryItem/${id}`).then(e =>
       e.json()
     );
   };
 
   static getItineraryItemsData = id => {
-    return fetch(`http://localhost:3000/itineraryItem`).then(e => e.json());
+    return fetch(`http://www.dartboardtravel.com/itineraryItem`).then(e =>
+      e.json()
+    );
   };
 
   static deleteItineraryItem = event => {
     return fetch(
-      `http://localhost:3000/itineraryItem/${event.target.parentNode.id}`,
+      `http://www.dartboardtravel.com/itineraryItem/${
+        event.target.parentNode.id
+      }`,
       {
         method: "DELETE"
       }
@@ -29,7 +35,7 @@ class apiCalls {
   };
 
   static addData = (section, body) => {
-    return fetch(`http://localhost:3000/${section}`, {
+    return fetch(`http://www.dartboardtravel.com/${section}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -39,19 +45,22 @@ class apiCalls {
   };
 
   static getBudgetItem = event => {
-    return fetch(`http://localhost:3000/budget/${event.target.parentNode.id}`, {
-      method: "GET"
-    }).then(e => e.json());
+    return fetch(
+      `http://www.dartboardtravel.com/budget/${event.target.parentNode.id}`,
+      {
+        method: "GET"
+      }
+    ).then(e => e.json());
   };
 
   static deleteData = (section, id) => {
-    return fetch(`http://localhost:3000/${section}/${id}`, {
+    return fetch(`http://www.dartboardtravel.com/${section}/${id}`, {
       method: "DELETE"
     });
   };
 
   static editData = (section, id, body) => {
-    return fetch(`http://localhost:3000/${section}/${id}`, {
+    return fetch(`http://www.dartboardtravel.com/${section}/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -61,7 +70,7 @@ class apiCalls {
   };
 
   static getUserName = id => {
-    return fetch(`http://localhost:3000/users/${id}`)
+    return fetch(`http://www.dartboardtravel.com/users/${id}`)
       .then(e => e.json())
       .then(user => {
         return user.name;
