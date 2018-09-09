@@ -220,7 +220,7 @@ export default class Dashboard extends Component {
       .then(function(trip) {
         console.log(trip);
         for (let i = 0; i < tripLength; i++) {
-          fetch(`http://www.dartboardtravel.com/itinerary`, {
+          fetch(`https://www.dartboardtravel.com/itinerary`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json; charset=utf-8"
@@ -300,7 +300,7 @@ export default class Dashboard extends Component {
             .then(trip => {
               console.log("budget");
               // Add new budget to the API
-              fetch(`http://www.dartboardtravel.com/budget`, {
+              fetch(`https://www.dartboardtravel.com/budget`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json; charset=utf-8"
@@ -314,7 +314,7 @@ export default class Dashboard extends Component {
               return trip;
             })
             .then(trip => {
-              fetch(`http://www.dartboardtravel.com/flight?_expand=user`, {
+              fetch(`https://www.dartboardtravel.com/flight?_expand=user`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json; charset=utf-8"
@@ -334,7 +334,7 @@ export default class Dashboard extends Component {
             .then(function(trip) {
               console.log(tripLength);
               for (let i = 0; i < tripLength; i++) {
-                fetch(`http://www.dartboardtravel.com/itinerary`, {
+                fetch(`https://www.dartboardtravel.com/itinerary`, {
                   method: "POST",
                   headers: {
                     "Content-Type": "application/json; charset=utf-8"
@@ -425,7 +425,7 @@ export default class Dashboard extends Component {
   deleteTrip = event => {
     var id3 = event.target.closest("div").id;
     // console.log(id3)
-    return fetch(`http://www.dartboardtravel.com/trips/${id3}`, {
+    return fetch(`https://www.dartboardtravel.com/trips/${id3}`, {
       method: "DELETE"
     })
       .then(() => {
@@ -442,7 +442,7 @@ export default class Dashboard extends Component {
   editTrip = event => {
     let targId = this.state.targId;
     // console.log(targId);
-    fetch(`http://www.dartboardtravel.com/trips/${targId}`, {
+    fetch(`https://www.dartboardtravel.com/trips/${targId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
