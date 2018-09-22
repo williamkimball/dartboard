@@ -3,9 +3,16 @@
     {
       "name": "William",
       "email": "wkkimball043@gmail.com",
-      "password": "p",
+      "password": "$2a$10$JSEIXfcGgpxnb1WqlBzf7uNfL9OtAQb6HgWZdZz6YjtTQ9q9g9fza",
       "id": 1
+    },
+    {
+      "name": "test",
+      "email": "test@gmail.com",
+      "password": "$2a$10$JSEIXfcGgpxnb1WqlBzf7uNfL9OtAQb6HgWZdZz6YjtTQ9q9g9fza",
+      "id": 2
     }
+
   ],
   "trips": [
     {
