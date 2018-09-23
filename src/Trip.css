@@ -1,6 +1,14 @@
 /* William Kimball 2018
 This file styles the most components */
 
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%
+}
+
 .dashboard-tripCards {
   justify-content: space-around;
   display: flex;
