@@ -5,9 +5,15 @@ This file styles the most components */
   justify-content: space-around;
   display: flex;
   flex-wrap: wrap;
+  min-height: 230px;
 }
-.custCard{
-  width: 90%
+
+.dashboard-tripCards > .card.item {
+  min-width: 15%;
+}
+
+.custCard {
+  width: 90%;
 }
 
 .card-cont {
@@ -29,20 +35,32 @@ This file styles the most components */
 }
 
 #newTripBtn,
+#homeBtn,
+#dartBtn {
+  margin-right: 10%;
+  width: 40%;
+  min-width: 130px;
+}
+
+#dashButtons > button {
+  width: 40%;
+  min-width: 130px;
+}
+
 #homeBtn {
   margin-right: 10%;
 }
 
-#homeBtn {
-  margin-right: 28%;
-}
-
-#homeLogOut {
+#homeLogOut > button {
   justify-content: space-around;
+  width: 40%;
+  margin-right: 10%;
+  min-width: 130px;
 }
 
 dashButtons {
   justify-content: space-between;
+  width: 40%;
 }
 
 #loginLogo {
@@ -91,12 +109,16 @@ button {
   max-width: 40%;
   align-self: center;
   margin: 2%;
-  padding: 3%
+  padding: 3%;
+
 }
 
-.button.is-info.itineraryButton{
+.button.is-info.itineraryButton {
   padding-left: 30%;
-  padding-right: 30%
+  padding-right: 30%;
+  position:absolute;
+  bottom:0px;
+  min-width: 90px;
 }
 
 #budgetTotal {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import APIHandler from "./APIHandler";
 import TripForm from "./DisplayModals/TripForm";
 import Trip from "./Tabs/Trip";
-// import Unsplash from "unsplash-js";
 import FindFlightModal from "./DisplayModals/APITripForm";
 import FindFlightResults from "./Tabs/FindFlightResults";
 import "./Dashboard.css";
