@@ -10,6 +10,8 @@ This file styles the most components */
 
 .dashboard-tripCards > .card.item {
   min-width: 15%;
+  min-height: 400px;
+  padding-bottom: 40px;
 }
 
 .custCard {
@@ -110,14 +112,13 @@ button {
   align-self: center;
   margin: 2%;
   padding: 3%;
-
 }
 
 .button.is-info.itineraryButton {
   padding-left: 30%;
   padding-right: 30%;
-  position:absolute;
-  bottom:0px;
+  position: absolute;
+  bottom: 0px;
   min-width: 90px;
 }
 
